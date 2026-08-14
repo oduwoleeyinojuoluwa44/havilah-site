@@ -216,7 +216,9 @@
     /* min-width:700px forced a horizontal scrollbar on phones; the
        viewBox scales, so raise the type instead of the floor. */
     .arc-cap svg{width:96vw;min-width:0;}
-    .arc-cap svg text{font-size:44px;letter-spacing:4px;}
+    /* The svg is overflow:visible, so type wider than the arc path spills
+       past the viewport. Keep the run inside the path's 60–940 span. */
+    .arc-cap svg text{font-size:40px;letter-spacing:1px;}
     .sprig{width:180px;}
     .sprig.br{right:-40px;}
   }
