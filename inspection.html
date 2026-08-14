@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book an Inspection · Havilah Development</title>
+<meta name="description" content="Arrange a site inspection with Havilah Development and Management Services Limited in Lekki, Lagos. Pick a day and time and we will confirm with you.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,500&family=Great+Vibes&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16181d;
+    --ink-soft:#23262d;
+    --stone:#8e8b84;
+    --paper:#f2f0ec;
+    --paper-dim:#e7e4de;
+    --gold:#c9a15b;
+    --gold-deep:#a8813f;
+    --line:rgba(22,24,29,.18);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:'Jost',sans-serif;overflow-x:hidden;}
+  h1,h2,h3{font-family:'Cormorant',serif;font-weight:500;margin:0;}
+  .script{font-family:'Great Vibes',cursive;font-weight:400;color:var(--gold);}
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:var(--gold);color:#fff;}
+
+  /* ================= NAV ================= */
+  .topnav{position:absolute;top:0;left:0;right:0;z-index:10;display:flex;justify-content:space-between;align-items:flex-start;padding:26px 34px;color:var(--ink);}
+  .topnav .logo{font-family:'Cormorant',serif;font-size:20px;letter-spacing:3px;line-height:1.1;}
+  .topnav .logo em{font-family:'Great Vibes',cursive;font-style:normal;font-size:15px;display:block;letter-spacing:1px;opacity:.8;}
+  .topnav .back{font-size:11px;letter-spacing:2px;text-transform:uppercase;border-bottom:1px solid currentColor;padding-bottom:2px;}
+
+  /* ================= LAYOUT ================= */
+  .wrap{max-width:1120px;margin:0 auto;padding:150px 6vw 90px;}
+  .head{text-align:center;margin-bottom:56px;}
+  .head .kicker{font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--gold-deep);margin-bottom:14px;}
+  .head h1{font-size:clamp(38px,6vw,76px);line-height:1.05;text-transform:uppercase;}
+  .head .script{display:block;font-size:clamp(24px,3.4vw,40px);text-transform:none;margin-top:4px;}
+  .head p{max-width:560px;margin:22px auto 0;font-size:14.5px;line-height:1.85;color:#4d4f56;font-weight:300;}
+
+  .grid{display:grid;grid-template-columns:1.25fr .75fr;gap:5vw;align-items:start;}
+
+  /* ================= FORM ================= */
+  .field{margin-bottom:22px;}
+  .field label{display:block;font-size:10.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--stone);margin-bottom:8px;}
+  .field input,.field select,.field textarea{width:100%;background:transparent;border:0;border-bottom:1px solid var(--line);padding:11px 2px;font-family:'Jost',sans-serif;font-size:15px;color:var(--ink);border-radius:0;transition:border-color .25s;}
+  .field textarea{resize:vertical;min-height:74px;line-height:1.6;}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-bottom-color:var(--gold-deep);}
+  .field select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--stone) 50%),linear-gradient(135deg,var(--stone) 50%,transparent 50%);background-position:calc(100% - 13px) 20px,calc(100% - 8px) 20px;background-size:5px 5px,5px 5px;background-repeat:no-repeat;cursor:pointer;}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+  .field .err{display:none;margin-top:7px;font-size:11px;letter-spacing:1px;color:#a3372f;}
+  .field.invalid input,.field.invalid select{border-bottom-color:#a3372f;}
+  .field.invalid .err{display:block;}
+
+  .submit{margin-top:12px;display:inline-flex;align-items:center;gap:11px;border:1px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:999px;padding:15px 32px;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;cursor:pointer;transition:background .3s,color .3s;}
+  .submit:hover{background:transparent;color:var(--ink);}
+  .submit svg{width:15px;height:15px;fill:currentColor;}
+  .note{margin-top:16px;font-size:12px;line-height:1.7;color:var(--stone);}
+
+  /* shown only if the WhatsApp number has not been set yet */
+  .unconfigured{display:none;margin-top:20px;padding:16px 18px;border:1px solid var(--gold-deep);background:rgba(201,161,91,.1);font-size:13px;line-height:1.7;color:var(--ink);}
+
+  /* ================= ASIDE ================= */
+  .aside{border-left:1px solid var(--line);padding-left:5vw;}
+  .aside h3{font-size:22px;margin-bottom:8px;}
+  .aside .blk{margin-bottom:32px;}
+  .aside .lbl{font-size:10.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--stone);margin-bottom:9px;}
+  .aside p,.aside a{font-size:14px;line-height:1.85;color:#4d4f56;font-weight:300;}
+  .aside a{border-bottom:1px solid var(--line);}
+  .aside a:hover{border-bottom-color:var(--gold-deep);}
+  .aside ol{margin:0;padding-left:18px;}
+  .aside ol li{font-size:14px;line-height:1.85;color:#4d4f56;font-weight:300;margin-bottom:7px;}
+
+  /* ================= FOOTER ================= */
+  .footer{background:var(--ink);color:#fff;padding:70px 6vw 34px;}
+  .footer .cols{display:flex;flex-wrap:wrap;gap:6vw;max-width:1200px;margin:0 auto;}
+  .footer .brand{font-family:'Cormorant',serif;font-size:26px;letter-spacing:4px;}
+  .footer .brand em{font-family:'Great Vibes',cursive;font-style:normal;font-size:16px;display:block;letter-spacing:1px;color:var(--gold);margin-top:5px;}
+  .footer .col{font-size:12.5px;line-height:2;color:rgba(255,255,255,.6);font-weight:300;}
+  .footer .col b{display:block;font-weight:500;color:#fff;margin-bottom:9px;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;}
+  .footer .base{max-width:1200px;margin:50px auto 0;padding-top:22px;border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:10.5px;letter-spacing:1.5px;color:rgba(255,255,255,.45);text-transform:uppercase;}
+
+  @media (max-width:900px){
+    .topnav{padding:20px 22px;}
+    .wrap{padding:130px 7vw 70px;}
+    .grid{grid-template-columns:1fr;gap:52px;}
+    .aside{border-left:0;border-top:1px solid var(--line);padding-left:0;padding-top:38px;}
+    .row{grid-template-columns:1fr;gap:0;}
+  }
+</style>
+</head>
+<body>
+
+  <nav class="topnav">
+    <a href="index.html"><div class="logo">HAVILAH<em>Development</em></div></a>
+    <a class="back" href="index.html">Back to site</a>
+  </nav>
+
+  <div class="wrap">
+    <div class="head">
+      <div class="kicker">Havilah Development</div>
+      <h1>Book an Inspection<span class="script">walk the site with us</span></h1>
+      <p>Tell us when suits you and which property you would like to see. We will confirm your slot and meet you on site.</p>
+    </div>
+
+    <div class="grid">
+      <form id="bookingForm" novalidate>
+        <div class="row">
+          <div class="field" id="f-name">
+            <label for="name">Your name</label>
+            <input type="text" id="name" name="name" autocomplete="name" placeholder="Full name">
+            <div class="err">Please enter your name.</div>
+          </div>
+          <div class="field" id="f-phone">
+            <label for="phone">Phone number</label>
+            <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="080 0000 0000">
+            <div class="err">Please enter a phone number we can reach you on.</div>
+          </div>
+        </div>
+
+        <div class="field" id="f-property">
+          <label for="property">Property of interest</label>
+          <select id="property" name="property">
+            <option value="">Select a property</option>
+            <option>The Flagship apartments</option>
+            <option>Terrace homes</option>
+            <option>Not sure yet, advise me</option>
+          </select>
+          <div class="err">Please choose which property you would like to see.</div>
+        </div>
+
+        <div class="row">
+          <div class="field" id="f-date">
+            <label for="date">Preferred date</label>
+            <input type="date" id="date" name="date">
+            <div class="err">Please choose a date from today onwards.</div>
+          </div>
+          <div class="field" id="f-time">
+            <label for="time">Preferred time</label>
+            <select id="time" name="time">
+              <option value="">Select a time</option>
+              <option>Morning, 9am to 12pm</option>
+              <option>Afternoon, 12pm to 4pm</option>
+              <option>Evening, 4pm to 6pm</option>
+            </select>
+            <div class="err">Please choose a time.</div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="notes">Anything else? (optional)</label>
+          <textarea id="notes" name="notes" placeholder="Number of bedrooms, budget, questions for the team"></textarea>
+        </div>
+
+        <button type="submit" class="submit">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.6.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.6-1.5-.9-2.1-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 5 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+          Send via WhatsApp
+        </button>
+
+        <div class="note">This opens WhatsApp with your details filled in. Nothing is sent until you press send there.</div>
+        <div class="unconfigured" id="unconfigured"></div>
+      </form>
+
+      <div class="aside">
+        <div class="blk">
+          <h3>What to expect</h3>
+          <ol>
+            <li>We confirm your slot by phone or WhatsApp.</li>
+            <li>You meet a member of the team on site.</li>
+            <li>You walk the property and ask anything.</li>
+            <li>No obligation to proceed afterwards.</li>
+          </ol>
+        </div>
+        <div class="blk">
+          <div class="lbl">Visit</div>
+          <p>Eyebrow Area<br>Lekki, Lagos State<br>Nigeria</p>
+        </div>
+        <div class="blk">
+          <div class="lbl">Talk</div>
+          <p><a href="tel:+2340000000000" id="asidePhone">+234 (0) 000 000 0000</a><br>
+             <a href="mailto:hello@havilahdevelopment.ng">hello@havilahdevelopment.ng</a></p>
+        </div>
+        <div class="blk">
+          <div class="lbl">Inspection hours</div>
+          <p>Monday to Saturday<br>9am to 6pm</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="cols">
+      <div>
+        <div class="brand">HAVILAH<em>Building dreams, shaping communities</em></div>
+      </div>
+      <div class="col"><b>Visit</b>Eyebrow Area<br>Lekki, Lagos State<br>Nigeria</div>
+      <div class="col"><b>Talk</b>+234 (0) 000 000 0000<br>hello@havilahdevelopment.ng</div>
+      <div class="col"><b>Explore</b><a href="index.html#flagship">Properties</a><br><a href="index.html#folioSec">Portfolio</a><br><a href="index.html#mgmtSec">Management</a></div>
+    </div>
+    <div class="base">
+      <span>© 2026 Havilah Development &amp; Management Services Limited</span>
+      <span>Lekki · Lagos · Nigeria</span>
+    </div>
+  </footer>
+
+<script>
+/* =====================================================================
+   The only line that needs changing to make this page live: the number
+   bookings go to, in full international form, digits only, no plus or
+   spaces. A Nigerian mobile 0801 234 5678 becomes '2348012345678'.
+   ===================================================================== */
+const WHATSAPP_NUMBER = '';
+
+const form = document.getElementById('bookingForm');
+const banner = document.getElementById('unconfigured');
+
+/* Until a real number is set, say so rather than opening a dead chat. */
+if (!WHATSAPP_NUMBER) {
+  banner.style.display = 'block';
+  banner.textContent = 'Bookings are not connected yet. Please call or email us using the details alongside, and we will arrange your inspection.';
+}
+
+/* Do not offer dates in the past. */
+const dateEl = document.getElementById('date');
+dateEl.min = new Date().toISOString().split('T')[0];
+
+function setInvalid(id, bad){
+  document.getElementById(id).classList.toggle('invalid', bad);
+}
+
+form.addEventListener('submit', e => {
+  e.preventDefault();
+
+  const name     = document.getElementById('name').value.trim();
+  const phone    = document.getElementById('phone').value.trim();
+  const property = document.getElementById('property').value;
+  const date     = dateEl.value;
+  const time     = document.getElementById('time').value;
+  const notes    = document.getElementById('notes').value.trim();
+
+  /* At least 7 digits, so a stray character does not pass as a number. */
+  const phoneOk = (phone.match(/\d/g) || []).length >= 7;
+  const dateOk  = date && date >= dateEl.min;
+
+  setInvalid('f-name', !name);
+  setInvalid('f-phone', !phoneOk);
+  setInvalid('f-property', !property);
+  setInvalid('f-date', !dateOk);
+  setInvalid('f-time', !time);
+
+  const firstBad = form.querySelector('.field.invalid');
+  if (firstBad) {
+    firstBad.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    firstBad.querySelector('input, select').focus({ preventScroll: true });
+    return;
+  }
+
+  if (!WHATSAPP_NUMBER) {
+    banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+
+  const readableDate = new Date(date + 'T00:00:00').toLocaleDateString('en-GB',
+    { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+
+  const lines = [
+    'Hello Havilah, I would like to book an inspection.',
+    '',
+    'Name: ' + name,
+    'Phone: ' + phone,
+    'Property: ' + property,
+    'Preferred date: ' + readableDate,
+    'Preferred time: ' + time
+  ];
+  if (notes) lines.push('Notes: ' + notes);
+
+  window.open('https://wa.me/' + WHATSAPP_NUMBER + '?text=' +
+    encodeURIComponent(lines.join('\n')), '_blank', 'noopener');
+});
+
+/* Clear the error as soon as the person fixes the field. */
+form.querySelectorAll('input, select').forEach(el => {
+  el.addEventListener('input',  () => el.closest('.field').classList.remove('invalid'));
+  el.addEventListener('change', () => el.closest('.field').classList.remove('invalid'));
+});
+</script>
+</body>
+</html>
