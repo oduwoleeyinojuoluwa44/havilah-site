@@ -561,6 +561,13 @@ function toTop(){
 }
 toTop();
 
+/* Restoring from the back/forward cache replays the old scroll position
+   without re-running this script, so `load` never fires again. This is
+   the common way a phone reopens the page halfway down. */
+window.addEventListener('pageshow', e => {
+  if (e.persisted) { toTop(); ScrollTrigger.refresh(); }
+});
+
 /* ---------- split helper ---------- */
 function splitChars(el){
   const text = el.textContent; el.textContent = '';
