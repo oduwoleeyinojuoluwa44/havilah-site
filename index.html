@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Havilah Development — Quality Homes in Lekki, Lagos</title>
-<meta name="description" content="Havilah Development and Management Services Limited — over seven years delivering quality, well-designed properties in Lekki, Lagos. Development and property management.">
+<title>Havilah Development · Quality Homes in Lekki, Lagos</title>
+<meta name="description" content="Havilah Development and Management Services Limited has spent over seven years delivering quality, well-designed properties in Lekki, Lagos. Development and property management.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,500&family=Great+Vibes&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -59,10 +59,19 @@
   .hero .img-wrap img{width:100%;height:100%;object-fit:cover;object-position:center 65%;transform:scale(1.12);}
   .hero .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(22,24,29,.25),rgba(22,24,29,.05) 40%,rgba(22,24,29,.45));}
   .hero-copy{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff;}
+  /* The veil is at its lightest (5%) exactly at mid-height, which is where
+     the copy sits, so gold script on pale concrete washed out. Pool a little
+     shade behind the text only, leaving the rest of the image untouched. */
+  .hero-copy::before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;
+    background:radial-gradient(ellipse 62% 42% at 50% 50%,rgba(22,24,29,.62),rgba(22,24,29,.28) 55%,rgba(22,24,29,0) 78%);}
   .split{overflow:hidden;}
   .hero-copy .kicker{font-size:12px;letter-spacing:6px;margin-bottom:14px;text-transform:uppercase;opacity:.9;}
   .hero-copy h1{font-size:clamp(64px,12vw,170px);line-height:.9;text-shadow:0 6px 40px rgba(0,0,0,.35);}
-  .hero-copy .script-line{font-family:'Great Vibes',cursive;color:var(--gold);font-size:clamp(28px,4.5vw,56px);margin-top:-8px;text-shadow:0 4px 24px rgba(0,0,0,.4);}
+  /* Lifted off the palette gold, which is too close in value to sunlit
+     concrete; the tight shadow holds the thin script strokes apart from
+     whatever passes behind them. */
+  .hero-copy .script-line{font-family:'Great Vibes',cursive;color:#e8c37e;font-size:clamp(28px,4.5vw,56px);margin-top:-8px;
+    text-shadow:0 1px 3px rgba(22,24,29,.85),0 3px 14px rgba(22,24,29,.7),0 0 40px rgba(22,24,29,.5);}
   .hero-copy .sub{margin-top:20px;font-size:13px;letter-spacing:3px;text-transform:uppercase;opacity:.85;}
 
   /* ================= ARC REVEAL ================= */
@@ -207,14 +216,14 @@
     .flag-cta{display:none;}
     .px-img{width:70vw;}
     .px-img-2{display:none;}
-    /* 400px cards run off a 375px screen — size them to the viewport
+    /* 400px cards run off a 375px screen, so size them to the viewport
        so a whole card is readable at each step of the scrub. */
     .fcard{width:min(400px,80vw);height:min(500px,54vh);margin-right:20px;}
     /* min-width:700px forced a horizontal scrollbar on phones; the
        viewBox scales, so raise the type instead of the floor. */
     .arc-cap svg{width:96vw;min-width:0;}
     /* The svg is overflow:visible, so type wider than the arc path spills
-       past the viewport. Keep the run inside the path's 60–940 span. */
+       past the viewport. Keep the run inside the path's 60 to 940 span. */
     .arc-cap svg text{font-size:40px;letter-spacing:1px;}
     .sprig{width:180px;}
     .sprig.br{right:-40px;}
@@ -285,19 +294,19 @@
     </div>
     <div class="reasons">
       <div class="reason" data-reveal>
-        <div class="num">— 01 —</div>
+        <div class="num">· 01 ·</div>
         <h3>Architectural Excellence</h3>
-        <p>Unique designs that stand out — every project approached with a fresh perspective, combining creativity, functionality and enduring quality.</p>
+        <p>Unique designs that stand out. Every project is approached with a fresh perspective, combining creativity, functionality and enduring quality.</p>
       </div>
       <div class="reason" data-reveal>
-        <div class="num">— 02 —</div>
+        <div class="num">· 02 ·</div>
         <h3>Full-Cycle Control</h3>
         <p>From design and construction to long-term upkeep, we keep full control over quality at every stage. Development and management under one roof.</p>
       </div>
       <div class="reason" data-reveal>
-        <div class="num">— 03 —</div>
+        <div class="num">· 03 ·</div>
         <h3>Earned Trust</h3>
-        <p>Individuals, families and investors return to us because of consistency, transparency and delivery on our promises — project after project.</p>
+        <p>Individuals, families and investors return to us because of consistency, transparency and delivery on our promises, project after project.</p>
       </div>
     </div>
   </section>
@@ -316,8 +325,8 @@
         <div class="swap-img"><img src="assets/courtyard.jpg" alt="Havilah courtyard and parking"></div>
       </div>
       <div class="swap-copy-zone">
-        <p class="swap-copy">Bold facades, layered stone and clean white volumes — architecture that reads as a signature, not a template.</p>
-        <p class="swap-copy">Delivered structures across the Eyebrow area of Lekki — quality you can walk through, not just render.</p>
+        <p class="swap-copy">Bold facades, layered stone and clean white volumes: architecture that reads as a signature, not a template.</p>
+        <p class="swap-copy">Delivered structures across the Eyebrow area of Lekki. Quality you can walk through, not just render.</p>
         <p class="swap-copy">Property management keeps every investment maintained and continuously valuable, long after handover.</p>
       </div>
       <div class="swap-ui">
@@ -345,7 +354,7 @@
     </svg>
     <div class="kicker" data-reveal>The Company</div>
     <h2 data-reveal>Havilah is a development and management company with over seven years of delivering quality, well-designed properties in Lekki</h2>
-    <p class="body" data-reveal>Our foundation is built on more than concrete and steel — it is built on trust: one project, one client, one relationship at a time.</p>
+    <p class="body" data-reveal>Our foundation is built on more than concrete and steel. It is built on trust: one project, one client, one relationship at a time.</p>
     <div class="flower" data-reveal>✦</div>
   </section>
 
@@ -361,7 +370,7 @@
     <div class="px-img-2" id="pxImgB"><img src="assets/completed-2.jpg" alt="Completed terraces"></div>
     <div class="px-caption" data-reveal>
       <h3>Where we build</h3>
-      <p>Rooted in the Eyebrow area of Lekki — minutes from the Lekki-Epe corridor, established estates and the daily conveniences that make an address worth keeping.</p>
+      <p>Rooted in the Eyebrow area of Lekki, minutes from the Lekki-Epe corridor, established estates and the daily conveniences that make an address worth keeping.</p>
     </div>
   </section>
 
@@ -416,7 +425,7 @@
         <div class="stat"><div class="lbl">Status</div><div class="val" id="statStatus">Now Selling</div></div>
       </div>
       <div class="flag-cta">
-        <p id="flagBlurb">Stone-clad balconies, generous glazing and gated grounds — the flagship of the Havilah portfolio.</p>
+        <p id="flagBlurb">Stone-clad balconies, generous glazing and gated grounds: the flagship of the Havilah portfolio.</p>
         <a href="#closing" class="btn-pill">Book an Inspection</a>
       </div>
       <div class="flag-pager">
@@ -486,7 +495,7 @@
       <div>
         <div class="kicker" data-reveal>Beyond Development</div>
         <h2 data-reveal>We stay <span class="script">long after</span> handover</h2>
-        <p data-reveal>Havilah is deeply involved in property management — the assurance that your investment is well-maintained and continuously valuable long after construction is complete. One hand on quality, from first drawing to every year that follows.</p>
+        <p data-reveal>Havilah is deeply involved in property management, the assurance that your investment is well-maintained and continuously valuable long after construction is complete. One hand on quality, from first drawing to every year that follows.</p>
         <div class="points">
           <div class="point" data-reveal><span class="d"></span>Facility &amp; property management</div>
           <div class="point" data-reveal><span class="d"></span>Maintenance &amp; long-term upkeep</div>
@@ -502,7 +511,7 @@
   <section class="closing" id="closing">
     <div class="kicker" data-reveal>Havilah Development &amp; Management Services Ltd.</div>
     <h2 data-reveal>Built on <span class="script">trust</span> one project at a time</h2>
-    <p class="body" data-reveal>A short conversation is enough to understand which property fits — a family home, an investment, or a place to put down roots in Lekki. Come and walk the site with us.</p>
+    <p class="body" data-reveal>A short conversation is enough to understand which property fits: a family home, an investment, or a place to put down roots in Lekki. Come and walk the site with us.</p>
   </section>
 
   <footer class="footer">
@@ -525,7 +534,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
 <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
 <script>
-/* Stop the browser restoring the previous scroll position on reload —
+/* Stop the browser restoring the previous scroll position on reload:
    the site must always open on the hero, not mid-page. Set before
    anything else so it beats the browser's own restore. */
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
@@ -631,7 +640,9 @@ gsap.from('.arc-cap', {
   gsap.set([titles[0], imgs[0], copies[0]], { opacity: 1 });
   let current = 0;
   ScrollTrigger.create({
-    trigger: '#swapSec', start: 'top top', end: '+=250%', pin: true, scrub: .5,
+    /* Half a screen per slide, so one scroll gesture advances one image.
+       Scales with the slide count rather than a fixed total. */
+    trigger: '#swapSec', start: 'top top', end: '+=' + (count * 50) + '%', pin: true, scrub: .5,
     onUpdate(self){
       const idx = Math.min(count - 1, Math.floor(self.progress * count));
       document.getElementById('swapBar').style.width = (self.progress * 100) + '%';
@@ -698,14 +709,15 @@ gsap.to('#pxImgB',  { yPercent: -14, ease: 'none', scrollTrigger: { trigger: '#p
   const count  = imgs.length;
   const stats  = [
     { loc:'Eyebrow, Lekki', type:'Luxury Apartments', status:'Now Selling',
-      blurb:'Stone-clad balconies, generous glazing and gated grounds — the flagship of the Havilah portfolio.' },
+      blurb:'Stone-clad balconies, generous glazing and gated grounds: the flagship of the Havilah portfolio.' },
     { loc:'Lekki, Lagos', type:'Terrace Homes', status:'Delivered',
-      blurb:'Rows of crisp white terraces — proof of concept, delivered and lived in.' }
+      blurb:'Rows of crisp white terraces: proof of concept, delivered and lived in.' }
   ];
   gsap.set([backT[0], imgs[0]], { opacity: 1 });
   let cur = 0;
   ScrollTrigger.create({
-    trigger: '#flagship', start: 'top top', end: '+=180%', pin: true, scrub: .5,
+    /* Same half-screen-per-slide pacing as the swap section. */
+    trigger: '#flagship', start: 'top top', end: '+=' + (count * 50) + '%', pin: true, scrub: .5,
     onUpdate(self){
       const idx = Math.min(count - 1, Math.floor(self.progress * count));
       document.getElementById('flagBar').style.width = (self.progress * 100) + '%';
