@@ -210,6 +210,15 @@
     .flag-cta{display:none;}
     .px-img{width:70vw;}
     .px-img-2{display:none;}
+    /* 400px cards run off a 375px screen — size them to the viewport
+       so a whole card is readable at each step of the scrub. */
+    .fcard{width:min(400px,80vw);height:min(500px,54vh);margin-right:20px;}
+    /* min-width:700px forced a horizontal scrollbar on phones; the
+       viewBox scales, so raise the type instead of the floor. */
+    .arc-cap svg{width:96vw;min-width:0;}
+    .arc-cap svg text{font-size:44px;letter-spacing:4px;}
+    .sprig{width:180px;}
+    .sprig.br{right:-40px;}
   }
 </style>
 </head>
@@ -523,14 +532,34 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
 <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
 <script>
+/* Stop the browser restoring the previous scroll position on reload —
+   the site must always open on the hero, not mid-page. Set before
+   anything else so it beats the browser's own restore. */
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+window.scrollTo(0, 0);
+
 gsap.registerPlugin(ScrollTrigger, CustomEase);
 CustomEase.create("hEase", "0.65,0.05,0.36,1");
+
+/* On phones the address bar hiding on scroll resizes the viewport, which
+   otherwise recalculates every trigger mid-scroll and makes the pinned
+   sections jump. Ignore that resize; still refresh on real orientation
+   changes below. */
+ScrollTrigger.config({ ignoreMobileResize: true });
 
 /* ---------- Lenis ---------- */
 const lenis = new Lenis({ duration: 1.15, smoothWheel: true, lerp: 0.1 });
 lenis.on('scroll', ScrollTrigger.update);
 gsap.ticker.add(t => lenis.raf(t * 1000));
 gsap.ticker.lagSmoothing(0);
+
+/* Lenis tracks its own scroll position, so resetting the window alone
+   leaves it out of sync and it scrolls straight back. Reset both. */
+function toTop(){
+  window.scrollTo(0, 0);
+  lenis.scrollTo(0, { immediate: true, force: true });
+}
+toTop();
 
 /* ---------- split helper ---------- */
 function splitChars(el){
@@ -548,6 +577,12 @@ function splitChars(el){
 
 /* ---------- PRELOADER → HERO sequence ---------- */
 window.addEventListener('load', () => {
+  /* Some browsers restore scroll after load fires, so pin it to the top
+     once more and recalculate triggers against the corrected position
+     before the curtain opens. */
+  toTop();
+  requestAnimationFrame(() => { toTop(); ScrollTrigger.refresh(); });
+
   const tl = gsap.timeline();
   tl.from('#preMark', { opacity: 0, y: 30, duration: .8, ease: 'hEase' })
     .to('#preMark', { opacity: 0, y: -20, duration: .5, ease: 'power2.in' }, '+=0.6')
@@ -711,6 +746,12 @@ gsap.to('#pxImgB',  { yPercent: -14, ease: 'none', scrollTrigger: { trigger: '#p
 
 /* ---------- mgmt image slow parallax ---------- */
 gsap.to('#mgmtImg', { yPercent: -14, ease: 'none', scrollTrigger: { trigger: '#mgmtSec', start: 'top bottom', end: 'bottom top', scrub: .6 }});
+
+/* Orientation change is a real geometry change, unlike the address bar,
+   so recalculate once the new viewport has settled. */
+window.addEventListener('orientationchange', () => {
+  setTimeout(() => ScrollTrigger.refresh(), 250);
+});
 
 /* ---------- rail counter ---------- */
 ScrollTrigger.create({
