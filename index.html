@@ -162,9 +162,12 @@
      edge left a gulf of empty background between them and the image. */
   .flag-row{position:absolute;left:0;right:0;top:44%;transform:translateY(-50%);z-index:4;
     display:flex;align-items:center;justify-content:center;gap:clamp(26px,3.2vw,58px);padding:0 5vw;}
-  .flag-img-zone{position:relative;flex:0 0 auto;width:min(560px,46vw,calc((100vh - var(--nav-h) - 190px) * 1.04));aspect-ratio:1/1;z-index:2;}
+  /* Portrait, not square. A 1:1 frame was chosen only to avoid cropping and
+     read as a stray tile; both images are cut to 4:5 instead, so the frame
+     is filled edge to edge with nothing letterboxed. */
+  .flag-img-zone{position:relative;flex:0 0 auto;width:min(470px,40vw,calc((100vh - var(--nav-h) - 186px) * 0.8));aspect-ratio:4/5;z-index:2;}
   .flag-img{position:absolute;inset:0;opacity:0;}
-  .flag-img img{width:100%;height:100%;object-fit:contain;}
+  .flag-img img{width:100%;height:100%;object-fit:cover;}
   .flag-title-zone{position:absolute;left:0;right:0;top:83%;text-align:center;}
   .flag-title-zone.back{z-index:1;}
   .flag-title{position:absolute;left:0;right:0;top:0;transform:translateY(-50%);font-size:clamp(32px,5.5vw,72px);line-height:.95;text-transform:uppercase;color:var(--ink);opacity:0;white-space:nowrap;}
@@ -265,7 +268,7 @@
     .flag-stats{display:none;}
     .flag-cta{display:none;}
     /* Nothing sits beside the image here, so let it use the width. */
-    .flag-img-zone{width:min(560px,86vw,calc((100vh - var(--nav-h) - 210px) * 1.02));}
+    .flag-img-zone{width:min(470px,72vw,calc((100vh - var(--nav-h) - 186px) * 0.8));}
     .px-img{width:70vw;}
     .px-img-2{display:none;}
     /* 400px cards run off a 375px screen, so size them to the viewport
@@ -477,7 +480,7 @@
           <div class="stat"><div class="lbl">Status</div><div class="val" id="statStatus">Ongoing</div></div>
         </div>
         <div class="flag-img-zone">
-          <div class="flag-img"><img src="assets/front-elevation.jpg" alt="Havilah 5 front elevation"></div>
+          <div class="flag-img"><img src="assets/flag-01.jpg" alt="Havilah 5 front elevation"></div>
           <div class="flag-img"><img src="assets/proj-havilah-4.jpg" alt="Havilah 4 completed terraces"></div>
         </div>
         <div class="flag-cta">
