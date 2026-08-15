@@ -180,17 +180,36 @@
   .folio-track{position:absolute;top:0;left:0;height:100%;display:flex;align-items:center;padding-left:120px;will-change:transform;}
   /* Height and offset both allow for the nav and the heading above, so the
      cards cannot collide with either on a short window. */
-  .fcard{flex:0 0 auto;width:400px;height:min(500px,calc(100vh - var(--nav-h) - 190px));margin-top:calc(var(--nav-h) + 30px);margin-right:36px;position:relative;overflow:hidden;background:var(--ink-soft);}
+  /* Fixed 4:5 so the crop is the same on every screen; the vh term keeps
+     the card inside the pinned section on a short window. */
+  .fcard{flex:0 0 auto;width:min(400px,calc((100vh - var(--nav-h) - 190px) * 0.8));aspect-ratio:4/5;margin-top:calc(var(--nav-h) + 30px);margin-right:36px;position:relative;overflow:hidden;background:var(--ink-soft);}
   .fcard .bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:saturate(.92);transition:transform .5s;}
   .fcard:hover .bg{transform:scale(1.04);}
-  .fcard .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(22,24,29,0) 40%,rgba(22,24,29,.78));}
+  /* Deeper than before: the cards now carry a paragraph, not just a name. */
+  .fcard .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(22,24,29,0) 22%,rgba(22,24,29,.62) 52%,rgba(22,24,29,.93));}
   .fcard .meta{position:absolute;left:24px;right:24px;bottom:22px;z-index:2;}
-  .fcard .meta .name{font-family:'Cormorant',serif;font-size:27px;}
-  .fcard .meta .loc{font-size:11px;letter-spacing:2px;text-transform:uppercase;opacity:.75;margin-top:4px;}
+  .fcard .meta .name{font-family:'Cormorant',serif;font-size:27px;line-height:1.1;}
+  .fcard .meta .loc{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-top:6px;}
+  .fcard .meta .desc{font-size:12.5px;line-height:1.65;font-weight:300;color:rgba(255,255,255,.8);margin:10px 0 0;}
   .folio-ui{position:absolute;bottom:52px;left:120px;z-index:3;display:flex;align-items:center;gap:18px;}
   .folio-ui .n{font-size:12px;letter-spacing:2px;}
   .folio-ui .bar{width:220px;height:1px;background:rgba(255,255,255,.25);position:relative;}
   .folio-ui .bar i{position:absolute;left:0;top:0;height:100%;background:var(--gold);width:0%;}
+
+  /* ================= TESTIMONIALS ================= */
+  .tst{position:relative;background:var(--paper);padding:15vh 8vw;z-index:2;}
+  .tst .head{text-align:center;max-width:640px;margin:0 auto 66px;}
+  .tst .kicker{font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--gold-deep);margin-bottom:14px;}
+  .tst .head h2{font-size:clamp(30px,4.4vw,52px);text-transform:uppercase;line-height:1.1;}
+  .tst .head h2 .script{display:block;text-transform:none;font-size:.72em;margin-top:2px;}
+  .tst .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px;max-width:1140px;margin:0 auto;}
+  .tst .card{background:#fff;border:1px solid var(--line);padding:38px 32px 30px;position:relative;}
+  /* Opening quote mark set as a watermark behind the text. */
+  .tst .card::before{content:'\201C';position:absolute;top:6px;left:24px;font-family:'Cormorant',serif;font-size:76px;line-height:1;color:var(--gold);opacity:.32;}
+  .tst .card blockquote{margin:0;position:relative;font-size:14.5px;line-height:1.85;color:#4d4f56;font-weight:300;}
+  .tst .card figcaption{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);}
+  .tst .card .who{font-family:'Cormorant',serif;font-size:19px;color:var(--ink);}
+  .tst .card .what{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:var(--stone);margin-top:5px;}
 
   /* ================= MANAGEMENT ================= */
   .mgmt{position:relative;min-height:100vh;background:var(--ink);color:#fff;display:flex;align-items:center;padding:16vh 10vw;z-index:2;}
@@ -434,16 +453,16 @@
         <h2 class="flag-title">THE TERRACES</h2>
       </div>
       <div class="flag-img-zone">
-        <div class="flag-img"><img src="assets/front-elevation.jpg" alt="Flagship apartments front elevation"></div>
-        <div class="flag-img"><img src="assets/completed-2.jpg" alt="Completed terrace row"></div>
+        <div class="flag-img"><img src="assets/front-elevation.jpg" alt="Havilah 5 front elevation"></div>
+        <div class="flag-img"><img src="assets/proj-havilah-4.jpg" alt="Havilah 4 completed terraces"></div>
       </div>
       <div class="flag-stats">
-        <div class="stat"><div class="lbl">Location</div><div class="val" id="statLoc">Eyebrow, Lekki</div></div>
-        <div class="stat"><div class="lbl">Type</div><div class="val" id="statType">Luxury Apartments</div></div>
-        <div class="stat"><div class="lbl">Status</div><div class="val" id="statStatus">Now Selling</div></div>
+        <div class="stat"><div class="lbl">Location</div><div class="val" id="statLoc">Beach Resort Estate, Lekki</div></div>
+        <div class="stat"><div class="lbl">Type</div><div class="val" id="statType">Terraces &amp; Apartments</div></div>
+        <div class="stat"><div class="lbl">Status</div><div class="val" id="statStatus">Ongoing</div></div>
       </div>
       <div class="flag-cta">
-        <p id="flagBlurb">Stone-clad balconies, generous glazing and gated grounds: the flagship of the Havilah portfolio.</p>
+        <p id="flagBlurb">Havilah 5: four semi-detached homes, nineteen four-bedroom terraces and sixteen apartments, with a gym, swimming pool and children's play area.</p>
         <a href="inspection.html" class="btn-pill">Book an Inspection</a>
       </div>
       <div class="flag-pager">
@@ -459,55 +478,113 @@
       <div class="kicker">Track Record</div>
       <h2>The Portfolio</h2>
     </div>
+    <!-- Chronological, so the scrub reads as a track record. -->
     <div class="folio-track" id="folioTrack">
       <div class="fcard">
-        <div class="bg" style="background-image:url('assets/front-elevation.jpg');"></div>
+        <div class="bg" style="background-image:url('assets/proj-koinonia.jpg');"></div>
         <div class="shade"></div>
-        <div class="meta"><div class="name">The Flagship</div><div class="loc">Lekki &middot; Lagos</div></div>
+        <div class="meta">
+          <div class="name">Koinonia</div>
+          <div class="loc">Completed 2017 &middot; Agungi, Lagos</div>
+          <p class="desc">Eight four-bedroom semi-detached homes, each with two living rooms, a guest toilet and en-suite bedrooms throughout.</p>
+        </div>
       </div>
       <div class="fcard">
-        <div class="bg" style="background-image:url('assets/completed-1.jpg');"></div>
+        <div class="bg" style="background-image:url('assets/proj-havilah-1.jpg');"></div>
         <div class="shade"></div>
-        <div class="meta"><div class="name">Recent Handover</div><div class="loc">Lekki &middot; Lagos</div></div>
+        <div class="meta">
+          <div class="name">Havilah 1</div>
+          <div class="loc">Completed 2018 &middot; Platinum Way, Ikate</div>
+          <p class="desc">Seven units: four four-bedroom terraces with two living rooms and en-suite bedrooms, alongside three flats built for efficient modern living.</p>
+        </div>
       </div>
       <div class="fcard">
-        <div class="bg" style="background-image:url('assets/project-06.jpg');"></div>
+        <div class="bg" style="background-image:url('assets/proj-havilah-2.jpg');"></div>
         <div class="shade"></div>
-        <div class="meta"><div class="name">The Full Terrace</div><div class="loc">Lekki &middot; Lagos</div></div>
+        <div class="meta">
+          <div class="name">Havilah 2</div>
+          <div class="loc">Completed 2020 &middot; The Nest Estate, Lekki</div>
+          <p class="desc">Eight four-bedroom terraces. Two expansive living rooms, guest toilets and a private bathroom to every bedroom.</p>
+        </div>
       </div>
       <div class="fcard">
-        <div class="bg" style="background-image:url('assets/project-01.jpg');"></div>
+        <div class="bg" style="background-image:url('assets/proj-havilah-3.jpg');"></div>
         <div class="shade"></div>
-        <div class="meta"><div class="name">End Unit</div><div class="loc">Lekki &middot; Lagos</div></div>
+        <div class="meta">
+          <div class="name">Havilah 3</div>
+          <div class="loc">Completed 2022 &middot; Jakande First Gate, Lekki</div>
+          <p class="desc">Seven four-bedroom terrace houses and apartments, each with two spacious living rooms and luxurious en-suite bedrooms.</p>
+        </div>
       </div>
       <div class="fcard">
-        <div class="bg" style="background-image:url('assets/project-02.jpg');"></div>
+        <div class="bg" style="background-image:url('assets/proj-havilah-4.jpg');"></div>
         <div class="shade"></div>
-        <div class="meta"><div class="name">Between the Rows</div><div class="loc">Lekki &middot; Lagos</div></div>
+        <div class="meta">
+          <div class="name">Havilah 4</div>
+          <div class="loc">Completed 2023 &middot; Jakande First Gate, Lekki</div>
+          <p class="desc">Nine four-bedroom terraces and three apartments. Fitted modern kitchens, all bedrooms en-suite and a dedicated maid's room.</p>
+        </div>
       </div>
       <div class="fcard">
-        <div class="bg" style="background-image:url('assets/project-03.jpg');"></div>
+        <div class="bg" style="background-image:url('assets/proj-havilah-5.jpg');"></div>
         <div class="shade"></div>
-        <div class="meta"><div class="name">Glazed Balconies</div><div class="loc">Lekki &middot; Lagos</div></div>
-      </div>
-      <div class="fcard">
-        <div class="bg" style="background-image:url('assets/project-04.jpg');"></div>
-        <div class="shade"></div>
-        <div class="meta"><div class="name">Terrace Elevation</div><div class="loc">Lekki &middot; Lagos</div></div>
-      </div>
-      <div class="fcard">
-        <div class="bg" style="background-image:url('assets/project-05.jpg');"></div>
-        <div class="shade"></div>
-        <div class="meta"><div class="name">Perforated Facade</div><div class="loc">Lekki &middot; Lagos</div></div>
+        <div class="meta">
+          <div class="name">Havilah 5</div>
+          <div class="loc">Ongoing &middot; Beach Resort Estate, Lekki</div>
+          <p class="desc">Four semi-detached homes, nineteen four-bedroom terraces and sixteen apartments, with a gym, swimming pool and children's play area.</p>
+        </div>
       </div>
     </div>
     <div class="folio-ui">
-      <span class="n" id="folioNum">01 / 08</span>
+      <span class="n" id="folioNum">01 / 06</span>
       <div class="bar"><i id="folioBar"></i></div>
     </div>
   </section>
 
-  <!-- 9 · MANAGEMENT -->
+  <!-- 9 · TESTIMONIALS
+       Held back until Teniola supplies the real quotes. Nothing here is
+       invented, so the section stays out of the page rather than shipping
+       placeholder praise. To publish: delete this comment wrapper, then
+       fill each card with the person's words, their name, and what they
+       bought and when. Duplicate or remove cards to match how many you
+       have; the grid reflows on its own. Styles are already live.
+
+  <section class="tst" id="tstSec">
+    <div class="head">
+      <div class="kicker" data-reveal>In Their Words</div>
+      <h2 data-reveal>What our residents say<span class="script">after they move in</span></h2>
+    </div>
+    <div class="grid">
+
+      <figure class="card" data-reveal>
+        <blockquote>QUOTE GOES HERE, in the resident's own words.</blockquote>
+        <figcaption>
+          <div class="who">FULL NAME</div>
+          <div class="what">PROJECT, YEAR</div>
+        </figcaption>
+      </figure>
+
+      <figure class="card" data-reveal>
+        <blockquote>QUOTE GOES HERE.</blockquote>
+        <figcaption>
+          <div class="who">FULL NAME</div>
+          <div class="what">PROJECT, YEAR</div>
+        </figcaption>
+      </figure>
+
+      <figure class="card" data-reveal>
+        <blockquote>QUOTE GOES HERE.</blockquote>
+        <figcaption>
+          <div class="who">FULL NAME</div>
+          <div class="what">PROJECT, YEAR</div>
+        </figcaption>
+      </figure>
+
+    </div>
+  </section>
+  -->
+
+  <!-- 10 · MANAGEMENT -->
   <section class="mgmt" id="mgmtSec">
     <div class="grid">
       <div>
@@ -727,10 +804,10 @@ gsap.to('#pxImgB',  { yPercent: -14, ease: 'none', scrollTrigger: { trigger: '#p
   const imgs   = gsap.utils.toArray('.flag-img');
   const count  = imgs.length;
   const stats  = [
-    { loc:'Eyebrow, Lekki', type:'Luxury Apartments', status:'Now Selling',
-      blurb:'Stone-clad balconies, generous glazing and gated grounds: the flagship of the Havilah portfolio.' },
-    { loc:'Lekki, Lagos', type:'Terrace Homes', status:'Delivered',
-      blurb:'Rows of crisp white terraces: proof of concept, delivered and lived in.' }
+    { loc:'Beach Resort Estate, Lekki', type:'Terraces & Apartments', status:'Ongoing',
+      blurb:'Havilah 5: four semi-detached homes, nineteen four-bedroom terraces and sixteen apartments, with a gym, swimming pool and children\'s play area.' },
+    { loc:'Jakande First Gate, Lekki', type:'Terraces & Apartments', status:'Completed 2023',
+      blurb:'Havilah 4: nine four-bedroom terraces and three apartments, with fitted modern kitchens and a dedicated maid\'s room.' }
   ];
   gsap.set([backT[0], imgs[0]], { opacity: 1 });
   let cur = 0;
