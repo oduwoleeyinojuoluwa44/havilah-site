@@ -69,6 +69,7 @@
   .hero-copy::before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;
     background:radial-gradient(ellipse 62% 42% at 50% 50%,rgba(22,24,29,.62),rgba(22,24,29,.28) 55%,rgba(22,24,29,0) 78%);}
   .split{overflow:hidden;}
+  .script-split{padding:18px 10px 10px;margin:-18px -10px -10px;}
   .hero-copy .kicker{font-size:12px;letter-spacing:6px;margin-bottom:14px;text-transform:uppercase;opacity:.9;}
   .hero-copy h1{font-size:clamp(64px,12vw,170px);line-height:.9;text-shadow:0 6px 40px rgba(0,0,0,.35);}
   /* Lifted off the palette gold, which is too close in value to sunlit
@@ -168,7 +169,7 @@
   .flag-img-zone{position:relative;flex:0 0 auto;width:min(470px,40vw,calc((100vh - var(--nav-h) - 186px) * 0.8));aspect-ratio:4/5;z-index:2;}
   .flag-img{position:absolute;inset:0;opacity:0;}
   .flag-img img{width:100%;height:100%;object-fit:cover;}
-  .flag-title-zone{position:absolute;left:0;right:0;top:83%;text-align:center;}
+  .flag-title-zone{position:absolute;left:0;right:0;top:76%;text-align:center;}
   .flag-title-zone.back{z-index:1;}
   .flag-title{position:absolute;left:0;right:0;top:0;transform:translateY(-50%);font-size:clamp(32px,5.5vw,72px);line-height:.95;text-transform:uppercase;color:var(--ink);opacity:0;white-space:nowrap;}
   /* Real place names are far longer than the placeholders these were built
@@ -182,7 +183,7 @@
   .flag-cta p{font-size:13.5px;line-height:1.75;color:#2f3338;font-weight:300;margin-bottom:20px;}
   .btn-pill{display:inline-block;border:1px solid var(--ink);border-radius:999px;padding:13px 26px;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--ink);transition:background .3s,color .3s;}
   .btn-pill:hover{background:var(--ink);color:#fff;}
-  .flag-pager{position:absolute;left:50%;bottom:42px;transform:translateX(-50%);z-index:4;display:flex;align-items:center;gap:16px;font-size:12px;letter-spacing:2px;}
+  .flag-pager{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);z-index:4;display:flex;align-items:center;gap:16px;font-size:12px;letter-spacing:2px;}
   .flag-pager .bar{width:180px;height:1px;background:rgba(22,24,29,.3);position:relative;}
   .flag-pager .bar i{position:absolute;left:0;top:0;height:100%;background:var(--ink);width:0%;}
 
@@ -192,18 +193,27 @@
   .folio .head{position:absolute;top:calc(var(--nav-h) + 6px);left:120px;z-index:3;}
   .folio .head .kicker{font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
   .folio .head h2{color:#fff;font-size:clamp(28px,4vw,46px);text-transform:uppercase;}
-  .folio-track{position:absolute;top:0;left:0;height:100%;display:flex;align-items:center;padding-left:120px;will-change:transform;}
+  .folio-groups{display:flex;gap:18px;flex-wrap:wrap;margin-top:9px;font-size:8.5px;letter-spacing:1.8px;text-transform:uppercase;color:rgba(255,255,255,.58);}
+  .folio-groups b{color:var(--gold);font-weight:500;margin-left:4px;}
+  .folio-track{position:absolute;top:0;left:0;height:100%;display:flex;align-items:center;padding-left:120px;}
+  .category-break{flex:0 0 min(300px,32vw);height:min(560px,calc(100vh - var(--nav-h) - 160px));margin-top:calc(var(--nav-h) + 26px);margin-right:36px;padding:30px 26px;display:flex;flex-direction:column;justify-content:space-between;background:var(--paper);color:var(--ink);border:1px solid rgba(255,255,255,.12);}
+  .category-break.ongoing{background:#a9b6bd;}
+  .category-break.pipeline{background:var(--gold);}
+  .category-break .index{font-size:10px;letter-spacing:3px;text-transform:uppercase;}
+  .category-break h3{font-size:clamp(34px,3.4vw,50px);line-height:.95;text-transform:uppercase;}
+  .category-break p{font-size:12px;line-height:1.65;letter-spacing:1px;text-transform:uppercase;opacity:.68;}
   /* Height and offset both allow for the nav and the heading above, so the
      cards cannot collide with either on a short window. */
   /* Full width first: forcing a 4:5 box shrank the cards, because height is
      capped by the pinned screen. The sources are already cut to 4:5, so the
      little cover-crop left over is mild. */
-  .fcard{flex:0 0 auto;width:min(420px,84vw,calc((100vh - var(--nav-h) - 176px) * 0.95));height:min(540px,calc(100vh - var(--nav-h) - 176px));margin-top:calc(var(--nav-h) + 26px);margin-right:36px;position:relative;overflow:hidden;background:var(--ink-soft);}
+  .fcard{flex:0 0 auto;width:min(450px,86vw,calc((100vh - var(--nav-h) - 160px) * 0.98));height:min(560px,calc(100vh - var(--nav-h) - 160px));margin-top:calc(var(--nav-h) + 26px);margin-right:36px;position:relative;overflow:hidden;background:var(--ink-soft);}
   .fcard .bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:saturate(.92);transition:transform .5s;}
   .fcard:hover .bg{transform:scale(1.04);}
   /* Deeper than before: the cards now carry a paragraph, not just a name. */
   .fcard .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(22,24,29,0) 22%,rgba(22,24,29,.62) 52%,rgba(22,24,29,.93));}
   .fcard .meta{position:absolute;left:24px;right:24px;bottom:22px;z-index:2;}
+  .fcard .meta .category{font-size:9px;letter-spacing:2.4px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
   .fcard .meta .name{font-family:'Cormorant',serif;font-size:27px;line-height:1.1;}
   .fcard .meta .loc{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-top:6px;}
   .fcard .meta .desc{font-size:12.5px;line-height:1.65;font-weight:300;color:rgba(255,255,255,.8);margin:10px 0 0;}
@@ -211,6 +221,10 @@
   .folio-ui .n{font-size:12px;letter-spacing:2px;}
   .folio-ui .bar{width:220px;height:1px;background:rgba(255,255,255,.25);position:relative;}
   .folio-ui .bar i{position:absolute;left:0;top:0;height:100%;background:var(--gold);width:0%;}
+
+  @media (min-width:901px){
+    .folio .head{top:calc(var(--nav-h) - 24px);}
+  }
 
   /* ================= TESTIMONIALS ================= */
   .tst{position:relative;background:var(--paper);padding:15vh 8vw;z-index:2;}
@@ -263,8 +277,10 @@
     .rail{display:none;}
     .mgmt .grid{grid-template-columns:1fr;}
     .folio .head{left:7vw;}
+    .folio-groups{gap:8px 12px;max-width:86vw;font-size:7.5px;letter-spacing:1.2px;}
     .folio-track{padding-left:7vw;}
     .folio-ui{left:7vw;}
+    .category-break{flex-basis:64vw;height:min(540px,calc(100vh - var(--nav-h) - 176px));margin-right:20px;padding:24px 20px;}
     .flag-stats{display:none;}
     .flag-cta{display:none;}
     /* Nothing sits beside the image here, so let it use the width. */
@@ -273,7 +289,7 @@
     .px-img-2{display:none;}
     /* 400px cards run off a 375px screen, so size them to the viewport
        so a whole card is readable at each step of the scrub. */
-    .fcard{margin-right:20px;}
+    .fcard{width:min(450px,88vw,calc((100vh - var(--nav-h) - 176px) * 0.95));height:min(540px,calc(100vh - var(--nav-h) - 176px));margin-right:20px;}
     .swap-copy-zone{height:72px;}
     /* min-width:700px forced a horizontal scrollbar on phones; the
        viewBox scales, so raise the type instead of the floor. */
@@ -283,6 +299,12 @@
     .arc-cap svg text{font-size:40px;letter-spacing:1px;}
     .sprig{width:180px;}
     .sprig.br{right:-40px;}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important;}
+    .preloader{display:none;}
   }
 </style>
 </head>
@@ -335,7 +357,7 @@
     <div class="hero-copy">
       <div class="split"><div class="kicker" data-split>Eyebrow &middot; Lekki &middot; Lagos</div></div>
       <div class="split"><h1 data-split>HAVILAH</h1></div>
-      <div class="split"><div class="script-line" data-split-plain>Building dreams, shaping communities</div></div>
+      <div class="split script-split"><div class="script-line" data-split-plain>Building dreams, shaping communities</div></div>
       <div class="split"><div class="sub" data-split>Seven years of trusted development</div></div>
     </div>
   </section>
@@ -480,11 +502,11 @@
           <div class="stat"><div class="lbl">Status</div><div class="val" id="statStatus">Ongoing</div></div>
         </div>
         <div class="flag-img-zone">
-          <div class="flag-img"><img src="assets/flag-01.jpg" alt="Havilah 5 front elevation"></div>
-          <div class="flag-img"><img src="assets/proj-havilah-4.jpg" alt="Havilah 4 completed terraces"></div>
+          <div class="flag-img"><img src="assets/flag-01.jpg" alt="Havilah Court 5 front elevation"></div>
+          <div class="flag-img"><img src="assets/proj-havilah-4.jpg" alt="Havilah Court 4 completed terraces"></div>
         </div>
         <div class="flag-cta">
-          <p id="flagBlurb">Havilah 5: four semi-detached homes, nineteen four-bedroom terraces and sixteen apartments, with a gym, swimming pool and children's play area.</p>
+          <p id="flagBlurb">Havilah Court 5: four semi-detached homes, nineteen four-bedroom terraces and sixteen apartments, with a gym, swimming pool and children's play area.</p>
           <a href="inspection.html" class="btn-pill">Book an Inspection</a>
         </div>
       </div>
@@ -498,68 +520,124 @@
   <!-- 8 · PORTFOLIO -->
   <section class="folio" id="folioSec">
     <div class="head">
-      <div class="kicker">Track Record</div>
-      <h2>The Portfolio</h2>
+      <div class="kicker" id="folioCategory">Completed Projects</div>
+      <h2>Our Projects</h2>
+      <div class="folio-groups" aria-label="Project categories">
+        <span>Completed <b>06</b></span>
+        <span>Ongoing <b>02</b></span>
+        <span>Pipeline <b>01</b></span>
+      </div>
     </div>
-    <!-- Chronological, so the scrub reads as a track record. -->
+    <!-- Grouped by status: completed, ongoing, then pipeline. -->
     <div class="folio-track" id="folioTrack">
-      <div class="fcard">
+      <div class="category-break completed" aria-label="Completed projects">
+        <div class="index">01 &middot; Six Projects</div>
+        <h3>Completed<br>Projects</h3>
+        <p>Delivered homes across Lekki and Lagos.</p>
+      </div>
+      <div class="fcard" data-category="Completed">
         <div class="bg" style="background-image:url('assets/proj-koinonia.jpg');"></div>
         <div class="shade"></div>
         <div class="meta">
+          <div class="category">Completed Project</div>
           <div class="name">Koinonia</div>
           <div class="loc">Completed 2017 &middot; Agungi, Lagos</div>
           <p class="desc">Eight four-bedroom semi-detached homes, each with two living rooms, a guest toilet and en-suite bedrooms throughout.</p>
         </div>
       </div>
-      <div class="fcard">
+      <div class="fcard" data-category="Completed">
         <div class="bg" style="background-image:url('assets/proj-havilah-1.jpg');"></div>
         <div class="shade"></div>
         <div class="meta">
-          <div class="name">Havilah 1</div>
+          <div class="category">Completed Project</div>
+          <div class="name">Havilah Court 1</div>
           <div class="loc">Completed 2018 &middot; Platinum Way, Ikate</div>
           <p class="desc">Seven units: four four-bedroom terraces with two living rooms and en-suite bedrooms, alongside three flats built for efficient modern living.</p>
         </div>
       </div>
-      <div class="fcard">
+      <div class="fcard" data-category="Completed">
         <div class="bg" style="background-image:url('assets/proj-havilah-2.jpg');"></div>
         <div class="shade"></div>
         <div class="meta">
-          <div class="name">Havilah 2</div>
+          <div class="category">Completed Project</div>
+          <div class="name">Havilah Court 2</div>
           <div class="loc">Completed 2020 &middot; The Nest Estate, Lekki</div>
           <p class="desc">Eight four-bedroom terraces. Two expansive living rooms, guest toilets and a private bathroom to every bedroom.</p>
         </div>
       </div>
-      <div class="fcard">
+      <div class="fcard" data-category="Completed">
         <div class="bg" style="background-image:url('assets/proj-havilah-3.jpg');"></div>
         <div class="shade"></div>
         <div class="meta">
-          <div class="name">Havilah 3</div>
+          <div class="category">Completed Project</div>
+          <div class="name">Havilah Court 3</div>
           <div class="loc">Completed 2022 &middot; Jakande First Gate, Lekki</div>
           <p class="desc">Seven four-bedroom terrace houses and apartments, each with two spacious living rooms and luxurious en-suite bedrooms.</p>
         </div>
       </div>
-      <div class="fcard">
+      <div class="fcard" data-category="Completed">
         <div class="bg" style="background-image:url('assets/proj-havilah-4.jpg');"></div>
         <div class="shade"></div>
         <div class="meta">
-          <div class="name">Havilah 4</div>
+          <div class="category">Completed Project</div>
+          <div class="name">Havilah Court 4</div>
           <div class="loc">Completed 2023 &middot; Jakande First Gate, Lekki</div>
           <p class="desc">Nine four-bedroom terraces and three apartments. Fitted modern kitchens, all bedrooms en-suite and a dedicated maid's room.</p>
         </div>
       </div>
-      <div class="fcard">
+      <div class="fcard" data-category="Completed">
+        <div class="bg" style="background-image:url('assets/completed-1.jpg');"></div>
+        <div class="shade"></div>
+        <div class="meta">
+          <div class="category">Completed Project</div>
+          <div class="name">Homewood Residences</div>
+          <div class="loc">Completed &middot; Lekki, Lagos</div>
+          <p class="desc">A completed residential development shaped around clean contemporary lines, generous homes and practical everyday living.</p>
+        </div>
+      </div>
+      <div class="category-break ongoing" aria-label="Ongoing projects">
+        <div class="index">02 &middot; Two Projects</div>
+        <h3>Ongoing<br>Projects</h3>
+        <p>Developments currently taking shape.</p>
+      </div>
+      <div class="fcard" data-category="Ongoing">
         <div class="bg" style="background-image:url('assets/proj-havilah-5.jpg');"></div>
         <div class="shade"></div>
         <div class="meta">
-          <div class="name">Havilah 5</div>
+          <div class="category">Ongoing Project</div>
+          <div class="name">Havilah Court 5</div>
           <div class="loc">Ongoing &middot; Beach Resort Estate, Lekki</div>
           <p class="desc">Four semi-detached homes, nineteen four-bedroom terraces and sixteen apartments, with a gym, swimming pool and children's play area.</p>
         </div>
       </div>
+      <div class="fcard" data-category="Ongoing">
+        <div class="bg" style="background-image:url('assets/project-05.jpg');"></div>
+        <div class="shade"></div>
+        <div class="meta">
+          <div class="category">Ongoing Project</div>
+          <div class="name">Havilah Court 5 Annex</div>
+          <div class="loc">Ongoing &middot; Lekki, Lagos</div>
+          <p class="desc">An extension of the Havilah Court 5 development, currently progressing alongside the main project.</p>
+        </div>
+      </div>
+      <div class="category-break pipeline" aria-label="Project pipeline">
+        <div class="index">03 &middot; One Project</div>
+        <h3>Project<br>Pipeline</h3>
+        <p>The next chapter in the Havilah Court series.</p>
+      </div>
+      <div class="fcard" data-category="Pipeline">
+        <div class="bg" style="background-image:url('assets/swap-01.jpg');"></div>
+        <div class="shade"></div>
+        <div class="meta">
+          <div class="category">Project Pipeline</div>
+          <div class="name">Havilah Court 6</div>
+          <div class="loc">Pipeline &middot; Upcoming Development</div>
+          <p class="desc">The next project in the Havilah Court series, currently in the development pipeline.</p>
+        </div>
+      </div>
     </div>
     <div class="folio-ui">
-      <span class="n" id="folioNum">01 / 06</span>
+      <span class="n" id="folioNum">01 / 09</span>
       <div class="bar"><i id="folioBar"></i></div>
     </div>
   </section>
@@ -639,7 +717,7 @@
         <div class="brand">HAVILAH<em>Building dreams, shaping communities</em></div>
       </div>
       <div class="col"><b>Visit</b>Eyebrow Area<br>Lekki, Lagos State<br>Nigeria</div>
-      <div class="col"><b>Talk</b>0704 261 8290<br>hello@havilahdevelopment.ng</div>
+      <div class="col"><b>Talk</b>0704 261 8290<br><a href="mailto:hr.havilah@gmail.com">hr.havilah@gmail.com</a></div>
       <div class="col"><b>Explore</b><a href="#flagship">Properties</a><br><a href="#folioSec">Portfolio</a><br><a href="#mgmtSec">Management</a><br><a href="inspection.html">Book an Inspection</a></div>
     </div>
     <div class="base">
@@ -669,16 +747,21 @@ CustomEase.create("hEase", "0.65,0.05,0.36,1");
 ScrollTrigger.config({ ignoreMobileResize: true });
 
 /* ---------- Lenis ---------- */
-const lenis = new Lenis({ duration: 1.15, smoothWheel: true, lerp: 0.1 });
-lenis.on('scroll', ScrollTrigger.update);
-gsap.ticker.add(t => lenis.raf(t * 1000));
+const isMobile = window.matchMedia('(max-width: 900px)').matches;
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const useSmoothScroll = !isMobile && !reduceMotion && window.Lenis;
+const lenis = useSmoothScroll ? new Lenis({ duration: 1, smoothWheel: true, lerp: .12 }) : null;
+if (lenis) {
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add(t => lenis.raf(t * 1000));
+}
 gsap.ticker.lagSmoothing(0);
 
 /* Lenis tracks its own scroll position, so resetting the window alone
    leaves it out of sync and it scrolls straight back. Reset both. */
 function toTop(){
   window.scrollTo(0, 0);
-  lenis.scrollTo(0, { immediate: true, force: true });
+  if (lenis) lenis.scrollTo(0, { immediate: true, force: true });
 }
 toTop();
 
@@ -711,43 +794,51 @@ window.addEventListener('load', () => {
   toTop();
   requestAnimationFrame(() => { toTop(); ScrollTrigger.refresh(); });
 
+  if (reduceMotion) {
+    gsap.set('.preloader', { display: 'none' });
+    return;
+  }
+
+  const introScale = isMobile ? .62 : 1;
   const tl = gsap.timeline();
-  tl.from('#preMark', { opacity: 0, y: 30, duration: .8, ease: 'hEase' })
-    .to('#preMark', { opacity: 0, y: -20, duration: .5, ease: 'power2.in' }, '+=0.6')
-    .to('.preloader .panel.l', { xPercent: -101, duration: 1.0, ease: 'hEase' }, '-=0.1')
-    .to('.preloader .panel.r', { xPercent: 101, duration: 1.0, ease: 'hEase' }, '<')
+  tl.from('#preMark', { opacity: 0, y: 24, duration: .62 * introScale, ease: 'hEase' })
+    .to('#preMark', { opacity: 0, y: -16, duration: .36 * introScale, ease: 'power2.in' }, '+=' + (.36 * introScale))
+    .to('.preloader .panel.l', { xPercent: -101, duration: .82 * introScale, ease: 'hEase' }, '-=0.06')
+    .to('.preloader .panel.r', { xPercent: 101, duration: .82 * introScale, ease: 'hEase' }, '<')
     .set('.preloader', { display: 'none' })
-    .from('#heroImgWrap', { scale: .92, duration: 1.2, ease: 'hEase' }, '-=1.0');
+    .from('#heroImgWrap', { scale: .94, duration: .9 * introScale, ease: 'hEase' }, '-=' + (.68 * introScale));
 
   document.querySelectorAll('[data-split]').forEach((el, i) => {
-    tl.from(splitChars(el), { yPercent: 130, duration: .85, ease: 'hEase', stagger: .016 }, 0.9 + i * 0.1);
+    tl.from(splitChars(el), { yPercent: 115, duration: .64 * introScale, ease: 'hEase', stagger: isMobile ? .01 : .014 }, .6 * introScale + i * .08);
   });
   const plain = document.querySelector('[data-split-plain]');
-  if (plain) tl.from(plain, { yPercent: 120, opacity: 0, duration: .9, ease: 'hEase' }, 1.25);
+  if (plain) tl.from(plain, { yPercent: 90, opacity: 0, duration: .66 * introScale, ease: 'hEase' }, .85 * introScale);
 });
 
 /* hero frame expands to full-bleed on scroll */
 gsap.to('#heroImgWrap', {
-  width: '100%', height: '100%', ease: 'none',
-  scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom 30%', scrub: .6 }
+  scaleX: 1.163,
+  scaleY: 1.25,
+  ease: 'none',
+  scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom 30%', scrub: reduceMotion ? false : .45 }
 });
 gsap.to('.hero-copy', {
-  yPercent: -30, opacity: 0, ease: 'none',
-  scrollTrigger: { trigger: '#hero', start: 'top top', end: '70% top', scrub: .6 }
+  yPercent: reduceMotion ? 0 : (isMobile ? -18 : -26), opacity: 0, ease: 'none',
+  scrollTrigger: { trigger: '#hero', start: 'top top', end: '70% top', scrub: reduceMotion ? false : .45 }
 });
 
 /* ---------- generic reveals ---------- */
 document.querySelectorAll('[data-reveal]').forEach(el => {
   gsap.from(el, {
-    y: 46, opacity: 0, duration: 1, ease: 'hEase',
+    y: reduceMotion ? 0 : (isMobile ? 24 : 34), opacity: 0, duration: reduceMotion ? 0 : (isMobile ? .55 : .78), ease: 'hEase',
     scrollTrigger: { trigger: el, start: 'top 86%' }
   });
 });
 
 /* ---------- arc cap: slight rise ---------- */
 gsap.from('.arc-cap', {
-  yPercent: 30, ease: 'none',
-  scrollTrigger: { trigger: '#arcSec', start: 'top bottom', end: 'top 40%', scrub: .5 }
+  yPercent: reduceMotion ? 0 : (isMobile ? 16 : 24), ease: 'none',
+  scrollTrigger: { trigger: '#arcSec', start: 'top bottom', end: 'top 40%', scrub: reduceMotion ? false : .4 }
 });
 
 /* ---------- PINNED HEADLINE-SWAP ---------- */
@@ -759,21 +850,26 @@ gsap.from('.arc-cap', {
   gsap.set([titles[0], imgs[0], copies[0]], { opacity: 1 });
   let current = 0;
   ScrollTrigger.create({
-    /* Half a screen per slide, so one scroll gesture advances one image.
-       Scales with the slide count rather than a fixed total. */
-    trigger: '#swapSec', start: 'top top', end: '+=' + (count * 50) + '%', pin: true, scrub: .5,
+    trigger: '#swapSec', start: 'top top', end: '+=' + (count * (isMobile ? 58 : 66)) + '%', pin: true, scrub: reduceMotion ? false : (isMobile ? .35 : .5),
     onUpdate(self){
       const idx = Math.min(count - 1, Math.floor(self.progress * count));
       document.getElementById('swapBar').style.width = (self.progress * 100) + '%';
       document.getElementById('swapNum').textContent =
         String(idx + 1).padStart(2, '0') + ' / ' + String(count).padStart(2, '0');
       if (idx !== current) {
-        for (let i = 0; i < count; i++) {
-          const on = i === idx;
-          gsap.to([titles[i], imgs[i], copies[i]], {
-            autoAlpha: on ? 1 : 0, y: on ? 0 : (i < idx ? -14 : 14),
-            duration: .4, ease: 'power2.out', overwrite: true
-          });
+        const direction = idx > current ? 1 : -1;
+        const outgoing = [titles[current], imgs[current], copies[current]];
+        const incoming = [titles[idx], imgs[idx], copies[idx]];
+        gsap.killTweensOf([...outgoing, ...incoming]);
+        if (reduceMotion) {
+          gsap.set(outgoing, { autoAlpha: 0, y: 0 });
+          gsap.set(incoming, { autoAlpha: 1, y: 0 });
+        } else {
+          gsap.to(outgoing, { autoAlpha: 0, y: -10 * direction, duration: isMobile ? .14 : .18, ease: 'power1.in', overwrite: true });
+          gsap.fromTo(incoming,
+            { autoAlpha: 0, y: 10 * direction },
+            { autoAlpha: 1, y: 0, duration: isMobile ? .24 : .3, delay: isMobile ? .1 : .13, ease: 'power2.out', overwrite: true }
+          );
         }
         current = idx;
       }
@@ -782,13 +878,17 @@ gsap.from('.arc-cap', {
 })();
 
 /* ---------- statement sprigs parallax ---------- */
-gsap.to('#sprigTL', { y: 70, ease: 'none', scrollTrigger: { trigger: '#statementSec', start: 'top bottom', end: 'bottom top', scrub: .6 }});
-gsap.to('#sprigBR', { y: -70, ease: 'none', scrollTrigger: { trigger: '#statementSec', start: 'top bottom', end: 'bottom top', scrub: .6 }});
+if (!reduceMotion) {
+  gsap.to('#sprigTL', { y: isMobile ? 28 : 54, ease: 'none', scrollTrigger: { trigger: '#statementSec', start: 'top bottom', end: 'bottom top', scrub: .5 }});
+  gsap.to('#sprigBR', { y: isMobile ? -28 : -54, ease: 'none', scrollTrigger: { trigger: '#statementSec', start: 'top bottom', end: 'bottom top', scrub: .5 }});
+}
 
 /* ---------- parallax type/images ---------- */
-gsap.to('#pxType',  { yPercent: -12, ease: 'none', scrollTrigger: { trigger: '#pxSec', start: 'top bottom', end: 'bottom top', scrub: .4 }});
-gsap.to('#pxImgA',  { yPercent: 18,  ease: 'none', scrollTrigger: { trigger: '#pxSec', start: 'top bottom', end: 'bottom top', scrub: .7 }});
-gsap.to('#pxImgB',  { yPercent: -14, ease: 'none', scrollTrigger: { trigger: '#pxSec', start: 'top bottom', end: 'bottom top', scrub: .9 }});
+if (!reduceMotion) {
+  gsap.to('#pxType',  { yPercent: isMobile ? -5 : -9, ease: 'none', scrollTrigger: { trigger: '#pxSec', start: 'top bottom', end: 'bottom top', scrub: .4 }});
+  gsap.to('#pxImgA',  { yPercent: isMobile ? 8 : 14, ease: 'none', scrollTrigger: { trigger: '#pxSec', start: 'top bottom', end: 'bottom top', scrub: .65 }});
+  if (!isMobile) gsap.to('#pxImgB', { yPercent: -11, ease: 'none', scrollTrigger: { trigger: '#pxSec', start: 'top bottom', end: 'bottom top', scrub: .8 }});
+}
 
 /* ---------- MAP DRAW ---------- */
 (() => {
@@ -812,13 +912,18 @@ gsap.to('#pxImgB',  { yPercent: -14, ease: 'none', scrollTrigger: { trigger: '#p
     else          { label.setAttribute('y', p.y + 40); min.setAttribute('y', p.y + 58); }
   });
 
-  const tl = gsap.timeline({
-    scrollTrigger: { trigger: '#mapSec', start: 'top 65%', end: 'bottom 60%', scrub: .5 }
-  });
-  tl.to(path, { strokeDashoffset: 0, ease: 'none', duration: 3 });
-  gsap.utils.toArray('#mapStops circle, #mapStops text').forEach((el, i) => {
-    tl.to(el, { opacity: 1, duration: .25 }, (i * 0.18) + .3);
-  });
+  if (reduceMotion) {
+    gsap.set(path, { strokeDashoffset: 0 });
+    gsap.set('#mapStops circle, #mapStops text', { opacity: 1 });
+  } else {
+    const tl = gsap.timeline({
+      scrollTrigger: { trigger: '#mapSec', start: 'top 65%', end: 'bottom 60%', scrub: isMobile ? .35 : .5 }
+    });
+    tl.to(path, { strokeDashoffset: 0, ease: 'none', duration: 3 });
+    gsap.utils.toArray('#mapStops circle, #mapStops text').forEach((el, i) => {
+      tl.to(el, { opacity: 1, duration: .25 }, (i * 0.18) + .3);
+    });
+  }
 })();
 
 /* ---------- FLAGSHIP title-through-image ---------- */
@@ -828,24 +933,33 @@ gsap.to('#pxImgB',  { yPercent: -14, ease: 'none', scrollTrigger: { trigger: '#p
   const count  = imgs.length;
   const stats  = [
     { loc:'Beach Resort Estate, Lekki', type:'Terraces & Apartments', status:'Ongoing',
-      blurb:'Havilah 5: four semi-detached homes, nineteen four-bedroom terraces and sixteen apartments, with a gym, swimming pool and children\'s play area.' },
+      blurb:'Havilah Court 5: four semi-detached homes, nineteen four-bedroom terraces and sixteen apartments, with a gym, swimming pool and children\'s play area.' },
     { loc:'Jakande First Gate, Lekki', type:'Terraces & Apartments', status:'Completed 2023',
-      blurb:'Havilah 4: nine four-bedroom terraces and three apartments, with fitted modern kitchens and a dedicated maid\'s room.' }
+      blurb:'Havilah Court 4: nine four-bedroom terraces and three apartments, with fitted modern kitchens and a dedicated maid\'s room.' }
   ];
   gsap.set([backT[0], imgs[0]], { opacity: 1 });
   let cur = 0;
   ScrollTrigger.create({
-    /* Same half-screen-per-slide pacing as the swap section. */
-    trigger: '#flagship', start: 'top top', end: '+=' + (count * 50) + '%', pin: true, scrub: .5,
+    trigger: '#flagship', start: 'top top', end: '+=' + (count * (isMobile ? 62 : 72)) + '%', pin: true, scrub: reduceMotion ? false : (isMobile ? .35 : .5),
     onUpdate(self){
       const idx = Math.min(count - 1, Math.floor(self.progress * count));
       document.getElementById('flagBar').style.width = (self.progress * 100) + '%';
       document.getElementById('flagNum').textContent =
         String(idx + 1).padStart(2,'0') + ' / ' + String(count).padStart(2,'0');
       if (idx !== cur) {
-        for (let i = 0; i < count; i++) {
-          const on = i === idx;
-          gsap.to([backT[i], imgs[i]], { autoAlpha: on ? 1 : 0, duration: .4, ease: 'power2.out', overwrite: true });
+        const direction = idx > cur ? 1 : -1;
+        const outgoing = [backT[cur], imgs[cur]];
+        const incoming = [backT[idx], imgs[idx]];
+        gsap.killTweensOf([...outgoing, ...incoming]);
+        if (reduceMotion) {
+          gsap.set(outgoing, { autoAlpha: 0, y: 0 });
+          gsap.set(incoming, { autoAlpha: 1, y: 0 });
+        } else {
+          gsap.to(outgoing, { autoAlpha: 0, y: -8 * direction, duration: isMobile ? .15 : .2, ease: 'power1.in', overwrite: true });
+          gsap.fromTo(incoming,
+            { autoAlpha: 0, y: 8 * direction },
+            { autoAlpha: 1, y: 0, duration: isMobile ? .25 : .32, delay: isMobile ? .1 : .14, ease: 'power2.out', overwrite: true }
+          );
         }
         const s = stats[idx];
         document.getElementById('statLoc').textContent = s.loc;
@@ -861,22 +975,40 @@ gsap.to('#pxImgB',  { yPercent: -14, ease: 'none', scrollTrigger: { trigger: '#p
 /* ---------- PORTFOLIO horizontal scrub ---------- */
 (() => {
   const track = document.getElementById('folioTrack');
-  const dist = () => Math.max(0, track.scrollWidth - window.innerWidth + 120);
-  const cards = track.children.length;
+  const dist = () => Math.max(0, track.scrollWidth - window.innerWidth + (isMobile ? 20 : 120));
+  const cardEls = gsap.utils.toArray('.fcard', track);
+  const cards = cardEls.length;
   ScrollTrigger.create({
-    trigger: '#folioSec', start: 'top top', end: () => '+=' + dist(), pin: true, scrub: 1,
+    trigger: '#folioSec', start: 'top top', end: () => '+=' + dist(), pin: true, scrub: reduceMotion ? false : (isMobile ? .5 : .8),
+    onToggle(self){ track.style.willChange = self.isActive ? 'transform' : 'auto'; },
     onUpdate(self){
       gsap.set(track, { x: -self.progress * dist() });
       document.getElementById('folioBar').style.width = (self.progress * 100) + '%';
-      const n = Math.min(cards, Math.max(1, Math.round(self.progress * (cards - 1)) + 1));
+      const viewportCenter = window.innerWidth / 2;
+      let nearestIndex = 0;
+      let nearestDistance = Infinity;
+      cardEls.forEach((card, index) => {
+        const rect = card.getBoundingClientRect();
+        const distance = Math.abs((rect.left + rect.right) / 2 - viewportCenter);
+        if (distance < nearestDistance) {
+          nearestDistance = distance;
+          nearestIndex = index;
+        }
+      });
+      const n = nearestIndex + 1;
       document.getElementById('folioNum').textContent =
         String(n).padStart(2,'0') + ' / ' + String(cards).padStart(2,'0');
+      const category = cardEls[n - 1].dataset.category;
+      document.getElementById('folioCategory').textContent =
+        category === 'Pipeline' ? 'Project Pipeline' : category + ' Projects';
     }
   });
 })();
 
 /* ---------- mgmt image slow parallax ---------- */
-gsap.to('#mgmtImg', { yPercent: -14, ease: 'none', scrollTrigger: { trigger: '#mgmtSec', start: 'top bottom', end: 'bottom top', scrub: .6 }});
+if (!reduceMotion) {
+  gsap.to('#mgmtImg', { yPercent: isMobile ? -6 : -11, ease: 'none', scrollTrigger: { trigger: '#mgmtSec', start: 'top bottom', end: 'bottom top', scrub: .55 }});
+}
 
 /* Orientation change is a real geometry change, unlike the address bar,
    so recalculate once the new viewport has settled. */
