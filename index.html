@@ -94,22 +94,22 @@
   /* Reserving the nav height drops the title below the logo and links, so
      it no longer runs into them at either top corner. */
   .swap-inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-top:calc(var(--nav-h) + 14px);}
-  .swap-title-zone{height:104px;position:relative;width:100%;text-align:center;}
-  .swap-title{position:absolute;left:0;right:0;top:0;padding:0 24px;font-size:clamp(34px,5.6vw,84px);line-height:1.1;letter-spacing:0px;color:var(--ink);opacity:0;}
-  /* The copy sits beside the image on a wide screen rather than under it.
-     With object-fit:contain a square image can only be as big as the frame
-     is tall, so that returned vertical space goes straight into image size. */
-  .swap-body{display:flex;align-items:center;justify-content:center;gap:44px;width:100%;}
-  .swap-img-zone{position:relative;flex:0 0 auto;width:min(760px,58vw,calc((100vh - var(--nav-h) - 186px) * 1.34));aspect-ratio:4/3;margin-top:10px;}
+  .swap-title-zone{height:86px;position:relative;width:100%;text-align:center;}
+  .swap-title{position:absolute;left:0;right:0;top:0;padding:0 24px;font-size:clamp(32px,4.8vw,68px);line-height:1.1;letter-spacing:0px;color:var(--ink);opacity:0;}
+  /* One centred column. Putting the copy beside the image bought height but
+     left it floating against empty space; the size is reclaimed by keeping
+     the surrounding chrome tight instead. */
+  .swap-body{display:flex;flex-direction:column;align-items:center;width:100%;}
+  .swap-img-zone{position:relative;width:min(860px,92vw,calc((100vh - var(--nav-h) - 212px) * 1.34));aspect-ratio:4/3;margin-top:8px;}
   .swap-img{position:absolute;inset:0;opacity:0;}
   /* contain, not cover: the sources are two square renders and a landscape
      photograph, and cover was discarding whatever did not fit. Every image
      is now shown whole, on the section colour so the margins read as part
      of the page rather than as letterboxing. */
   .swap-img img{width:100%;height:100%;object-fit:contain;object-position:center;}
-  .swap-copy-zone{position:relative;flex:0 1 300px;text-align:left;height:150px;}
+  .swap-copy-zone{position:relative;width:min(600px,88vw);text-align:center;margin-top:16px;height:58px;}
   .swap-copy{position:absolute;inset:0;font-size:14px;line-height:1.75;color:#4d4f56;font-weight:300;opacity:0;}
-  .swap-ui{display:flex;align-items:center;gap:16px;margin-top:18px;}
+  .swap-ui{display:flex;align-items:center;gap:16px;margin-top:14px;}
   .swap-ui .n{font-size:12px;letter-spacing:2px;font-variant-numeric:tabular-nums;}
   .swap-ui .bar{width:200px;height:1px;background:var(--line);position:relative;}
   .swap-ui .bar i{position:absolute;left:0;top:0;height:100%;background:var(--ink);width:0%;}
@@ -158,7 +158,11 @@
   /* Was a fixed 58vh box with object-fit:cover, so the frame's shape changed
      with window height and the photographs were cut to fill it. Fixed aspect
      and contain, as in the swap section: the whole image, every time. */
-  .flag-img-zone{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);width:min(560px,60vw,calc((100vh - var(--nav-h) - 210px) * 1.02));aspect-ratio:1/1;z-index:2;}
+  /* The three sit in one centred row. Pinning the columns to 6vw from each
+     edge left a gulf of empty background between them and the image. */
+  .flag-row{position:absolute;left:0;right:0;top:44%;transform:translateY(-50%);z-index:4;
+    display:flex;align-items:center;justify-content:center;gap:clamp(26px,3.2vw,58px);padding:0 5vw;}
+  .flag-img-zone{position:relative;flex:0 0 auto;width:min(560px,46vw,calc((100vh - var(--nav-h) - 190px) * 1.04));aspect-ratio:1/1;z-index:2;}
   .flag-img{position:absolute;inset:0;opacity:0;}
   .flag-img img{width:100%;height:100%;object-fit:contain;}
   .flag-title-zone{position:absolute;left:0;right:0;top:83%;text-align:center;}
@@ -167,11 +171,11 @@
   /* Real place names are far longer than the placeholders these were built
      for, so the column is bounded and the type scales instead of running
      under the image and off the edge. */
-  .flag-stats{position:absolute;left:6vw;top:50%;transform:translateY(-50%);z-index:4;width:min(300px,19vw);}
-  .flag-stats .stat{margin-bottom:30px;}
+  .flag-stats{flex:0 1 250px;min-width:0;}
+  .flag-stats .stat{margin-bottom:28px;}
   .flag-stats .lbl{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#3c4045;margin-bottom:6px;}
-  .flag-stats .val{font-family:'Cormorant',serif;font-size:clamp(21px,1.9vw,30px);line-height:1.2;color:var(--ink);}
-  .flag-cta{position:absolute;right:6vw;top:50%;transform:translateY(-50%);z-index:4;width:min(260px,19vw);}
+  .flag-stats .val{font-family:'Cormorant',serif;font-size:clamp(20px,1.8vw,29px);line-height:1.2;color:var(--ink);}
+  .flag-cta{flex:0 1 230px;min-width:0;}
   .flag-cta p{font-size:13.5px;line-height:1.75;color:#2f3338;font-weight:300;margin-bottom:20px;}
   .btn-pill{display:inline-block;border:1px solid var(--ink);border-radius:999px;padding:13px 26px;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--ink);transition:background .3s,color .3s;}
   .btn-pill:hover{background:var(--ink);color:#fff;}
@@ -267,10 +271,7 @@
     /* 400px cards run off a 375px screen, so size them to the viewport
        so a whole card is readable at each step of the scrub. */
     .fcard{margin-right:20px;}
-    /* Stack again on narrow screens, where there is no width to spare. */
-    .swap-body{flex-direction:column;gap:16px;}
-    .swap-img-zone{width:min(760px,92vw);}
-    .swap-copy-zone{flex:0 0 auto;width:min(560px,88vw);text-align:center;height:70px;}
+    .swap-copy-zone{height:72px;}
     /* min-width:700px forced a horizontal scrollbar on phones; the
        viewBox scales, so raise the type instead of the floor. */
     .arc-cap svg{width:96vw;min-width:0;}
@@ -469,18 +470,20 @@
         <h2 class="flag-title">THE RESIDENCES</h2>
         <h2 class="flag-title">THE TERRACES</h2>
       </div>
-      <div class="flag-img-zone">
-        <div class="flag-img"><img src="assets/front-elevation.jpg" alt="Havilah 5 front elevation"></div>
-        <div class="flag-img"><img src="assets/proj-havilah-4.jpg" alt="Havilah 4 completed terraces"></div>
-      </div>
-      <div class="flag-stats">
-        <div class="stat"><div class="lbl">Location</div><div class="val" id="statLoc">Beach Resort Estate, Lekki</div></div>
-        <div class="stat"><div class="lbl">Type</div><div class="val" id="statType">Terraces &amp; Apartments</div></div>
-        <div class="stat"><div class="lbl">Status</div><div class="val" id="statStatus">Ongoing</div></div>
-      </div>
-      <div class="flag-cta">
-        <p id="flagBlurb">Havilah 5: four semi-detached homes, nineteen four-bedroom terraces and sixteen apartments, with a gym, swimming pool and children's play area.</p>
-        <a href="inspection.html" class="btn-pill">Book an Inspection</a>
+      <div class="flag-row">
+        <div class="flag-stats">
+          <div class="stat"><div class="lbl">Location</div><div class="val" id="statLoc">Beach Resort Estate, Lekki</div></div>
+          <div class="stat"><div class="lbl">Type</div><div class="val" id="statType">Terraces &amp; Apartments</div></div>
+          <div class="stat"><div class="lbl">Status</div><div class="val" id="statStatus">Ongoing</div></div>
+        </div>
+        <div class="flag-img-zone">
+          <div class="flag-img"><img src="assets/front-elevation.jpg" alt="Havilah 5 front elevation"></div>
+          <div class="flag-img"><img src="assets/proj-havilah-4.jpg" alt="Havilah 4 completed terraces"></div>
+        </div>
+        <div class="flag-cta">
+          <p id="flagBlurb">Havilah 5: four semi-detached homes, nineteen four-bedroom terraces and sixteen apartments, with a gym, swimming pool and children's play area.</p>
+          <a href="inspection.html" class="btn-pill">Book an Inspection</a>
+        </div>
       </div>
       <div class="flag-pager">
         <span id="flagNum">01 / 02</span>
