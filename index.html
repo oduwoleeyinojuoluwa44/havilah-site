@@ -294,8 +294,6 @@
     .flag-cta{display:none;}
     /* Nothing sits beside the image here, so let it use the width. */
     .flag-img-zone{width:min(470px,72vw,calc((100vh - var(--nav-h) - 186px) * 0.8));}
-    .px-img{width:70vw;}
-    .px-img-2{display:none;}
     /* 400px cards run off a 375px screen, so size them to the viewport
        so a whole card is readable at each step of the scrub. */
     .fcard{width:min(450px,88vw,calc((100vh - var(--nav-h) - 176px) * 0.95));height:min(540px,calc(100vh - var(--nav-h) - 176px));margin-right:20px;}
@@ -309,8 +307,21 @@
     .sprig{width:180px;}
     .sprig.br{right:-40px;}
     .statement{padding:64px 7vw 42px;}
-    .px-sec{min-height:clamp(600px,106svh,720px);}
-    .px-caption{left:7vw;right:7vw;bottom:4%;max-width:none;}
+    /* Every child here is absolutely positioned to desktop percentages,
+       which on a phone put the headline on top of the nav and ran the
+       photograph straight through the caption. Stack it in normal flow
+       instead, so nothing can land on anything else. */
+    .px-sec{min-height:0;padding:calc(var(--nav-h) + 16px) 7vw 54px;display:flex;flex-direction:column;}
+    .px-kicker,.px-type,.px-img,.px-caption{position:static;left:auto;right:auto;top:auto;bottom:auto;}
+    .px-kicker{order:1;font-size:10px;letter-spacing:5px;margin-bottom:12px;}
+    .px-type{order:2;width:auto;margin-bottom:24px;}
+    .px-type div{font-size:clamp(40px,13vw,72px);}
+    .px-type .l1{padding-left:0;}
+    .px-type .l2{padding-left:6vw;}
+    .px-type .l3{padding-left:3vw;}
+    .px-img{order:3;width:100%;height:auto;aspect-ratio:4/5;}
+    .px-img-2{display:none;}
+    .px-caption{order:4;margin-top:24px;max-width:none;}
     .map-sec{padding:50px 7vw 42px;}
     .map-sec .head{margin-bottom:24px;}
     .closing{padding:64px 7vw 48px;}
@@ -920,9 +931,13 @@ if (!reduceMotion) {
 
 /* ---------- parallax type/images ---------- */
 if (!reduceMotion) {
-  gsap.to('#pxType',  { yPercent: isMobile ? -5 : -9, ease: 'none', scrollTrigger: { trigger: '#pxSec', start: 'top bottom', end: 'bottom top', scrub: .4 }});
-  gsap.to('#pxImgA',  { yPercent: isMobile ? 8 : 14, ease: 'none', scrollTrigger: { trigger: '#pxSec', start: 'top bottom', end: 'bottom top', scrub: .65 }});
-  if (!isMobile) gsap.to('#pxImgB', { yPercent: -11, ease: 'none', scrollTrigger: { trigger: '#pxSec', start: 'top bottom', end: 'bottom top', scrub: .8 }});
+  /* Desktop only: on a phone these elements sit in normal flow, where a
+     yPercent shift would drag them back over each other. */
+  if (!isMobile) {
+    gsap.to('#pxType',  { yPercent: -9, ease: 'none', scrollTrigger: { trigger: '#pxSec', start: 'top bottom', end: 'bottom top', scrub: .4 }});
+    gsap.to('#pxImgA',  { yPercent: 14, ease: 'none', scrollTrigger: { trigger: '#pxSec', start: 'top bottom', end: 'bottom top', scrub: .65 }});
+    gsap.to('#pxImgB',  { yPercent: -11, ease: 'none', scrollTrigger: { trigger: '#pxSec', start: 'top bottom', end: 'bottom top', scrub: .8 }});
+  }
 }
 
 /* ---------- MAP DRAW ---------- */
