@@ -20,7 +20,7 @@
     /* Height the fixed nav occupies. Pinned sections reserve this so their
        content cannot slide underneath it. The links stack taller once the
        narrow breakpoint kicks in, so it is overridden there. */
-    --nav-h:100px;
+    --nav-h:96px;
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:'Jost',sans-serif;overflow-x:hidden;}
@@ -50,17 +50,39 @@
   .rail .cue .arrow{animation:bob 1.6s ease-in-out infinite;}
   @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(6px);}}
 
-  .topnav{position:fixed;top:0;left:0;right:0;z-index:41;display:flex;justify-content:space-between;align-items:flex-start;padding:26px 34px;mix-blend-mode:difference;color:#fff;}
-  .topnav .logo{font-family:'Cormorant',serif;font-size:20px;letter-spacing:3px;line-height:1.1;}
-  .topnav .logo em{font-family:'Great Vibes',cursive;font-style:normal;font-size:15px;display:block;letter-spacing:1px;opacity:.8;}
-  .topnav .links{text-align:right;font-size:11px;letter-spacing:2px;line-height:2.1;text-transform:uppercase;pointer-events:auto;}
-  .topnav .links .primary{font-family:'Cormorant',serif;font-size:17px;letter-spacing:2px;border-bottom:1px solid currentColor;padding-bottom:2px;}
+  .topnav{position:fixed;top:0;left:0;right:0;z-index:41;display:flex;justify-content:space-between;align-items:center;padding:20px 34px;mix-blend-mode:difference;color:#fff;}
+  .topnav .logo{font-family:'Cormorant',serif;font-size:19px;letter-spacing:3px;line-height:1.15;pointer-events:auto;}
+  .topnav .logo em{font-family:'Great Vibes',cursive;font-style:normal;font-size:13.5px;display:block;letter-spacing:1px;opacity:.85;}
+  /* One horizontal row, so any section is a single tap away rather than a
+     scroll away. */
+  .topnav .links{display:flex;align-items:center;gap:26px;font-size:11.5px;letter-spacing:2px;text-transform:uppercase;pointer-events:auto;}
+  .topnav .links a{position:relative;padding-bottom:3px;white-space:nowrap;}
+  .topnav .links a::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .35s;}
+  .topnav .links a:hover::after,.topnav .links a.current::after{transform:scaleX(1);transform-origin:left;}
+  .topnav .links .primary{font-family:'Cormorant',serif;font-size:16px;letter-spacing:2px;border-bottom:1px solid currentColor;padding-bottom:2px;}
+  .topnav .links .primary::after{display:none;}
+  /* Hidden until the row no longer fits. */
+  .navtoggle{display:none;background:none;border:0;padding:8px 4px;cursor:pointer;pointer-events:auto;flex-direction:column;gap:5px;width:34px;}
+  .navtoggle span{display:block;height:1.5px;background:currentColor;transition:transform .3s,opacity .2s;}
+  .navtoggle[aria-expanded="true"] span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+  .navtoggle[aria-expanded="true"] span:nth-child(2){opacity:0;}
+  .navtoggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
 
   /* ================= HERO ================= */
   .hero{height:100vh;position:relative;overflow:hidden;background:var(--ink);}
   .hero .frame{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
   .hero .img-wrap{position:relative;width:86%;height:80%;overflow:hidden;}
   .hero .img-wrap img{width:100%;height:100%;object-fit:cover;object-position:center 65%;transform:scale(1.12);}
+  /* Four backgrounds cross-fading. Each is held for a quarter of the cycle
+     with a short overlap, so one is always fully opaque and the frame is
+     never empty. The first carries opacity in its own right so there is no
+     flash before the animation reaches its first keyframe. */
+  .hero .img-wrap .hero-slide{position:absolute;inset:0;opacity:0;animation:heroFade 26s infinite;}
+  .hero .img-wrap .hero-slide:nth-child(1){opacity:1;animation-delay:0s;}
+  .hero .img-wrap .hero-slide:nth-child(2){animation-delay:6.5s;}
+  .hero .img-wrap .hero-slide:nth-child(3){animation-delay:13s;}
+  .hero .img-wrap .hero-slide:nth-child(4){animation-delay:19.5s;}
+  @keyframes heroFade{0%{opacity:0;}3%{opacity:1;}25%{opacity:1;}28%{opacity:0;}100%{opacity:0;}}
   .hero .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(22,24,29,.25),rgba(22,24,29,.05) 40%,rgba(22,24,29,.45));}
   .hero-copy{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff;}
   /* The veil is at its lightest (5%) exactly at mid-height, which is where
@@ -281,8 +303,19 @@
   @media (max-width:900px){
     /* The nav links stack taller at this width, so pinned sections need to
        reserve more room for it. */
-    :root{--nav-h:140px;}
-    .topnav{padding:20px 22px;}
+    :root{--nav-h:82px;}
+    /* The blend mode has to go on mobile: the open panel is a solid sheet
+       and difference would invert it. */
+    .topnav{padding:16px 22px;mix-blend-mode:normal;color:var(--ink);}
+    .navtoggle{display:flex;}
+    .topnav .logo{font-size:17px;}
+    .topnav .logo em{font-size:12px;}
+    .topnav .links{position:fixed;inset:0;background:var(--ink);color:#fff;flex-direction:column;justify-content:center;
+      gap:28px;font-size:15px;letter-spacing:3px;opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s;}
+    .topnav .links.open{opacity:1;visibility:visible;}
+    .topnav .links .primary{font-size:22px;}
+    .topnav.menu-open{color:#fff;mix-blend-mode:normal;}
+    .topnav.menu-open .logo{position:relative;z-index:2;}
     .rail{display:none;}
     .mgmt .grid{grid-template-columns:1fr;}
     .folio .head{left:7vw;}
@@ -331,6 +364,8 @@
     html{scroll-behavior:auto;}
     *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important;}
     .preloader{display:none;}
+    .hero .img-wrap .hero-slide{opacity:0;}
+    .hero .img-wrap .hero-slide:nth-child(1){opacity:1;}
     /* A frozen marquee would hide most of the quotes, so make it swipeable. */
     .tst .track{animation:none;width:auto;gap:32px;}
     .tst .marquee{overflow-x:auto;-webkit-mask-image:none;mask-image:none;}
@@ -352,11 +387,18 @@
 
   <!-- FIXED CHROME -->
   <nav class="topnav">
-    <div class="logo">HAVILAH<em>Development</em></div>
-    <div class="links">
-      <div><a class="primary" href="#flagship">View Properties</a></div>
-      <div style="margin-top:8px;"><a href="inspection.html">Book an Inspection</a></div>
-      <div><a href="inspection.html">Contact</a></div>
+    <a class="logo" href="#hero">HAVILAH<em>Development &amp; Management</em></a>
+    <button class="navtoggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="links" id="navMenu">
+      <a href="#hero">Home</a>
+      <a href="#statementSec">About</a>
+      <a href="#folioSec">Projects</a>
+      <a href="#swapSec">Approach</a>
+      <a href="#tstSec">Testimonials</a>
+      <a href="inspection.html">Contact</a>
+      <a class="primary" href="inspection.html">Book an Inspection</a>
     </div>
   </nav>
 
@@ -380,7 +422,10 @@
   <section class="hero" id="hero">
     <div class="frame">
       <div class="img-wrap" id="heroImgWrap">
-        <img src="assets/front-elevation.jpg" alt="Havilah flagship development, front elevation">
+        <img class="hero-slide" src="assets/hero-1.jpg" alt="Havilah Court 5 front elevation">
+        <img class="hero-slide" src="assets/hero-2.jpg" alt="Havilah Court 4 completed terraces">
+        <img class="hero-slide" src="assets/hero-3.jpg" alt="Havilah Court 3 completed terraces">
+        <img class="hero-slide" src="assets/hero-4.jpg" alt="Havilah Court 5 under construction">
         <div class="veil"></div>
       </div>
     </div>
@@ -1065,6 +1110,59 @@ if (!reduceMotion) {
 window.addEventListener('orientationchange', () => {
   setTimeout(() => ScrollTrigger.refresh(), 250);
 });
+
+/* ---------- nav: menu toggle and section jumps ---------- */
+(() => {
+  const nav    = document.querySelector('.topnav');
+  const toggle = document.getElementById('navToggle');
+  const menu   = document.getElementById('navMenu');
+
+  const setOpen = open => {
+    menu.classList.toggle('open', open);
+    nav.classList.toggle('menu-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    /* Lenis drives the scroll when it is on, but it is null for reduced
+       motion, so fall back to locking the body directly. */
+    if (lenis) { open ? lenis.stop() : lenis.start(); }
+    document.body.style.overflow = open ? 'hidden' : '';
+  };
+
+  toggle.addEventListener('click', () => setOpen(!menu.classList.contains('open')));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
+
+  menu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', e => {
+      const href = a.getAttribute('href');
+      if (!href.startsWith('#')) { setOpen(false); return; }   // let real pages navigate
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (!target) return;
+      setOpen(false);
+      /* A native jump fights Lenis and lands in the wrong place inside the
+         pinned sections, so hand it the scroll instead. Offset by the bar
+         so headings are not left underneath it. */
+      const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 96;
+      if (lenis) {
+        lenis.scrollTo(target, { offset: -navH + 8, duration: 1.1 });
+      } else {
+        const y = target.getBoundingClientRect().top + window.scrollY - navH + 8;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    });
+  });
+
+  /* Mark whichever section is in view. */
+  ['hero','statementSec','folioSec','swapSec','tstSec'].forEach(id => {
+    const el = document.getElementById(id);
+    const link = menu.querySelector(`a[href="#${id}"]`);
+    if (!el || !link) return;
+    ScrollTrigger.create({
+      trigger: el, start: 'top 55%', end: 'bottom 45%',
+      onToggle: self => link.classList.toggle('current', self.isActive)
+    });
+  });
+})();
 
 /* ---------- rail counter ---------- */
 ScrollTrigger.create({
