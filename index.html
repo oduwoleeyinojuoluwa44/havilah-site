@@ -102,15 +102,6 @@
   .hero-copy .sub{margin-top:20px;font-size:13px;letter-spacing:3px;text-transform:uppercase;opacity:.85;}
 
   /* ================= ARC REVEAL ================= */
-  .arc-sec{position:relative;background:var(--paper);margin-top:-14vh;z-index:5;}
-  .arc-cap{position:relative;width:160%;left:-30%;height:26vh;background:var(--paper);border-top-left-radius:50% 90%;border-top-right-radius:50% 90%;overflow:visible;}
-  .arc-cap svg{position:absolute;left:50%;top:0;transform:translateX(-50%);width:70vw;min-width:700px;overflow:visible;}
-  .arc-cap svg text{font-family:'Cormorant',serif;font-size:30px;letter-spacing:8px;fill:var(--ink);text-transform:uppercase;}
-  .reasons{position:relative;padding:2vh 8vw 12vh;display:flex;gap:5vw;justify-content:center;flex-wrap:wrap;}
-  .reason{flex:1 1 240px;max-width:330px;text-align:center;}
-  .reason .num{font-family:'Cormorant',serif;font-size:15px;color:var(--gold-deep);letter-spacing:3px;margin-bottom:14px;}
-  .reason h3{font-size:26px;margin-bottom:12px;}
-  .reason p{font-size:14px;line-height:1.8;color:#3f434b;font-weight:400;}
 
   /* ================= PINNED HEADLINE-SWAP ================= */
   .swap-sec{height:100vh;position:relative;overflow:hidden;background:var(--paper-dim);}
@@ -331,12 +322,6 @@
        so a whole card is readable at each step of the scrub. */
     .fcard{width:min(450px,88vw,calc((100vh - var(--nav-h) - 176px) * 0.95));height:min(540px,calc(100vh - var(--nav-h) - 176px));margin-right:20px;}
     .swap-copy-zone{height:72px;}
-    /* min-width:700px forced a horizontal scrollbar on phones; the
-       viewBox scales, so raise the type instead of the floor. */
-    .arc-cap svg{width:96vw;min-width:0;}
-    /* The svg is overflow:visible, so type wider than the arc path spills
-       past the viewport. Keep the run inside the path's 60 to 940 span. */
-    .arc-cap svg text{font-size:40px;letter-spacing:1px;}
     .sprig{width:180px;}
     .sprig.br{right:-40px;}
     .statement{padding:64px 7vw 42px;}
@@ -434,33 +419,6 @@
       <div class="split"><h1 data-split>HAVILAH</h1></div>
       <div class="split script-split"><div class="script-line" data-split-plain>Building dreams, shaping communities</div></div>
       <div class="split"><div class="sub" data-split>Seven years of trusted development</div></div>
-    </div>
-  </section>
-
-  <!-- 2 · ARC REVEAL -->
-  <section class="arc-sec" id="arcSec">
-    <div class="arc-cap">
-      <svg viewBox="0 0 1000 260">
-        <defs><path id="arcPath" d="M 60 240 Q 500 -60 940 240"/></defs>
-        <text><textPath href="#arcPath" startOffset="50%" text-anchor="middle">Three reasons to choose Havilah</textPath></text>
-      </svg>
-    </div>
-    <div class="reasons">
-      <div class="reason" data-reveal>
-        <div class="num">· 01 ·</div>
-        <h3>Architectural Excellence</h3>
-        <p>Unique designs that stand out. Every project is approached with a fresh perspective, combining creativity, functionality and enduring quality.</p>
-      </div>
-      <div class="reason" data-reveal>
-        <div class="num">· 02 ·</div>
-        <h3>Full-Cycle Control</h3>
-        <p>From design and construction to long-term upkeep, we keep full control over quality at every stage. Development and management under one roof.</p>
-      </div>
-      <div class="reason" data-reveal>
-        <div class="num">· 03 ·</div>
-        <h3>Earned Trust</h3>
-        <p>Individuals, families and investors return to us because of consistency, transparency and delivery on our promises, project after project.</p>
-      </div>
     </div>
   </section>
 
@@ -924,12 +882,6 @@ document.querySelectorAll('[data-reveal]').forEach(el => {
     y: reduceMotion ? 0 : (isMobile ? 24 : 34), opacity: 0, duration: reduceMotion ? 0 : (isMobile ? .55 : .78), ease: 'hEase',
     scrollTrigger: { trigger: el, start: 'top 86%' }
   });
-});
-
-/* ---------- arc cap: slight rise ---------- */
-gsap.from('.arc-cap', {
-  yPercent: reduceMotion ? 0 : (isMobile ? 16 : 24), ease: 'none',
-  scrollTrigger: { trigger: '#arcSec', start: 'top bottom', end: 'top 40%', scrub: reduceMotion ? false : .4 }
 });
 
 /* ---------- PINNED HEADLINE-SWAP ---------- */
