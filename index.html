@@ -201,67 +201,39 @@
   .flag-pager .bar{width:180px;height:1px;background:rgba(22,24,29,.3);position:relative;}
   .flag-pager .bar i{position:absolute;left:0;top:0;height:100%;background:var(--ink);width:0%;}
 
-  /* ================= PORTFOLIO SCRUB ================= */
-  .folio{height:100vh;position:relative;overflow:hidden;background:var(--ink);color:#fff;}
-  /* Sat at a fixed 56px, which put it under the nav logo. */
-  .folio .head{position:absolute;top:calc(var(--nav-h) + 6px);left:120px;z-index:3;}
-  .folio .head .kicker{font-size:12px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
-  .folio .head h2{color:#fff;font-size:clamp(28px,4vw,46px);text-transform:uppercase;}
-  .folio-groups{display:flex;gap:18px;flex-wrap:wrap;margin-top:9px;font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:rgba(255,255,255,.58);}
-  .folio-groups b{color:var(--gold);font-weight:500;margin-left:4px;}
-  .folio-track{position:absolute;top:0;left:0;height:100%;display:flex;align-items:center;padding-left:120px;}
-  .category-break{flex:0 0 min(300px,32vw);height:min(560px,calc(100vh - var(--nav-h) - 160px));margin-top:calc(var(--nav-h) + 26px);margin-right:36px;padding:30px 26px;display:flex;flex-direction:column;justify-content:space-between;background:var(--paper);color:var(--ink);border:1px solid rgba(255,255,255,.12);}
-  .category-break.ongoing{background:#a9b6bd;}
-  .category-break.pipeline{background:var(--gold);}
-  .category-break .index{font-size:11.5px;letter-spacing:3px;text-transform:uppercase;}
-  .category-break h3{font-size:clamp(34px,3.4vw,50px);line-height:.95;text-transform:uppercase;}
-  .category-break p{font-size:12px;line-height:1.65;letter-spacing:1px;text-transform:uppercase;opacity:.68;}
-  /* Height and offset both allow for the nav and the heading above, so the
-     cards cannot collide with either on a short window. */
-  /* Full width first: forcing a 4:5 box shrank the cards, because height is
-     capped by the pinned screen. The sources are already cut to 4:5, so the
-     little cover-crop left over is mild. */
-  .fcard{flex:0 0 auto;width:min(450px,86vw,calc((100vh - var(--nav-h) - 160px) * 0.98));height:min(560px,calc(100vh - var(--nav-h) - 160px));margin-top:calc(var(--nav-h) + 26px);margin-right:36px;position:relative;overflow:hidden;background:var(--ink-soft);}
-  .fcard .bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:saturate(.92);transition:transform .5s;}
-  .fcard:hover .bg{transform:scale(1.04);}
-  /* Deeper than before: the cards now carry a paragraph, not just a name. */
-  .fcard .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(22,24,29,0) 22%,rgba(22,24,29,.62) 52%,rgba(22,24,29,.93));}
-  .fcard .meta{position:absolute;left:24px;right:24px;bottom:22px;z-index:2;}
-  .fcard .meta .category{font-size:11px;letter-spacing:2.4px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
-  .fcard .meta .name{font-family:'Cormorant',serif;font-size:27px;line-height:1.1;}
-  .fcard .meta .loc{font-size:11.5px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-top:6px;}
-  .fcard .meta .desc{font-size:12.5px;line-height:1.65;font-weight:400;color:rgba(255,255,255,.9);margin:10px 0 0;}
-  .folio-ui{position:absolute;bottom:52px;left:120px;z-index:3;display:flex;align-items:center;gap:18px;}
-  .folio-ui .n{font-size:12px;letter-spacing:2px;}
-  .folio-ui .bar{width:220px;height:1px;background:rgba(255,255,255,.25);position:relative;}
-  .folio-ui .bar i{position:absolute;left:0;top:0;height:100%;background:var(--gold);width:0%;}
+  /* ================= PROJECTS ================= */
+  /* Was a pinned horizontal scrub, which showed one card at a time and put
+     the whole track record behind a sideways drag. It is a full section
+     now: an opening statement, then a titled block per status. */
+  .projects{background:var(--ink);color:#fff;padding:clamp(90px,12vh,150px) 0 clamp(80px,10vh,130px);}
+  .projects-inner{max-width:1280px;margin:0 auto;padding:0 6vw;}
 
-  @media (min-width:901px){
-    .folio .head{top:calc(var(--nav-h) - 24px);}
-  }
+  .projects-intro{max-width:720px;margin-bottom:clamp(56px,7vh,88px);}
+  .projects-intro .kicker{font-size:12px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+  .projects-intro h2{font-size:clamp(42px,7vw,96px);line-height:.98;text-transform:uppercase;color:#fff;}
+  .projects-intro p{margin-top:20px;font-size:15.5px;line-height:1.8;color:rgba(255,255,255,.72);max-width:520px;}
 
-  /* ================= TESTIMONIALS ================= */
-  .tst{position:relative;background:var(--paper);padding:15vh 8vw;z-index:2;}
-  .tst .head{text-align:center;max-width:640px;margin:0 auto 66px;}
-  .tst .kicker{font-size:12px;letter-spacing:5px;text-transform:uppercase;color:var(--gold-deep);margin-bottom:14px;}
-  .tst .head h2{font-size:clamp(30px,4.4vw,52px);text-transform:uppercase;line-height:1.1;}
-  .tst .head h2 .script{display:block;text-transform:none;font-size:.72em;margin-top:2px;}
-  /* Continuous marquee. The track holds the quotes twice and slides by
-     exactly half its width, so the seam lands where the copy restarts and
-     the loop is invisible. Width is set on the row, not the viewport, so
-     the speed stays even however many quotes there are. */
-  .tst .marquee{position:relative;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);}
-  .tst .track{display:flex;width:max-content;animation:tst-slide 46s linear infinite;}
-  .tst .marquee:hover .track,.tst .marquee:focus-within .track{animation-play-state:paused;}
-  @keyframes tst-slide{from{transform:translate3d(0,0,0);}to{transform:translate3d(-50%,0,0);}}
-  .tst .card{flex:0 0 min(392px,82vw);margin-right:32px;}
-  .tst .card{background:#fff;border:1px solid var(--line);padding:38px 32px 30px;position:relative;margin:0;display:flex;flex-direction:column;}
-  /* Opening quote mark set as a watermark behind the text. */
-  .tst .card::before{content:'\201C';position:absolute;top:6px;left:24px;font-family:'Cormorant',serif;font-size:76px;line-height:1;color:var(--gold);opacity:.32;}
-  .tst .card blockquote{margin:0 0 22px;position:relative;font-size:14.5px;line-height:1.85;color:#3f434b;font-weight:400;}
-  .tst .card figcaption{margin-top:auto;padding-top:18px;border-top:1px solid var(--line);}
-  .tst .card .who{font-family:'Cormorant',serif;font-size:19px;color:var(--ink);}
-  .tst .card .what{font-size:11.5px;letter-spacing:2px;text-transform:uppercase;color:var(--stone);margin-top:5px;}
+  .ptally{display:flex;gap:clamp(28px,5vw,64px);margin-top:38px;padding-top:26px;border-top:1px solid rgba(255,255,255,.16);}
+  .ptally b{display:block;font-family:'Cormorant',serif;font-size:clamp(34px,4vw,50px);line-height:1;color:var(--gold);font-weight:500;}
+  .ptally span{display:block;margin-top:6px;font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.6);}
+
+  .pgroup{margin-top:clamp(56px,7vh,86px);}
+  .pgroup-head{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;padding-bottom:20px;margin-bottom:34px;border-bottom:1px solid rgba(255,255,255,.16);}
+  .pgroup-head .idx{font-family:'Cormorant',serif;font-size:15px;letter-spacing:3px;color:var(--gold);}
+  .pgroup-head h3{font-size:clamp(26px,3.4vw,42px);text-transform:uppercase;color:#fff;letter-spacing:1px;}
+  .pgroup-head .count{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.5);}
+  .pgroup-head p{flex:1 1 260px;margin:0;text-align:right;font-size:13.5px;color:rgba(255,255,255,.6);}
+
+  .pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:clamp(22px,2.6vw,36px);}
+  .pcard{background:var(--ink-soft);overflow:hidden;display:flex;flex-direction:column;}
+  .pcard-img{position:relative;aspect-ratio:4/5;overflow:hidden;background:#1b1e24;}
+  .pcard-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.3,1);}
+  .pcard:hover .pcard-img img{transform:scale(1.05);}
+  .pcard-body{padding:24px 24px 28px;display:flex;flex-direction:column;flex:1;}
+  .pcard-status{font-size:11.5px;letter-spacing:2.4px;text-transform:uppercase;color:var(--gold);margin-bottom:9px;}
+  .pcard-body h4{font-family:'Cormorant',serif;font-weight:500;font-size:27px;line-height:1.15;color:#fff;margin:0;}
+  .pcard-loc{margin-top:6px;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.55);}
+  .pcard-body p{margin:14px 0 0;font-size:13.5px;line-height:1.75;color:rgba(255,255,255,.72);}
 
   /* ================= MANAGEMENT ================= */
   .mgmt{position:relative;min-height:100vh;background:var(--ink);color:#fff;display:flex;align-items:center;padding:16vh 10vw;z-index:2;}
@@ -309,19 +281,14 @@
     .topnav.menu-open .logo{position:relative;z-index:2;}
     .rail{display:none;}
     .mgmt .grid{grid-template-columns:1fr;}
-    .folio .head{left:7vw;}
-    .folio-groups{gap:8px 12px;max-width:86vw;font-size:10.5px;letter-spacing:1.2px;}
-    .folio-track{padding-left:7vw;}
-    .folio-ui{left:7vw;}
-    .category-break{flex-basis:64vw;height:min(540px,calc(100vh - var(--nav-h) - 176px));margin-right:20px;padding:24px 20px;}
     .flag-stats{display:none;}
     .flag-cta{display:none;}
     /* Nothing sits beside the image here, so let it use the width. */
     .flag-img-zone{width:min(470px,72vw,calc((100vh - var(--nav-h) - 186px) * 0.8));}
-    /* 400px cards run off a 375px screen, so size them to the viewport
-       so a whole card is readable at each step of the scrub. */
-    .fcard{width:min(450px,88vw,calc((100vh - var(--nav-h) - 176px) * 0.95));height:min(540px,calc(100vh - var(--nav-h) - 176px));margin-right:20px;}
     .swap-copy-zone{height:72px;}
+    .pgroup-head{gap:10px;}
+    .pgroup-head p{flex-basis:100%;text-align:left;}
+    .pgrid{grid-template-columns:1fr;}
     .sprig{width:180px;}
     .sprig.br{right:-40px;}
     .statement{padding:64px 7vw 42px;}
@@ -449,6 +416,133 @@
     </div>
   </section>
 
+  <!-- 8 · PROJECTS -->
+  <section class="projects" id="folioSec">
+    <div class="projects-inner">
+      <div class="projects-intro">
+        <div class="kicker" data-reveal>Our Track Record</div>
+        <h2 data-reveal>Our Projects</h2>
+        <p data-reveal>Nine developments, grouped by where each one stands today.</p>
+        <div class="ptally" data-reveal>
+          <div><b>06</b><span>Completed</span></div>
+          <div><b>02</b><span>Ongoing</span></div>
+          <div><b>01</b><span>In Pipeline</span></div>
+        </div>
+      </div>
+      <div class="pgroup" id="pgroup-completed">
+        <div class="pgroup-head" data-reveal>
+          <span class="idx">01</span>
+          <h3>Completed</h3>
+          <span class="count">06 Projects</span>
+          <p>Delivered homes, handed over to their owners.</p>
+        </div>
+        <div class="pgrid">
+          <article class="pcard" data-reveal>
+            <div class="pcard-img"><img src="assets/proj-koinonia.jpg" alt="Koinonia" loading="lazy"></div>
+            <div class="pcard-body">
+              <div class="pcard-status">Completed 2017</div>
+              <h4>Koinonia</h4>
+            <div class="pcard-loc">Agungi, Lagos</div>
+              <p>Eight four-bedroom semi-detached homes, each with two living rooms, a guest toilet and en-suite bedrooms throughout.</p>
+            </div>
+          </article>
+          <article class="pcard" data-reveal>
+            <div class="pcard-img"><img src="assets/proj-havilah-1.jpg" alt="Havilah Court 1" loading="lazy"></div>
+            <div class="pcard-body">
+              <div class="pcard-status">Completed 2018</div>
+              <h4>Havilah Court 1</h4>
+            <div class="pcard-loc">Platinum Way, Ikate</div>
+              <p>Seven units: four four-bedroom terraces with two living rooms and en-suite bedrooms, alongside three flats built for efficient modern living.</p>
+            </div>
+          </article>
+          <article class="pcard" data-reveal>
+            <div class="pcard-img"><img src="assets/proj-havilah-2.jpg" alt="Havilah Court 2" loading="lazy"></div>
+            <div class="pcard-body">
+              <div class="pcard-status">Completed 2020</div>
+              <h4>Havilah Court 2</h4>
+            <div class="pcard-loc">The Nest Estate, Lekki</div>
+              <p>Eight four-bedroom terraces. Two expansive living rooms, guest toilets and a private bathroom to every bedroom.</p>
+            </div>
+          </article>
+          <article class="pcard" data-reveal>
+            <div class="pcard-img"><img src="assets/proj-havilah-3.jpg" alt="Havilah Court 3" loading="lazy"></div>
+            <div class="pcard-body">
+              <div class="pcard-status">Completed 2022</div>
+              <h4>Havilah Court 3</h4>
+            <div class="pcard-loc">Jakande First Gate, Lekki</div>
+              <p>Seven four-bedroom terrace houses and apartments, each with two spacious living rooms and luxurious en-suite bedrooms.</p>
+            </div>
+          </article>
+          <article class="pcard" data-reveal>
+            <div class="pcard-img"><img src="assets/proj-havilah-4.jpg" alt="Havilah Court 4" loading="lazy"></div>
+            <div class="pcard-body">
+              <div class="pcard-status">Completed 2023</div>
+              <h4>Havilah Court 4</h4>
+            <div class="pcard-loc">Jakande First Gate, Lekki</div>
+              <p>Nine four-bedroom terraces and three apartments. Fitted modern kitchens, all bedrooms en-suite and a dedicated maid's room.</p>
+            </div>
+          </article>
+          <article class="pcard" data-reveal>
+            <div class="pcard-img"><img src="assets/completed-1.jpg" alt="Homewood Residences" loading="lazy"></div>
+            <div class="pcard-body">
+              <div class="pcard-status">Completed</div>
+              <h4>Homewood Residences</h4>
+            <div class="pcard-loc">Lekki, Lagos</div>
+              <p>A completed residential development shaped around clean contemporary lines, generous homes and practical everyday living.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+      <div class="pgroup" id="pgroup-ongoing">
+        <div class="pgroup-head" data-reveal>
+          <span class="idx">02</span>
+          <h3>Ongoing</h3>
+          <span class="count">02 Projects</span>
+          <p>Developments currently taking shape.</p>
+        </div>
+        <div class="pgrid">
+          <article class="pcard" data-reveal>
+            <div class="pcard-img"><img src="assets/proj-havilah-5.jpg" alt="Havilah Court 5" loading="lazy"></div>
+            <div class="pcard-body">
+              <div class="pcard-status">Ongoing</div>
+              <h4>Havilah Court 5</h4>
+            <div class="pcard-loc">Beach Resort Estate, Lekki</div>
+              <p>Four semi-detached homes, nineteen four-bedroom terraces and sixteen apartments, with a gym, swimming pool and children's play area.</p>
+            </div>
+          </article>
+          <article class="pcard" data-reveal>
+            <div class="pcard-img"><img src="assets/project-05.jpg" alt="Havilah Court 5 Annex" loading="lazy"></div>
+            <div class="pcard-body">
+              <div class="pcard-status">Ongoing</div>
+              <h4>Havilah Court 5 Annex</h4>
+            <div class="pcard-loc">Lekki, Lagos</div>
+              <p>An extension of the Havilah Court 5 development, currently progressing alongside the main project.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+      <div class="pgroup" id="pgroup-pipeline">
+        <div class="pgroup-head" data-reveal>
+          <span class="idx">03</span>
+          <h3>In Pipeline</h3>
+          <span class="count">01 Project</span>
+          <p>The next chapter in the Havilah Court series.</p>
+        </div>
+        <div class="pgrid">
+          <article class="pcard" data-reveal>
+            <div class="pcard-img"><img src="assets/swap-01.jpg" alt="Havilah Court 6" loading="lazy"></div>
+            <div class="pcard-body">
+              <div class="pcard-status">Pipeline</div>
+              <h4>Havilah Court 6</h4>
+            <div class="pcard-loc">Upcoming Development</div>
+              <p>The next project in the Havilah Court series, currently in the development pipeline.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- 4 · STATEMENT -->
   <section class="statement" id="statementSec">
     <svg class="sprig tl" viewBox="0 0 300 300" id="sprigTL">
@@ -548,131 +642,6 @@
         <span id="flagNum">01 / 02</span>
         <div class="bar"><i id="flagBar"></i></div>
       </div>
-    </div>
-  </section>
-
-  <!-- 8 · PORTFOLIO -->
-  <section class="folio" id="folioSec">
-    <div class="head">
-      <div class="kicker" id="folioCategory">Completed Projects</div>
-      <h2>Our Projects</h2>
-      <div class="folio-groups" aria-label="Project categories">
-        <span>Completed <b>06</b></span>
-        <span>Ongoing <b>02</b></span>
-        <span>Pipeline <b>01</b></span>
-      </div>
-    </div>
-    <!-- Grouped by status: completed, ongoing, then pipeline. -->
-    <div class="folio-track" id="folioTrack">
-      <div class="category-break completed" aria-label="Completed projects">
-        <div class="index">01 &middot; Six Projects</div>
-        <h3>Completed<br>Projects</h3>
-        <p>Delivered homes across Nigeria.</p>
-      </div>
-      <div class="fcard" data-category="Completed">
-        <div class="bg" style="background-image:url('assets/proj-koinonia.jpg');"></div>
-        <div class="shade"></div>
-        <div class="meta">
-          <div class="category">Completed Project</div>
-          <div class="name">Koinonia</div>
-          <div class="loc">Completed 2017 &middot; Agungi, Lagos</div>
-          <p class="desc">Eight four-bedroom semi-detached homes, each with two living rooms, a guest toilet and en-suite bedrooms throughout.</p>
-        </div>
-      </div>
-      <div class="fcard" data-category="Completed">
-        <div class="bg" style="background-image:url('assets/proj-havilah-1.jpg');"></div>
-        <div class="shade"></div>
-        <div class="meta">
-          <div class="category">Completed Project</div>
-          <div class="name">Havilah Court 1</div>
-          <div class="loc">Completed 2018 &middot; Platinum Way, Ikate</div>
-          <p class="desc">Seven units: four four-bedroom terraces with two living rooms and en-suite bedrooms, alongside three flats built for efficient modern living.</p>
-        </div>
-      </div>
-      <div class="fcard" data-category="Completed">
-        <div class="bg" style="background-image:url('assets/proj-havilah-2.jpg');"></div>
-        <div class="shade"></div>
-        <div class="meta">
-          <div class="category">Completed Project</div>
-          <div class="name">Havilah Court 2</div>
-          <div class="loc">Completed 2020 &middot; The Nest Estate, Lekki</div>
-          <p class="desc">Eight four-bedroom terraces. Two expansive living rooms, guest toilets and a private bathroom to every bedroom.</p>
-        </div>
-      </div>
-      <div class="fcard" data-category="Completed">
-        <div class="bg" style="background-image:url('assets/proj-havilah-3.jpg');"></div>
-        <div class="shade"></div>
-        <div class="meta">
-          <div class="category">Completed Project</div>
-          <div class="name">Havilah Court 3</div>
-          <div class="loc">Completed 2022 &middot; Jakande First Gate, Lekki</div>
-          <p class="desc">Seven four-bedroom terrace houses and apartments, each with two spacious living rooms and luxurious en-suite bedrooms.</p>
-        </div>
-      </div>
-      <div class="fcard" data-category="Completed">
-        <div class="bg" style="background-image:url('assets/proj-havilah-4.jpg');"></div>
-        <div class="shade"></div>
-        <div class="meta">
-          <div class="category">Completed Project</div>
-          <div class="name">Havilah Court 4</div>
-          <div class="loc">Completed 2023 &middot; Jakande First Gate, Lekki</div>
-          <p class="desc">Nine four-bedroom terraces and three apartments. Fitted modern kitchens, all bedrooms en-suite and a dedicated maid's room.</p>
-        </div>
-      </div>
-      <div class="fcard" data-category="Completed">
-        <div class="bg" style="background-image:url('assets/completed-1.jpg');"></div>
-        <div class="shade"></div>
-        <div class="meta">
-          <div class="category">Completed Project</div>
-          <div class="name">Homewood Residences</div>
-          <div class="loc">Completed &middot; Lekki, Lagos</div>
-          <p class="desc">A completed residential development shaped around clean contemporary lines, generous homes and practical everyday living.</p>
-        </div>
-      </div>
-      <div class="category-break ongoing" aria-label="Ongoing projects">
-        <div class="index">02 &middot; Two Projects</div>
-        <h3>Ongoing<br>Projects</h3>
-        <p>Developments currently taking shape.</p>
-      </div>
-      <div class="fcard" data-category="Ongoing">
-        <div class="bg" style="background-image:url('assets/proj-havilah-5.jpg');"></div>
-        <div class="shade"></div>
-        <div class="meta">
-          <div class="category">Ongoing Project</div>
-          <div class="name">Havilah Court 5</div>
-          <div class="loc">Ongoing &middot; Beach Resort Estate, Lekki</div>
-          <p class="desc">Four semi-detached homes, nineteen four-bedroom terraces and sixteen apartments, with a gym, swimming pool and children's play area.</p>
-        </div>
-      </div>
-      <div class="fcard" data-category="Ongoing">
-        <div class="bg" style="background-image:url('assets/project-05.jpg');"></div>
-        <div class="shade"></div>
-        <div class="meta">
-          <div class="category">Ongoing Project</div>
-          <div class="name">Havilah Court 5 Annex</div>
-          <div class="loc">Ongoing &middot; Lekki, Lagos</div>
-          <p class="desc">An extension of the Havilah Court 5 development, currently progressing alongside the main project.</p>
-        </div>
-      </div>
-      <div class="category-break pipeline" aria-label="Project pipeline">
-        <div class="index">03 &middot; One Project</div>
-        <h3>Project<br>Pipeline</h3>
-        <p>The next chapter in the Havilah Court series.</p>
-      </div>
-      <div class="fcard" data-category="Pipeline">
-        <div class="bg" style="background-image:url('assets/swap-01.jpg');"></div>
-        <div class="shade"></div>
-        <div class="meta">
-          <div class="category">Project Pipeline</div>
-          <div class="name">Havilah Court 6</div>
-          <div class="loc">Pipeline &middot; Upcoming Development</div>
-          <p class="desc">The next project in the Havilah Court series, currently in the development pipeline.</p>
-        </div>
-      </div>
-    </div>
-    <div class="folio-ui">
-      <span class="n" id="folioNum">01 / 09</span>
-      <div class="bar"><i id="folioBar"></i></div>
     </div>
   </section>
 
@@ -1015,39 +984,6 @@ if (!reduceMotion) {
         document.getElementById('flagBlurb').textContent = s.blurb;
         cur = idx;
       }
-    }
-  });
-})();
-
-/* ---------- PORTFOLIO horizontal scrub ---------- */
-(() => {
-  const track = document.getElementById('folioTrack');
-  const dist = () => Math.max(0, track.scrollWidth - window.innerWidth + (isMobile ? 20 : 120));
-  const cardEls = gsap.utils.toArray('.fcard', track);
-  const cards = cardEls.length;
-  ScrollTrigger.create({
-    trigger: '#folioSec', start: 'top top', end: () => '+=' + dist(), pin: true, scrub: reduceMotion ? false : (isMobile ? .5 : .8),
-    onToggle(self){ track.style.willChange = self.isActive ? 'transform' : 'auto'; },
-    onUpdate(self){
-      gsap.set(track, { x: -self.progress * dist() });
-      document.getElementById('folioBar').style.width = (self.progress * 100) + '%';
-      const viewportCenter = window.innerWidth / 2;
-      let nearestIndex = 0;
-      let nearestDistance = Infinity;
-      cardEls.forEach((card, index) => {
-        const rect = card.getBoundingClientRect();
-        const distance = Math.abs((rect.left + rect.right) / 2 - viewportCenter);
-        if (distance < nearestDistance) {
-          nearestDistance = distance;
-          nearestIndex = index;
-        }
-      });
-      const n = nearestIndex + 1;
-      document.getElementById('folioNum').textContent =
-        String(n).padStart(2,'0') + ' / ' + String(cards).padStart(2,'0');
-      const category = cardEls[n - 1].dataset.category;
-      document.getElementById('folioCategory').textContent =
-        category === 'Pipeline' ? 'Project Pipeline' : category + ' Projects';
     }
   });
 })();
