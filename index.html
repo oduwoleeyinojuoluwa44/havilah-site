@@ -129,11 +129,21 @@
   .swap-ui .bar i{position:absolute;left:0;top:0;height:100%;background:var(--ink);width:0%;}
 
   /* ================= STATEMENT ================= */
-  .statement{position:relative;padding:clamp(60px,7vh,76px) 10vw clamp(40px,4.5vh,52px);text-align:center;background:var(--paper);overflow:hidden;}
-  .statement .kicker{font-size:12px;letter-spacing:5px;text-transform:uppercase;color:var(--gold-deep);margin-bottom:26px;}
-  .statement h2{font-size:clamp(30px,4.6vw,58px);line-height:1.15;text-transform:uppercase;max-width:1000px;margin:0 auto;}
-  .statement .body{max-width:460px;margin:34px auto 0;font-size:14px;line-height:1.85;color:#3f434b;font-weight:400;}
-  .statement .flower{margin-top:36px;color:var(--gold);font-size:26px;}
+  /* Was a single display sentence set as a headline. It now carries five
+     paragraphs, so the heading shrinks to a title and the copy runs in a
+     measured column rather than across the full width. */
+  .statement{position:relative;padding:clamp(78px,10vh,120px) 10vw clamp(64px,8vh,96px);background:var(--paper);overflow:hidden;}
+  .about-inner{max-width:760px;margin:0 auto;text-align:center;}
+  .statement .kicker{font-size:12px;letter-spacing:5px;text-transform:uppercase;color:var(--gold-deep);margin-bottom:20px;}
+  .statement h2{font-size:clamp(34px,5vw,64px);line-height:1.08;text-transform:uppercase;margin:0 auto;}
+  .statement h2 .script{display:block;text-transform:none;font-size:.62em;margin-top:6px;}
+  /* Left-aligned below the title: five centred paragraphs are hard to read. */
+  .about-body{margin-top:clamp(34px,4.5vh,52px);text-align:left;}
+  .about-body p{margin:0 0 20px;font-size:15px;line-height:1.9;color:#3f434b;font-weight:400;}
+  .about-body p:last-child{margin-bottom:0;}
+  .about-body .lead{font-size:17px;line-height:1.8;color:#2b2e35;}
+  .about-body .close{margin-top:26px;padding-top:24px;border-top:1px solid var(--line);font-family:'Cormorant',serif;font-size:20px;line-height:1.6;color:var(--ink);}
+  .statement .flower{margin-top:34px;color:var(--gold);font-size:26px;}
   .sprig{position:absolute;width:300px;opacity:.9;z-index:1;pointer-events:none;}
   .sprig.tl{top:-40px;left:-60px;}
   .sprig.br{bottom:-40px;right:-60px;transform:rotate(180deg);}
@@ -314,7 +324,9 @@
     .pgrid{grid-template-columns:1fr;}
     .sprig{width:180px;}
     .sprig.br{right:-40px;}
-    .statement{padding:64px 7vw 42px;}
+    .statement{padding:64px 7vw 52px;}
+    .about-body .lead{font-size:16px;}
+    .about-body p{font-size:14.5px;}
     /* Every child here is absolutely positioned to desktop percentages,
        which on a phone put the headline on top of the nav and ran the
        photograph straight through the caption. Stack it in normal flow
@@ -566,7 +578,7 @@
     </div>
   </section>
 
-  <!-- 4 · STATEMENT -->
+  <!-- 4 · ABOUT -->
   <section class="statement" id="statementSec">
     <svg class="sprig tl" viewBox="0 0 300 300" id="sprigTL">
       <g fill="var(--gold)" opacity=".55">
@@ -582,10 +594,18 @@
       </g>
       <path d="M20 20 Q 90 60 140 140" stroke="var(--stone)" stroke-width="2" fill="none"/>
     </svg>
-    <div class="kicker" data-reveal>The Company</div>
-    <h2 data-reveal>Havilah is a development and management company with over seven years of delivering quality, well-designed properties across Nigeria</h2>
-    <p class="body" data-reveal>Our foundation is built on more than concrete and steel. It is built on trust: one project, one client, one relationship at a time.</p>
-    <div class="flower" data-reveal>✦</div>
+    <div class="about-inner">
+      <div class="kicker" data-reveal>The Company</div>
+      <h2 data-reveal>Built on trust,<span class="script">one relationship at a time</span></h2>
+      <div class="about-body">
+        <p class="lead" data-reveal>Havilah Development and Management Services Limited is a real estate development company with over seven years of experience delivering quality, well-designed properties across Nigeria. Over the years, we have grown from a promising developer into a trusted name synonymous with architectural excellence, integrity, and reliability.</p>
+        <p data-reveal>We are committed to building unique architectural designs that stand out: properties that combine creativity, functionality, and enduring quality. Every project we undertake is approached with a fresh perspective, ensuring that our developments are not just structures, but well-thought-out spaces that meet the needs and aspirations of our clients.</p>
+        <p data-reveal>Beyond development, Havilah is deeply involved in property management, offering our clients the assurance that their investments are well-maintained and continuously valuable long after construction is complete. This complete, hands-on approach allows us to maintain full control over quality at every stage, from design and construction to long-term upkeep.</p>
+        <p data-reveal>But what truly sets Havilah apart is not just what we build, it is the trust we have built alongside it. We don't just sell properties; we have earned the confidence of individuals, families, and investors who continue to choose us because of our consistency, transparency, and commitment to delivering on our promises. Every property we hand over carries our name and our reputation, and we take that responsibility seriously.</p>
+        <p class="close" data-reveal>At Havilah Development and Management Services Limited, our foundation is built on more than concrete and steel. It is built on trust: one project, one client, and one relationship at a time.</p>
+      </div>
+      <div class="flower" data-reveal>&#10022;</div>
+    </div>
   </section>
 
   <!-- 5 · PARALLAX TYPE OVER IMAGE -->
