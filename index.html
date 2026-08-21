@@ -9,14 +9,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,500&family=Great+Vibes&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#16181d;          /* charcoal */
-    --ink-soft:#23262d;
+    --ink:#0d0e11;          /* charcoal */
+    --ink-soft:#191c21;
     --stone:#8e8b84;        /* warm stone grey */
     --paper:#f2f0ec;        /* off-white */
     --paper-dim:#e7e4de;
-    --gold:#c9a15b;
-    --gold-deep:#a8813f;
-    --line:rgba(22,24,29,.18);
+    --gold:#d4a24c;
+    --gold-deep:#85631e;
+    /* Golden yellow. Bright enough to carry an accent on black, far too
+       light to sit on the paper background, so it is used on dark grounds
+       only; --gold-deep is the light-background counterpart. */
+    --golden:#f2c250;
+    --line:rgba(13,14,17,.2);
     /* Height the fixed nav occupies. Pinned sections reserve this so their
        content cannot slide underneath it. The links stack taller once the
        narrow breakpoint kicks in, so it is overridden there. */
@@ -97,7 +101,7 @@
   /* Lifted off the palette gold, which is too close in value to sunlit
      concrete; the tight shadow holds the thin script strokes apart from
      whatever passes behind them. */
-  .hero-copy .script-line{font-family:'Great Vibes',cursive;color:#e8c37e;font-size:clamp(28px,4.5vw,56px);margin-top:-8px;
+  .hero-copy .script-line{font-family:'Great Vibes',cursive;color:var(--golden);font-size:clamp(28px,4.5vw,56px);margin-top:-8px;
     text-shadow:0 1px 3px rgba(22,24,29,.85),0 3px 14px rgba(22,24,29,.7),0 0 40px rgba(22,24,29,.5);}
   .hero-copy .sub{margin-top:20px;font-size:13px;letter-spacing:3px;text-transform:uppercase;opacity:.85;}
 
@@ -219,17 +223,17 @@
   .projects-inner{max-width:1280px;margin:0 auto;padding:0 6vw;}
 
   .projects-intro{max-width:720px;margin-bottom:clamp(56px,7vh,88px);}
-  .projects-intro .kicker{font-size:12px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+  .projects-intro .kicker{font-size:12px;letter-spacing:5px;text-transform:uppercase;color:var(--golden);margin-bottom:16px;}
   .projects-intro h2{font-size:clamp(42px,7vw,96px);line-height:.98;text-transform:uppercase;color:#fff;}
   .projects-intro p{margin-top:20px;font-size:15.5px;line-height:1.8;color:rgba(255,255,255,.72);max-width:520px;}
 
   .ptally{display:flex;gap:clamp(28px,5vw,64px);margin-top:38px;padding-top:26px;border-top:1px solid rgba(255,255,255,.16);}
-  .ptally b{display:block;font-family:'Cormorant',serif;font-size:clamp(34px,4vw,50px);line-height:1;color:var(--gold);font-weight:500;}
+  .ptally b{display:block;font-family:'Cormorant',serif;font-size:clamp(34px,4vw,50px);line-height:1;color:var(--golden);font-weight:500;}
   .ptally span{display:block;margin-top:6px;font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.6);}
 
   .pgroup{margin-top:clamp(56px,7vh,86px);}
   .pgroup-head{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;padding-bottom:20px;margin-bottom:34px;border-bottom:1px solid rgba(255,255,255,.16);}
-  .pgroup-head .idx{font-family:'Cormorant',serif;font-size:15px;letter-spacing:3px;color:var(--gold);}
+  .pgroup-head .idx{font-family:'Cormorant',serif;font-size:15px;letter-spacing:3px;color:var(--golden);}
   .pgroup-head h3{font-size:clamp(26px,3.4vw,42px);text-transform:uppercase;color:#fff;letter-spacing:1px;}
   .pgroup-head .count{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.5);}
   .pgroup-head p{flex:1 1 260px;margin:0;text-align:right;font-size:13.5px;color:rgba(255,255,255,.6);}
@@ -240,7 +244,7 @@
   .pcard-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.3,1);}
   .pcard:hover .pcard-img img{transform:scale(1.05);}
   .pcard-body{padding:24px 24px 28px;display:flex;flex-direction:column;flex:1;}
-  .pcard-status{font-size:11.5px;letter-spacing:2.4px;text-transform:uppercase;color:var(--gold);margin-bottom:9px;}
+  .pcard-status{font-size:11.5px;letter-spacing:2.4px;text-transform:uppercase;color:var(--golden);margin-bottom:9px;}
   .pcard-body h4{font-family:'Cormorant',serif;font-weight:500;font-size:27px;line-height:1.15;color:#fff;margin:0;}
   .pcard-loc{margin-top:6px;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.55);}
   .pcard-body p{margin:14px 0 0;font-size:13.5px;line-height:1.75;color:rgba(255,255,255,.72);}
@@ -271,14 +275,14 @@
   /* ================= MANAGEMENT ================= */
   .mgmt{position:relative;min-height:100vh;background:var(--ink);color:#fff;display:flex;align-items:center;padding:16vh 10vw;z-index:2;}
   .mgmt .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:7vw;align-items:center;max-width:1200px;margin:0 auto;}
-  .mgmt .kicker{font-size:12px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+  .mgmt .kicker{font-size:12px;letter-spacing:5px;text-transform:uppercase;color:var(--golden);margin-bottom:20px;}
   .mgmt h2{color:#fff;font-size:clamp(32px,4.6vw,56px);line-height:1.1;text-transform:uppercase;}
   .mgmt h2 .script{font-size:.85em;text-transform:none;}
   .mgmt p{font-size:14.5px;line-height:1.85;color:rgba(255,255,255,.8);font-weight:400;margin-top:24px;}
   .mgmt .points{margin-top:34px;display:flex;flex-direction:column;gap:0;}
   .mgmt .point{display:flex;align-items:center;gap:16px;padding:17px 0;border-top:1px solid rgba(255,255,255,.14);font-size:13px;letter-spacing:2px;text-transform:uppercase;}
   .mgmt .point:last-child{border-bottom:1px solid rgba(255,255,255,.14);}
-  .mgmt .point .d{width:7px;height:7px;border-radius:50%;background:var(--gold);flex:0 0 auto;}
+  .mgmt .point .d{width:7px;height:7px;border-radius:50%;background:var(--golden);flex:0 0 auto;}
   .mgmt .imgcol{position:relative;height:64vh;min-height:380px;overflow:hidden;}
   .mgmt .imgcol img{width:100%;height:120%;object-fit:cover;}
 

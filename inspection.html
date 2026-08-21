@@ -9,14 +9,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,500&family=Great+Vibes&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#16181d;
-    --ink-soft:#23262d;
+    --ink:#0d0e11;
+    --ink-soft:#191c21;
     --stone:#8e8b84;
     --paper:#f2f0ec;
     --paper-dim:#e7e4de;
-    --gold:#c9a15b;
-    --gold-deep:#a8813f;
-    --line:rgba(22,24,29,.18);
+    --gold:#d4a24c;
+    --gold-deep:#85631e;
+    /* Golden yellow. Bright enough to carry an accent on black, far too
+       light to sit on the paper background, so it is used on dark grounds
+       only; --gold-deep is the light-background counterpart. */
+    --golden:#f2c250;
+    --line:rgba(13,14,17,.2);
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:'Jost',sans-serif;overflow-x:hidden;}
