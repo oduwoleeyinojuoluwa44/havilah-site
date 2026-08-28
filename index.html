@@ -413,10 +413,10 @@
   <section class="hero" id="hero">
     <div class="frame">
       <div class="img-wrap" id="heroImgWrap">
-        <img class="hero-slide" src="assets/hero-1.jpg" alt="Havilah Court 5 front elevation">
-        <img class="hero-slide" src="assets/hero-2.jpg" alt="Havilah Court 4 completed terraces">
-        <img class="hero-slide" src="assets/hero-3.jpg" alt="Havilah Court 3 completed terraces">
-        <img class="hero-slide" src="assets/hero-4.jpg" alt="Havilah Court 5 under construction">
+        <img fetchpriority="high" class="hero-slide" src="assets/hero-1.jpg" alt="Havilah Court 5 front elevation">
+        <img loading="lazy" decoding="async" class="hero-slide" src="assets/hero-2.jpg" alt="Havilah Court 4 completed terraces">
+        <img loading="lazy" decoding="async" class="hero-slide" src="assets/hero-3.jpg" alt="Havilah Court 3 completed terraces">
+        <img loading="lazy" decoding="async" class="hero-slide" src="assets/hero-4.jpg" alt="Havilah Court 5 under construction">
         <div class="veil"></div>
       </div>
     </div>
@@ -438,9 +438,9 @@
       </div>
       <div class="swap-body">
         <div class="swap-img-zone">
-          <div class="swap-img"><img src="assets/swap-01.jpg" alt="Stone and white facade of the Havilah development"></div>
-          <div class="swap-img"><img src="assets/swap-02.jpg" alt="Delivered terrace row with glazed balconies"></div>
-          <div class="swap-img"><img src="assets/swap-03.jpg" alt="Planted frontage along the Havilah terraces"></div>
+          <div class="swap-img"><img loading="lazy" decoding="async" src="assets/swap-01.jpg" alt="Stone and white facade of the Havilah development"></div>
+          <div class="swap-img"><img loading="lazy" decoding="async" src="assets/swap-02.jpg" alt="Delivered terrace row with glazed balconies"></div>
+          <div class="swap-img"><img loading="lazy" decoding="async" src="assets/swap-03.jpg" alt="Planted frontage along the Havilah terraces"></div>
         </div>
         <div class="swap-copy-zone">
           <p class="swap-copy">Bold facades, layered stone and clean white volumes: architecture that reads as a signature, not a template.</p>
@@ -620,8 +620,8 @@
       <div class="l3">NIGERIA</div>
     </div>
     <div class="px-kicker">Nigeria</div>
-    <div class="px-img" id="pxImgA"><img src="assets/courtyard.jpg" alt="Street view with palms"></div>
-    <div class="px-img-2" id="pxImgB"><img src="assets/completed-2.jpg" alt="Completed terraces"></div>
+    <div class="px-img" id="pxImgA"><img loading="lazy" decoding="async" src="assets/courtyard.jpg" alt="Street view with palms"></div>
+    <div class="px-img-2" id="pxImgB"><img loading="lazy" decoding="async" src="assets/completed-2.jpg" alt="Completed terraces"></div>
     <div class="px-caption" data-reveal>
       <h3>Where we build</h3>
       <p>Rooted in well-connected neighbourhoods, minutes from the major corridors, established estates and the daily conveniences that make an address worth keeping.</p>
@@ -677,8 +677,8 @@
           <div class="stat"><div class="lbl">Status</div><div class="val" id="statStatus">Ongoing</div></div>
         </div>
         <div class="flag-img-zone">
-          <div class="flag-img"><img src="assets/flag-01.jpg" alt="Havilah Court 5 front elevation"></div>
-          <div class="flag-img"><img src="assets/proj-havilah-4.jpg" alt="Havilah Court 4 completed terraces"></div>
+          <div class="flag-img"><img loading="lazy" decoding="async" src="assets/flag-01.jpg" alt="Havilah Court 5 front elevation"></div>
+          <div class="flag-img"><img loading="lazy" decoding="async" src="assets/proj-havilah-4.jpg" alt="Havilah Court 4 completed terraces"></div>
         </div>
         <div class="flag-cta">
           <p id="flagBlurb">Havilah Court 5: four semi-detached homes, nineteen four-bedroom terraces and sixteen apartments, with a gym, swimming pool and children's play area.</p>
@@ -764,7 +764,7 @@
           <div class="point" data-reveal><span class="d"></span>Design-to-management quality control</div>
         </div>
       </div>
-      <div class="imgcol"><img id="mgmtImg" src="assets/completed-1.jpg" alt="Completed Havilah property"></div>
+      <div class="imgcol"><img loading="lazy" decoding="async" id="mgmtImg" src="assets/completed-1.jpg" alt="Completed Havilah property"></div>
     </div>
   </section>
 
@@ -852,6 +852,27 @@ function splitChars(el){
 }
 
 /* ---------- PRELOADER → HERO sequence ---------- */
+/* The curtain is opened by a timeline that only starts on window.load, so a
+   slow image, a blocked CDN or a script error left visitors staring at a
+   black screen with no way past it. Open it regardless after a short wait,
+   and never let it be the reason the site looks down. */
+(() => {
+  let opened = false;
+  window.openCurtain = (instant) => {
+    if (opened) return;
+    opened = true;
+    const pre = document.querySelector('.preloader');
+    if (!pre) return;
+    if (instant) { pre.style.display = 'none'; return; }
+    pre.style.transition = 'opacity .5s';
+    pre.style.opacity = '0';
+    setTimeout(() => { pre.style.display = 'none'; }, 520);
+  };
+  setTimeout(() => window.openCurtain(false), 3500);
+  /* If the libraries never arrive the timeline cannot run at all. */
+  if (!window.gsap) window.openCurtain(true);
+})();
+
 window.addEventListener('load', () => {
   /* Some browsers restore scroll after load fires, so pin it to the top
      once more and recalculate triggers against the corrected position
@@ -860,7 +881,7 @@ window.addEventListener('load', () => {
   requestAnimationFrame(() => { toTop(); ScrollTrigger.refresh(); });
 
   if (reduceMotion) {
-    gsap.set('.preloader', { display: 'none' });
+    gsap.set('.preloader', { display: 'none', onComplete: () => { window.openCurtain(true); } });
     return;
   }
 
@@ -870,7 +891,7 @@ window.addEventListener('load', () => {
     .to('#preMark', { opacity: 0, y: -16, duration: .36 * introScale, ease: 'power2.in' }, '+=' + (.36 * introScale))
     .to('.preloader .panel.l', { xPercent: -101, duration: .82 * introScale, ease: 'hEase' }, '-=0.06')
     .to('.preloader .panel.r', { xPercent: 101, duration: .82 * introScale, ease: 'hEase' }, '<')
-    .set('.preloader', { display: 'none' })
+    .set('.preloader', { display: 'none', onComplete: () => { window.openCurtain(true); } })
     .from('#heroImgWrap', { scale: .94, duration: .9 * introScale, ease: 'hEase' }, '-=' + (.68 * introScale));
 
   document.querySelectorAll('[data-split]').forEach((el, i) => {
