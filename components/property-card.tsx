@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { motion } from "motion/react";
 import type { Project } from "@/data/projects";
-import styles from "./property-card.module.css";
 
 interface Props {
   project: Project;
@@ -23,7 +22,7 @@ export default function PropertyCard({ project, onSelect }: Props) {
 
   return (
     <motion.article
-      className={styles.card}
+      className="bg-ink-soft overflow-hidden flex flex-col cursor-pointer transition-transform duration-300 hover:-translate-y-1"
       layout
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
@@ -36,19 +35,25 @@ export default function PropertyCard({ project, onSelect }: Props) {
         if (e.key === "Enter" || e.key === " ") onSelect(project);
       }}
     >
-      <div className={styles.imgWrap}>
+      <div className="relative aspect-[4/5] overflow-hidden bg-[#1b1e24]">
         <Image
           src={project.image}
           alt={project.name}
           fill
           sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
-          style={{ objectFit: "cover", transition: "transform 0.7s cubic-bezier(0.2,0.7,0.3,1)" }}
+          className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.2,0.7,0.3,1)] group-hover:scale-105"
         />
       </div>
-      <div className={styles.body}>
-        <p className={styles.status}>{statusText}</p>
-        <h4 className={styles.name}>{project.name}</h4>
-        <p className={styles.location}>{project.location}</p>
+      <div className="p-6 pb-7 flex flex-col flex-1">
+        <p className="text-[11.5px] tracking-[2.4px] uppercase text-golden mb-2">
+          {statusText}
+        </p>
+        <h4 className="font-cormorant font-medium text-[27px] leading-tight text-white m-0">
+          {project.name}
+        </h4>
+        <p className="mt-1.5 text-[12px] tracking-[2px] uppercase text-white/55">
+          {project.location}
+        </p>
       </div>
     </motion.article>
   );

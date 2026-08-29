@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import styles from "./preloader.module.css";
 
 export default function Preloader() {
   const [visible, setVisible] = useState(true);
@@ -22,20 +21,24 @@ export default function Preloader() {
     <AnimatePresence>
       {visible && (
         <motion.div
-          className={styles.preloader}
+          className="fixed inset-0 z-[100] bg-ink flex items-center justify-center"
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
         >
           <motion.div
-            className={styles.mark}
+            className="text-center text-white"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <span className="script" style={{ fontSize: "clamp(48px, 8vw, 96px)", display: "block" }}>
+            <span
+              className="font-great-vibes text-gold block text-[clamp(48px,8vw,96px)]"
+            >
               Havilah
             </span>
-            <span className={styles.sub}>Nigeria</span>
+            <span className="text-[12px] tracking-[6px] text-white/65 uppercase mt-1.5 block">
+              Nigeria
+            </span>
           </motion.div>
         </motion.div>
       )}

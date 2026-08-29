@@ -2,36 +2,39 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
-import styles from "./currently-developing.module.css";
 
 export default function CurrentlyDeveloping() {
   return (
-    <section className={styles.section}>
+    <section className="py-[clamp(60px,8vh,100px)] px-7 bg-paper-dim">
       <motion.div
-        className={styles.inner}
+        className="max-w-[900px] mx-auto text-center"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.7, ease: "easeOut" }}
       >
-        <p className="section-kicker">Currently Developing</p>
+        <p className="text-xs tracking-[5px] uppercase text-gold-deep mb-4">
+          Currently Developing
+        </p>
 
-        <h2 className={styles.title}>HAVILAH COURT 5</h2>
-        <p className={styles.location}>
+        <h2 className="text-[clamp(34px,5vw,58px)] uppercase mb-2 font-cormorant font-medium">
+          HAVILAH COURT 5
+        </h2>
+        <p className="text-[13px] tracking-[3px] uppercase text-stone mb-8">
           Beach Resort Estate, Lekki &middot; Ongoing
         </p>
 
-        <div className={styles.imageWrap}>
+        <div className="relative w-full aspect-video overflow-hidden mb-7">
           <Image
             src="/images/flag-01.jpg"
             alt="Havilah Court 5 front elevation"
             fill
-            sizes="(max-width: 900px) 100vw, 86vw"
-            style={{ objectFit: "cover" }}
+            sizes="100vw"
+            className="object-cover"
           />
         </div>
 
-        <p className={styles.description}>
+        <p className="text-[15px] leading-[1.8] text-[#3f434b] max-w-[600px] mx-auto mb-8">
           Four semi-detached homes, nineteen four-bedroom terraces and sixteen
           apartments, with a gym, swimming pool and children&apos;s play area.
         </p>

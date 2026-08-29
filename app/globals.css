@@ -1,32 +1,25 @@
 @import "tailwindcss";
 
-/* ================= DESIGN TOKENS ================= */
-:root {
-  --ink: #0d0e11;
-  --ink-soft: #191c21;
-  --stone: #8e8b84;
-  --paper: #f2f0ec;
-  --paper-dim: #e7e4de;
-  --gold: #d4a24c;
-  --gold-deep: #85631e;
-  --golden: #f2c250;
-  --line: rgba(13, 14, 17, 0.2);
-  --nav-h: 80px;
+/* ================= HAVILAH THEME TOKENS ================= */
+@theme inline {
+  --color-ink: #0d0e11;
+  --color-ink-soft: #191c21;
+  --color-stone: #8e8b84;
+  --color-paper: #f2f0ec;
+  --color-paper-dim: #e7e4de;
+  --color-gold: #d4a24c;
+  --color-gold-deep: #85631e;
+  --color-golden: #f2c250;
+  --color-line: rgba(13, 14, 17, 0.2);
 }
 
-/* ================= RESET ================= */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
+/* ================= BASE RESET ================= */
 html,
 body {
   margin: 0;
   padding: 0;
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--color-paper);
+  color: var(--color-ink);
   font-family: var(--font-jost), "Jost", sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -53,58 +46,37 @@ img {
 }
 
 ::selection {
-  background: var(--gold);
+  background: var(--color-gold);
   color: #fff;
-}
-
-/* ================= UTILITY ================= */
-.script {
-  font-family: var(--font-great-vibes), "Great Vibes", cursive;
-  font-weight: 400;
-  color: var(--gold);
 }
 
 /* ================= BUTTONS ================= */
 .btn-pill {
   display: inline-block;
-  border: 1px solid var(--ink);
+  border: 1px solid currentColor;
   border-radius: 999px;
   padding: 13px 26px;
   font-size: 12px;
   letter-spacing: 2.5px;
   text-transform: uppercase;
-  color: var(--ink);
   background: transparent;
   cursor: pointer;
   transition: background 0.3s, color 0.3s;
 }
 
 .btn-pill:hover {
-  background: var(--ink);
-  color: #fff;
+  background: currentColor;
 }
 
+/* Invert on dark backgrounds */
 .btn-pill--dark {
-  border-color: #fff;
   color: #fff;
+  border-color: #fff;
 }
 
 .btn-pill--dark:hover {
   background: #fff;
-  color: var(--ink);
-}
-
-/* ================= SECTION UTILITIES ================= */
-.section-kicker {
-  font-size: 12px;
-  letter-spacing: 5px;
-  text-transform: uppercase;
-  color: var(--gold-deep);
-  margin-bottom: 16px;
-}
-
-.section-kicker--light {
-  color: var(--golden);
+  color: var(--color-ink);
 }
 
 /* ================= RESPONSIVE ================= */
