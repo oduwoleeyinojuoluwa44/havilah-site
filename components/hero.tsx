@@ -108,13 +108,13 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.9 }}
         >
+          <BookInspectionButton dark />
           <Link
             href="/#properties"
-            className="inline-block rounded-full border px-[26px] py-[13px] text-[12px] tracking-[2.5px] uppercase transition-colors duration-300 border-white text-white hover:bg-white hover:text-ink"
+            className="inline-block rounded-full border px-[26px] py-[13px] text-[12px] tracking-[2.5px] uppercase transition-colors duration-300 bg-gold border-gold text-white hover:bg-golden hover:border-golden"
           >
             Explore Properties
           </Link>
-          <BookInspectionButton dark />
         </motion.div>
 
         <motion.p

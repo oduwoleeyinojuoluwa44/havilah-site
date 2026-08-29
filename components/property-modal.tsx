@@ -44,7 +44,7 @@ export default function PropertyModal({ project, onClose }: Props) {
       onClick={onClose}
     >
       <motion.div
-        className="relative bg-white max-w-[600px] w-full max-h-[90vh] overflow-y-auto max-md:max-h-[92vh] max-md:rounded-t-2xl"
+        className="relative bg-white max-w-[600px] w-full max-h-[90vh] overflow-y-auto max-md:max-h-[92vh] max-md:rounded-t-2xl scrollbar-thin"
         initial={{ opacity: 0, y: 40, scale: 0.97 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 20, scale: 0.97 }}
@@ -59,13 +59,13 @@ export default function PropertyModal({ project, onClose }: Props) {
           ✕
         </button>
 
-        <div className="relative w-full aspect-[4/3]">
+        <div className="relative w-full aspect-[4/3] group overflow-hidden">
           <Image
             src={project.image}
             alt={project.name}
             fill
             sizes="(max-width: 600px) 100vw, 600px"
-            className="object-cover"
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
             priority
           />
         </div>
