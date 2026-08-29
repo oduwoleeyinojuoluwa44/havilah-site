@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 
 const EXIT_DURATION = 1.2;
-const HOLD_MS = 2800;
+const HOLD_MS = 1500;
 
 export default function Preloader() {
   const [visible, setVisible] = useState(true);
