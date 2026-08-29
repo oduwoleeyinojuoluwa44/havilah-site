@@ -1,26 +1,127 @@
 @import "tailwindcss";
 
+/* ================= DESIGN TOKENS ================= */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ink: #0d0e11;
+  --ink-soft: #191c21;
+  --stone: #8e8b84;
+  --paper: #f2f0ec;
+  --paper-dim: #e7e4de;
+  --gold: #d4a24c;
+  --gold-deep: #85631e;
+  --golden: #f2c250;
+  --line: rgba(13, 14, 17, 0.2);
+  --nav-h: 80px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ================= RESET ================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-jost), "Jost", sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-cormorant), "Cormorant", serif;
+  font-weight: 500;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+::selection {
+  background: var(--gold);
+  color: #fff;
+}
+
+/* ================= UTILITY ================= */
+.script {
+  font-family: var(--font-great-vibes), "Great Vibes", cursive;
+  font-weight: 400;
+  color: var(--gold);
+}
+
+/* ================= BUTTONS ================= */
+.btn-pill {
+  display: inline-block;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  padding: 13px 26px;
+  font-size: 12px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.btn-pill:hover {
+  background: var(--ink);
+  color: #fff;
+}
+
+.btn-pill--dark {
+  border-color: #fff;
+  color: #fff;
+}
+
+.btn-pill--dark:hover {
+  background: #fff;
+  color: var(--ink);
+}
+
+/* ================= SECTION UTILITIES ================= */
+.section-kicker {
+  font-size: 12px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  margin-bottom: 16px;
+}
+
+.section-kicker--light {
+  color: var(--golden);
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 900px) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --nav-h: 64px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ================= REDUCED MOTION ================= */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

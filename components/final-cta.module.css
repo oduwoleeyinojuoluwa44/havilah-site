@@ -1,0 +1,34 @@
+.section {
+  position: relative;
+  padding: clamp(60px, 7vh, 78px) 8vw clamp(48px, 5.5vh, 62px);
+  background: var(--paper);
+  text-align: center;
+  overflow: hidden;
+}
+
+.inner {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.heading {
+  font-size: clamp(38px, 6.5vw, 86px);
+  line-height: 1.02;
+  text-transform: uppercase;
+}
+
+.heading .script {
+  display: block;
+  font-size: 0.68em;
+  text-transform: none;
+  margin: 8px 0;
+}
+
+.body {
+  max-width: 480px;
+  margin: 36px auto 0;
+  font-size: 14px;
+  line-height: 1.85;
+  color: #3f434b;
+  font-weight: 400;
+}
