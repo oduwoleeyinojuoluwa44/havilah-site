@@ -2,6 +2,10 @@
 
 /* ================= HAVILAH THEME TOKENS ================= */
 @theme inline {
+  --font-cormorant: var(--ff-cormorant), "Cormorant", serif;
+  --font-jost: var(--ff-jost), "Jost", sans-serif;
+  --font-great-vibes: var(--ff-great-vibes), "Great Vibes", cursive;
+
   --color-ink: #0d0e11;
   --color-ink-soft: #191c21;
   --color-stone: #8e8b84;
@@ -20,7 +24,7 @@ body {
   padding: 0;
   background: var(--color-paper);
   color: var(--color-ink);
-  font-family: var(--font-jost), "Jost", sans-serif;
+  font-family: var(--ff-jost), "Jost", sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -30,7 +34,7 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: var(--font-cormorant), "Cormorant", serif;
+  font-family: var(--ff-cormorant), "Cormorant", serif;
   font-weight: 500;
   margin: 0;
 }

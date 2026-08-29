@@ -3,20 +3,20 @@ import { Cormorant, Jost, Great_Vibes } from "next/font/google";
 import "./globals.css";
 
 const cormorant = Cormorant({
-  variable: "--font-cormorant",
+  variable: "--ff-cormorant",
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   style: ["normal", "italic"],
 });
 
 const jost = Jost({
-  variable: "--font-jost",
+  variable: "--ff-jost",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600"],
 });
 
 const greatVibes = Great_Vibes({
-  variable: "--font-great-vibes",
+  variable: "--ff-great-vibes",
   subsets: ["latin"],
   weight: "400",
 });
