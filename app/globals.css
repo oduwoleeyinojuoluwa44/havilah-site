@@ -39,9 +39,11 @@ h4 {
   margin: 0;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+@layer base {
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 }
 
 img {
@@ -54,34 +56,7 @@ img {
   color: #fff;
 }
 
-/* ================= BUTTONS ================= */
-.btn-pill {
-  display: inline-block;
-  border: 1px solid currentColor;
-  border-radius: 999px;
-  padding: 13px 26px;
-  font-size: 12px;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  background: transparent;
-  cursor: pointer;
-  transition: background 0.3s, color 0.3s;
-}
 
-.btn-pill:hover {
-  background: currentColor;
-}
-
-/* Invert on dark backgrounds */
-.btn-pill--dark {
-  color: #fff;
-  border-color: #fff;
-}
-
-.btn-pill--dark:hover {
-  background: #fff;
-  color: var(--color-ink);
-}
 
 /* ================= RESPONSIVE ================= */
 @media (max-width: 900px) {

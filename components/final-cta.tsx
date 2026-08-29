@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import BookInspectionButton from "./book-inspection-button";
 
 export default function FinalCta() {
   return (
@@ -28,9 +29,7 @@ export default function FinalCta() {
           walk the site with us.
         </p>
         <div className="mt-[38px]">
-          <a href="/inspection" className="btn-pill">
-            Book an Inspection
-          </a>
+          <BookInspectionButton />
         </div>
       </motion.div>
     </section>

@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import Image from "next/image";
 import { motion } from "motion/react";
 import type { Project } from "@/data/projects";
+import BookInspectionButton from "./book-inspection-button";
 
 interface Props {
   project: Project;
@@ -83,12 +84,9 @@ export default function PropertyModal({ project, onClose }: Props) {
             {project.description}
           </p>
 
-          <a
-            href={`/inspection?property=${encodeURIComponent(project.name)}`}
-            className="btn-pill"
-          >
-            Book an Inspection
-          </a>
+          <BookInspectionButton
+            className="!border-ink !text-ink hover:!bg-ink hover:!text-paper"
+          />
         </div>
       </motion.div>
     </motion.div>

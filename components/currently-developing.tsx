@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
+import BookInspectionButton from "./book-inspection-button";
 
 export default function CurrentlyDeveloping() {
   return (
@@ -39,9 +40,7 @@ export default function CurrentlyDeveloping() {
           apartments, with a gym, swimming pool and children&apos;s play area.
         </p>
 
-        <a href="/inspection" className="btn-pill">
-          Book an Inspection
-        </a>
+        <BookInspectionButton />
       </motion.div>
     </section>
   );

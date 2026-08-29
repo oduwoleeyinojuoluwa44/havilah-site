@@ -8,7 +8,7 @@ export default function Nav() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-41 flex justify-between items-center px-[34px] py-5 mix-blend-difference text-white max-md:mix-blend-normal max-md:text-ink max-md:px-[22px] max-md:py-4 ${open ? "max-md:text-white" : ""}`}
+      className={`fixed top-0 left-0 right-0 z-[50] flex justify-between items-center px-[34px] py-5 bg-ink/70 backdrop-blur-md text-white max-md:px-[22px] max-md:py-4 ${open ? "max-md:text-white" : ""}`}
     >
       <Link href="/" className="font-cormorant text-[19px] tracking-[3px] leading-tight max-md:text-[17px]">
         HAVILAH

@@ -2,7 +2,9 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
+import BookInspectionButton from "./book-inspection-button";
 
 const heroImages = [
   { src: "/images/hero-1.jpg", alt: "Havilah Court 5 front elevation" },
@@ -59,7 +61,7 @@ export default function Hero() {
 
       {/* Dark readability overlay */}
       <div
-        className="absolute inset-0 z-[2] pointer-events-none"
+        className="absolute inset-0 z-2 pointer-events-none"
         style={{
           background:
             "linear-gradient(180deg, rgba(13,14,17,0.25) 0%, rgba(13,14,17,0.1) 35%, rgba(13,14,17,0.15) 55%, rgba(13,14,17,0.55) 100%)",
@@ -67,7 +69,7 @@ export default function Hero() {
       />
 
       {/* Text content */}
-      <div className="absolute inset-0 z-[3] flex flex-col items-center justify-center text-center text-white">
+      <div className="absolute inset-0 z-3 flex flex-col items-center justify-center text-center text-white">
         <motion.p
           className="text-xs tracking-[6px] mb-3.5 uppercase opacity-90"
           initial={{ opacity: 0, y: 20 }}
@@ -106,12 +108,13 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.9 }}
         >
-          <a href="/#properties" className="btn-pill btn-pill--dark">
+          <Link
+            href="/#properties"
+            className="inline-block rounded-full border px-[26px] py-[13px] text-[12px] tracking-[2.5px] uppercase transition-colors duration-300 border-white text-white hover:bg-white hover:text-ink"
+          >
             Explore Properties
-          </a>
-          <a href="/inspection" className="btn-pill btn-pill--dark">
-            Book an Inspection
-          </a>
+          </Link>
+          <BookInspectionButton dark />
         </motion.div>
 
         <motion.p
