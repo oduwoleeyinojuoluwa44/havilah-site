@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import PageShell from "../../page-shell";
+import VisionMissionPurpose from "@/components/vision-mission-purpose";
 
 export const metadata: Metadata = {
   title: "Havilah Story · Havilah Development and Management Services",
@@ -58,6 +59,8 @@ export default function StoryPage() {
           </div>
         </div>
       </section>
+
+      <VisionMissionPurpose />
     </PageShell>
   );
 }
