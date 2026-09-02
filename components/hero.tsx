@@ -41,7 +41,7 @@ export default function Hero() {
   const slide = heroImages[current];
 
   return (
-    <section className="relative h-screen overflow-hidden bg-ink" id="hero">
+    <section className="relative h-[100dvh] overflow-hidden bg-ink" id="hero">
       <AnimatePresence>
         <motion.div
           key={current}
@@ -77,7 +77,7 @@ export default function Hero() {
       />
 
       {/* ---- centre block ---- */}
-      <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-6 text-center text-white">
+      <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-6 pt-24 pb-36 text-center text-white max-md:pb-44">
         <motion.h1
           className="font-jost font-semibold uppercase leading-[1.08] tracking-tight text-[clamp(30px,5.4vw,68px)] max-w-[19ch]"
           initial={{ opacity: 0, y: 26 }}
@@ -90,7 +90,7 @@ export default function Hero() {
         </motion.h1>
 
         <motion.p
-          className="mt-6 max-w-[62ch] text-[clamp(15px,1.5vw,19px)] leading-[1.65] text-white/85"
+          className="mt-5 max-w-[62ch] text-[clamp(14px,1.5vw,19px)] leading-[1.6] text-white/85 max-[900px]:mt-4"
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75, delay: 0.35 }}
@@ -103,7 +103,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75, delay: 0.55 }}
-          className="mt-9"
+          className="mt-8 max-[900px]:mt-6"
         >
           <Link
             href="/#properties"
@@ -115,7 +115,7 @@ export default function Hero() {
       </div>
 
       {/* ---- slide indicators ---- */}
-      <div className="absolute bottom-28 left-1/2 z-20 flex -translate-x-1/2 gap-2.5 max-md:bottom-32">
+      <div className="absolute bottom-20 left-1/2 z-20 flex -translate-x-1/2 gap-2.5 max-md:bottom-28">
         {heroImages.map((img, i) => (
           <button
             key={img.src}
