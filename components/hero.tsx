@@ -114,21 +114,6 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* ---- slide indicators ---- */}
-      <div className="absolute bottom-20 left-1/2 z-20 flex -translate-x-1/2 gap-2.5 max-md:bottom-28">
-        {heroImages.map((img, i) => (
-          <button
-            key={img.src}
-            onClick={() => setCurrent(i)}
-            aria-label={`Show slide ${i + 1}`}
-            aria-current={i === current}
-            className={`h-[3px] rounded-full transition-all duration-500 ${
-              i === current ? "w-8 bg-golden" : "w-4 bg-white/40 hover:bg-white/70"
-            }`}
-          />
-        ))}
-      </div>
-
       {/* ---- bottom strip: socials left, copyright right ---- */}
       <div className="absolute inset-x-0 bottom-0 z-20 flex items-center justify-between gap-4 px-6 py-4 max-md:flex-col max-md:gap-3 max-md:py-5">
         <div className="flex gap-2.5">
@@ -157,11 +142,11 @@ export default function Hero() {
         href={WHATSAPP}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Chat with us on WhatsApp"
+        aria-label="Chat with us"
         className="fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-gold text-ink shadow-lg transition-transform duration-300 hover:scale-105 hover:bg-golden"
       >
         <svg viewBox="0 0 24 24" className="h-7 w-7 fill-current">
-          <path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.6.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.6-1.5-.9-2.1-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 5 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z" />
+          <path d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM8 11H6V9h2v2zm5 0h-2V9h2v2zm5 0h-2V9h2v2z" />
         </svg>
       </a>
     </section>

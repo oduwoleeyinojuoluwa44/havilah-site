@@ -3,14 +3,10 @@
 import { useState } from "react";
 import Link from "next/link";
 
-/* Real routes now, not anchors on one long page. */
-const links = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/projects", label: "Projects" },
-  { href: "/management", label: "Management" },
-  { href: "/contact", label: "Contact Us" },
-];
+/* The pages behind these are being rebuilt, so the labels stand as the
+   intended structure but do not navigate yet. Give each an href again as
+   its page lands. */
+const links = ["Home", "About", "Projects", "Management", "Contact Us"];
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
@@ -28,14 +24,13 @@ export default function Nav() {
 
         {/* ── Desktop links ── */}
         <div className="hidden md:flex items-center gap-[26px] text-[12.5px] tracking-[2px] uppercase">
-          {links.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className="relative pb-[3px] whitespace-nowrap hover:after:scale-x-100 hover:after:origin-left after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-0 after:h-px after:bg-current after:scale-x-0 after:origin-right after:transition-transform after:duration-300"
+          {links.map((label) => (
+            <span
+              key={label}
+              className=" cursor-default opacity-70"
             >
-              {l.label}
-            </Link>
+              {label}
+            </span>
           ))}
         </div>
 
@@ -67,15 +62,13 @@ export default function Nav() {
           open ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
         }`}
       >
-        {links.map((l) => (
-          <Link
-            key={l.href}
-            href={l.href}
-            className="relative pb-[3px] whitespace-nowrap hover:after:scale-x-100 hover:after:origin-left after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-0 after:h-px after:bg-current after:scale-x-0 after:origin-right after:transition-transform after:duration-300"
-            onClick={() => setOpen(false)}
+        {links.map((label) => (
+          <span
+            key={label}
+            className=" cursor-default opacity-70"
           >
-            {l.label}
-          </Link>
+            {label}
+          </span>
         ))}
       </div>
     </>
