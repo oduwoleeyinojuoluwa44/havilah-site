@@ -4,10 +4,11 @@ import { useState } from "react";
 import Link from "next/link";
 
 const links = [
-  { href: "/#hero", label: "Properties" },
+  { href: "/#hero", label: "Home" },
   { href: "/#about", label: "About" },
+  { href: "/#properties", label: "Projects" },
   { href: "/#management", label: "Management" },
-  { href: "/#contact", label: "Contact" },
+  { href: "/#contact", label: "Contact Us" },
 ];
 
 export default function Nav() {
@@ -16,7 +17,7 @@ export default function Nav() {
   return (
     <>
       {/* ── Nav bar ── */}
-      <nav className="fixed top-0 left-0 right-0 z-[50] flex justify-between items-center px-[34px] py-5 bg-ink/70 backdrop-blur-md text-white max-md:px-[22px] max-md:py-4">
+      <nav className="fixed top-0 left-0 right-0 z-[50] flex justify-between items-center px-[34px] py-4 bg-ink border-b border-gold/25 text-white max-md:px-[22px] max-md:py-3">
         <Link href="/" className="font-cormorant text-[19px] tracking-[3px] leading-tight max-md:text-[17px]">
           HAVILAH
           <em className="font-great-vibes font-normal text-[13.5px] block tracking-[1px] opacity-85 max-md:text-[12px]">
