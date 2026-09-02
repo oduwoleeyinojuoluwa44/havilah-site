@@ -1,75 +1,239 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
-/* The pages behind these are being rebuilt, so the labels stand as the
-   intended structure but do not navigate yet. Give each an href again as
-   its page lands. */
-const links = ["Home", "About", "Projects", "Management", "Contact Us"];
+/* Only the two About pages exist so far. The remaining labels stand as the
+   intended structure and do not navigate yet; give each an href as its page
+   lands. */
+type NavItem = {
+  label: string;
+  href?: string;
+  panel?: { heading: string; blurb: string; group: string; cards: Card[] };
+};
+
+type Card = { title: string; blurb: string; href: string; tone: "gold" | "ink" };
+
+const items: NavItem[] = [
+  { label: "Home", href: "/" },
+  {
+    label: "About",
+    panel: {
+      heading: "Inside Havilah",
+      blurb: "Building dreams, shaping communities.",
+      group: "About Havilah",
+      cards: [
+        {
+          title: "Havilah Story",
+          blurb: "Seven years of delivering and managing quality homes.",
+          href: "/about/story",
+          tone: "gold",
+        },
+        {
+          title: "Career Opportunities",
+          blurb: "Work with the Havilah team.",
+          href: "/about/careers",
+          tone: "ink",
+        },
+      ],
+    },
+  },
+  { label: "Projects" },
+  { label: "Management" },
+  { label: "Contact Us" },
+];
 
 export default function Nav() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);          // mobile sheet
+  const [panel, setPanel] = useState<string | null>(null); // open dropdown
+  const navRef = useRef<HTMLElement>(null);
+
+  /* Close on Escape, and on any click that lands outside the bar. */
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setPanel(null);
+        setOpen(false);
+      }
+    };
+    const onClick = (e: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(e.target as Node)) {
+        setPanel(null);
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    document.addEventListener("click", onClick);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.removeEventListener("click", onClick);
+    };
+  }, []);
+
+  const cardTone = (tone: Card["tone"]) =>
+    tone === "gold"
+      ? "bg-gold text-ink hover:bg-golden"
+      : "bg-ink-soft text-white border border-gold/30 hover:border-gold";
 
   return (
     <>
-      {/* ── Nav bar ── */}
-      <nav className="fixed top-0 left-0 right-0 z-[50] flex justify-between items-center px-[34px] py-4 bg-ink border-b border-gold/25 text-white max-md:px-[22px] max-md:py-3">
-        <Link href="/" className="font-cormorant text-[19px] tracking-[3px] leading-tight max-md:text-[17px]">
-          HAVILAH
-          <em className="font-great-vibes font-normal text-[13.5px] block tracking-[1px] opacity-85 max-md:text-[12px]">
-            Development &amp; Management
-          </em>
-        </Link>
+      <nav
+        ref={navRef}
+        className="fixed top-0 left-0 right-0 z-[50] bg-ink border-b border-gold/25 text-white"
+        onMouseLeave={() => setPanel(null)}
+      >
+        <div className="flex justify-between items-center px-[34px] py-4 max-md:px-[22px] max-md:py-3">
+          <Link
+            href="/"
+            className="font-cormorant text-[19px] tracking-[3px] leading-tight max-md:text-[17px]"
+          >
+            HAVILAH
+            <em className="font-great-vibes font-normal text-[13.5px] block tracking-[1px] opacity-85 max-md:text-[12px]">
+              Development &amp; Management
+            </em>
+          </Link>
 
-        {/* ── Desktop links ── */}
-        <div className="hidden md:flex items-center gap-[26px] text-[12.5px] tracking-[2px] uppercase">
-          {links.map((label) => (
+          {/* ── Desktop ── */}
+          <div className="hidden md:flex items-center gap-[26px] text-[12.5px] tracking-[2px] uppercase">
+            {items.map((item) =>
+              item.panel ? (
+                <button
+                  key={item.label}
+                  onMouseEnter={() => setPanel(item.label)}
+                  onClick={() => setPanel(panel === item.label ? null : item.label)}
+                  aria-expanded={panel === item.label}
+                  aria-haspopup="true"
+                  className={`flex items-center gap-1.5 uppercase tracking-[2px] transition-colors ${
+                    panel === item.label ? "text-golden" : "hover:text-golden"
+                  }`}
+                >
+                  {item.label}
+                  <span
+                    className={`text-[8px] transition-transform duration-300 ${
+                      panel === item.label ? "rotate-180" : ""
+                    }`}
+                  >
+                    ▼
+                  </span>
+                </button>
+              ) : item.href ? (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  onMouseEnter={() => setPanel(null)}
+                  className="hover:text-golden transition-colors"
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <span key={item.label} className="cursor-default opacity-70">
+                  {item.label}
+                </span>
+              )
+            )}
+          </div>
+
+          {/* ── Hamburger ── */}
+          <button
+            className="md:hidden bg-transparent border-0 p-2 cursor-pointer flex flex-col gap-[5px] w-[34px] relative z-[60]"
+            aria-expanded={open}
+            aria-label={open ? "Close menu" : "Open menu"}
+            onClick={() => setOpen(!open)}
+          >
             <span
-              key={label}
-              className=" cursor-default opacity-70"
-            >
-              {label}
-            </span>
-          ))}
+              className="block h-[1.5px] bg-current transition-transform duration-300"
+              style={open ? { transform: "translateY(6.5px) rotate(45deg)" } : undefined}
+            />
+            <span
+              className="block h-[1.5px] bg-current transition-opacity duration-200"
+              style={open ? { opacity: 0 } : undefined}
+            />
+            <span
+              className="block h-[1.5px] bg-current transition-transform duration-300"
+              style={open ? { transform: "translateY(-6.5px) rotate(-45deg)" } : undefined}
+            />
+          </button>
         </div>
 
-        {/* ── Hamburger (mobile) ── */}
-        <button
-          className="md:hidden bg-transparent border-0 p-2 cursor-pointer flex flex-col gap-[5px] w-[34px] relative z-[60]"
-          aria-expanded={open}
-          aria-label={open ? "Close menu" : "Open menu"}
-          onClick={() => setOpen(!open)}
-        >
-          <span
-            className="block h-[1.5px] bg-current transition-transform duration-300"
-            style={open ? { transform: "translateY(6.5px) rotate(45deg)" } : undefined}
-          />
-          <span
-            className="block h-[1.5px] bg-current transition-opacity duration-200"
-            style={open ? { opacity: 0 } : undefined}
-          />
-          <span
-            className="block h-[1.5px] bg-current transition-transform duration-300"
-            style={open ? { transform: "translateY(-6.5px) rotate(-45deg)" } : undefined}
-          />
-        </button>
+        {/* ── Dropdown panel ── */}
+        {items.map(
+          (item) =>
+            item.panel &&
+            panel === item.label && (
+              <div
+                key={item.label}
+                className="hidden md:block border-t border-gold/20 bg-ink px-[34px] py-9"
+              >
+                <div className="mx-auto max-w-[1180px]">
+                  <h2 className="font-cormorant text-[30px] leading-tight text-white">
+                    {item.panel.heading}
+                  </h2>
+                  <p className="mt-1.5 text-[13.5px] normal-case tracking-normal text-white/65">
+                    {item.panel.blurb}
+                  </p>
+
+                  <p className="mt-7 mb-3 text-[11.5px] uppercase tracking-[2.5px] text-golden">
+                    {item.panel.group}
+                  </p>
+                  <div className="grid gap-4 border-t border-white/12 pt-5 sm:grid-cols-2 lg:max-w-[760px]">
+                    {item.panel.cards.map((c) => (
+                      <Link
+                        key={c.href}
+                        href={c.href}
+                        onClick={() => setPanel(null)}
+                        className={`rounded-lg px-6 py-5 transition-colors duration-300 ${cardTone(
+                          c.tone
+                        )}`}
+                      >
+                        <span className="block font-cormorant text-[21px] normal-case tracking-normal">
+                          {c.title}
+                        </span>
+                        <span className="mt-1.5 block text-[13px] normal-case tracking-normal opacity-80">
+                          {c.blurb}
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )
+        )}
       </nav>
 
-      {/* ── Mobile fullscreen overlay (sibling of nav, not child) ── */}
+      {/* ── Mobile sheet ── */}
       <div
-        className={`fixed inset-0 z-[45] bg-ink flex flex-col items-center justify-center gap-7 text-white text-[15px] tracking-[3px] uppercase transition-opacity duration-300 ${
-          open ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
+        className={`fixed inset-0 z-[45] flex flex-col items-center justify-center gap-6 overflow-y-auto bg-ink px-8 py-24 text-center text-[15px] uppercase tracking-[3px] text-white transition-opacity duration-300 ${
+          open ? "opacity-100 visible" : "invisible opacity-0 pointer-events-none"
         }`}
       >
-        {links.map((label) => (
-          <span
-            key={label}
-            className=" cursor-default opacity-70"
-          >
-            {label}
-          </span>
-        ))}
+        {items.map((item) =>
+          item.panel ? (
+            <div key={item.label} className="w-full max-w-[340px]">
+              <p className="mb-3 text-golden">{item.label}</p>
+              <div className="flex flex-col gap-3">
+                {item.panel.cards.map((c) => (
+                  <Link
+                    key={c.href}
+                    href={c.href}
+                    onClick={() => setOpen(false)}
+                    className={`rounded-lg px-5 py-4 font-cormorant text-[19px] normal-case tracking-normal ${cardTone(
+                      c.tone
+                    )}`}
+                  >
+                    {c.title}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ) : item.href ? (
+            <Link key={item.label} href={item.href} onClick={() => setOpen(false)}>
+              {item.label}
+            </Link>
+          ) : (
+            <span key={item.label} className="cursor-default opacity-70">
+              {item.label}
+            </span>
+          )
+        )}
       </div>
     </>
   );
