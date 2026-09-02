@@ -3,12 +3,13 @@
 import { useState } from "react";
 import Link from "next/link";
 
+/* Real routes now, not anchors on one long page. */
 const links = [
-  { href: "/#hero", label: "Home" },
-  { href: "/#about", label: "About" },
-  { href: "/#properties", label: "Projects" },
-  { href: "/#management", label: "Management" },
-  { href: "/#contact", label: "Contact Us" },
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/projects", label: "Projects" },
+  { href: "/management", label: "Management" },
+  { href: "/contact", label: "Contact Us" },
 ];
 
 export default function Nav() {
@@ -36,12 +37,6 @@ export default function Nav() {
               {l.label}
             </Link>
           ))}
-          <Link
-            href="/inspection"
-            className="font-cormorant text-[16px] tracking-[2px] border-b border-current pb-[2px]"
-          >
-            Book an Inspection
-          </Link>
         </div>
 
         {/* ── Hamburger (mobile) ── */}
@@ -82,13 +77,6 @@ export default function Nav() {
             {l.label}
           </Link>
         ))}
-        <Link
-          href="/inspection"
-          className="font-cormorant text-[22px] tracking-[2px] border-b border-current pb-[2px]"
-          onClick={() => setOpen(false)}
-        >
-          Book an Inspection
-        </Link>
       </div>
     </>
   );

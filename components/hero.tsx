@@ -6,10 +6,10 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
 
 const heroImages = [
-  { src: "/images/front-elevation.jpg", alt: "Havilah Court 5 front elevation" },
-  { src: "/images/proj-havilah-4.jpg", alt: "Havilah Court 4 completed terraces" },
-  { src: "/images/proj-havilah-3.jpg", alt: "Havilah Court 3 completed terraces" },
-  { src: "/images/proj-havilah-2.jpg", alt: "Havilah Court 2 completed terraces" },
+  { src: "/images/hero-1.jpg", alt: "Havilah terraces, front elevation" },
+  { src: "/images/hero-2.jpg", alt: "Havilah terrace row with glazed balconies" },
+  { src: "/images/hero-3.jpg", alt: "Havilah apartments in daylight" },
+  { src: "/images/hero-4.jpg", alt: "Havilah terrace facade" },
 ];
 
 const CYCLE_MS = 6500;
@@ -51,28 +51,15 @@ export default function Hero() {
           exit={{ opacity: 0 }}
           transition={{ duration: FADE_S, ease: "easeInOut" }}
         >
-          {/* A blurred, over-scaled copy fills the frame edge to edge. The
-              sharp photograph sits on top at its own proportions, so the
-              screen is covered without the photograph itself being cut. */}
-          <Image
-            src={slide.src}
-            alt=""
-            aria-hidden
-            fill
-            sizes="100vw"
-            className="object-cover scale-110 blur-2xl brightness-50"
-            loading={current === 0 ? "eager" : "lazy"}
-          />
-          {/* object-contain, so the whole photograph is visible. It also
-              means portrait shots are scaled to the viewport height rather
-              than its width, which is far less enlargement and keeps them
-              looking sharp. */}
+          {/* Full bleed. The sources are cut to 16:9 at 2400px, so a
+              1920px screen renders them slightly downscaled rather than
+              enlarged, which is what keeps them sharp. */}
           <Image
             src={slide.src}
             alt={slide.alt}
             fill
             sizes="100vw"
-            className="object-contain"
+            className="object-cover"
             loading={current === 0 ? "eager" : "lazy"}
             fetchPriority={current === 0 ? "high" : "auto"}
           />

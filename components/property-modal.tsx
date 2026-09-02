@@ -2,9 +2,9 @@
 
 import { useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "motion/react";
 import type { Project } from "@/data/projects";
-import BookInspectionButton from "./book-inspection-button";
 
 interface Props {
   project: Project;
@@ -87,9 +87,7 @@ export default function PropertyModal({ project, onClose }: Props) {
               {project.description}
             </p>
 
-            <BookInspectionButton
-              className="!border-ink !text-ink hover:!bg-ink hover:!text-paper"
-            />
+            <Link href="/contact" className="inline-block rounded-full border border-ink px-[26px] py-[13px] text-[12px] uppercase tracking-[2.5px] text-ink transition-colors duration-300 hover:bg-ink hover:text-paper">Contact Us</Link>
           </div>
         </div>
       </motion.div>

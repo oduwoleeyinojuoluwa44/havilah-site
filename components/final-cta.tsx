@@ -1,7 +1,8 @@
 "use client";
 
+import Link from "next/link";
+
 import { motion } from "motion/react";
-import BookInspectionButton from "./book-inspection-button";
 
 export default function FinalCta() {
   return (
@@ -29,7 +30,7 @@ export default function FinalCta() {
           walk the site with us.
         </p>
         <div className="mt-[38px]">
-          <BookInspectionButton />
+          <Link href="/contact" className="inline-block rounded-full border border-ink px-[26px] py-[13px] text-[12px] uppercase tracking-[2.5px] text-ink transition-colors duration-300 hover:bg-ink hover:text-paper">Contact Us</Link>
         </div>
       </motion.div>
     </section>

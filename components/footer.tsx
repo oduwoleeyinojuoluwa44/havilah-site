@@ -26,11 +26,11 @@ export default function Footer() {
         </div>
         <div className="text-[12.5px] tracking-[1.5px] leading-[2.3] text-white/70 uppercase">
           <b className="text-white font-medium block mb-1.5">Explore</b>
-          <a href="/#properties">Properties</a>
+          <a href="/projects">Properties</a>
           <br />
-          <a href="/#management">Management</a>
+          <a href="/management">Management</a>
           <br />
-          <a href="/inspection">Book an Inspection</a>
+          <a href="/contact">Contact Us</a>
         </div>
       </div>
       <div className="max-w-[1200px] mx-auto mt-14 pt-[22px] border-t border-white/12 flex justify-between flex-wrap gap-2.5 text-[11.5px] tracking-[1.5px] text-white/45 uppercase">

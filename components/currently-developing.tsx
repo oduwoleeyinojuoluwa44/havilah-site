@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "motion/react";
-import BookInspectionButton from "./book-inspection-button";
 
 export default function CurrentlyDeveloping() {
   return (
@@ -40,7 +40,7 @@ export default function CurrentlyDeveloping() {
           apartments, with a gym, swimming pool and children&apos;s play area.
         </p>
 
-        <BookInspectionButton />
+        <Link href="/contact" className="inline-block rounded-full border border-ink px-[26px] py-[13px] text-[12px] uppercase tracking-[2.5px] text-ink transition-colors duration-300 hover:bg-ink hover:text-paper">Contact Us</Link>
       </motion.div>
     </section>
   );
