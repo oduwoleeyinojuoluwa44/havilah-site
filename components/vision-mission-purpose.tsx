@@ -28,7 +28,7 @@ const pillars = [
 
 export default function VisionMissionPurpose() {
   return (
-    <section className="bg-paper px-[8vw] pb-[clamp(64px,9vh,110px)]">
+    <section className="bg-paper px-[8vw] py-[clamp(56px,8vh,96px)]">
       <div className="mx-auto grid max-w-[1180px] gap-6 md:grid-cols-3">
         {pillars.map((p) => (
           <article
