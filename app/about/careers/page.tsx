@@ -15,9 +15,9 @@ const EMAIL = "hr.havilah@gmail.com";
 
 export default function CareersPage() {
   return (
-    <PageShell>
+    <PageShell navVariant="overlay">
       {/* ── Join us ── */}
-      <section className="relative isolate overflow-hidden bg-paper px-[8vw] py-[clamp(72px,13vh,150px)]">
+      <section className="relative isolate overflow-hidden bg-paper px-[8vw] pt-[clamp(140px,18vh,210px)] pb-[clamp(64px,11vh,130px)]">
         <ContourBackdrop className="-z-10" opacity={0.13} />
         <div className="mx-auto max-w-[1180px]">
           <h1 className="font-jost text-[clamp(40px,8vw,96px)] font-semibold leading-[1.02] tracking-tight">

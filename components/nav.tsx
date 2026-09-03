@@ -44,7 +44,13 @@ const items: NavItem[] = [
   { label: "Contact Us" },
 ];
 
-export default function Nav() {
+export default function Nav({
+  variant = "solid",
+}: {
+  /** "overlay" floats a transparent bar over the page's own top section. */
+  variant?: "solid" | "overlay";
+} = {}) {
+  const overlay = variant === "overlay";
   const [open, setOpen] = useState(false);          // mobile sheet
   const [panel, setPanel] = useState<string | null>(null); // open dropdown
   const navRef = useRef<HTMLElement>(null);
@@ -89,7 +95,11 @@ export default function Nav() {
     <>
       <nav
         ref={navRef}
-        className="fixed top-0 left-0 right-0 z-[50] bg-ink border-b border-gold/25 text-white"
+        className={`fixed top-0 left-0 right-0 z-[50] ${
+          overlay
+            ? "bg-transparent text-ink"
+            : "bg-ink border-b border-gold/25 text-white"
+        }`}
         onMouseLeave={closePanelSoon}
         onMouseEnter={() => closeTimer.current && clearTimeout(closeTimer.current)}
       >
@@ -137,7 +147,7 @@ export default function Nav() {
                   {item.label}
                 </Link>
               ) : (
-                <span key={item.label} className="cursor-default opacity-70">
+                <span key={item.label} className="cursor-default">
                   {item.label}
                 </span>
               )
@@ -259,7 +269,7 @@ export default function Nav() {
               {item.label}
             </Link>
           ) : (
-            <span key={item.label} className="cursor-default opacity-70">
+            <span key={item.label} className="cursor-default">
               {item.label}
             </span>
           )
