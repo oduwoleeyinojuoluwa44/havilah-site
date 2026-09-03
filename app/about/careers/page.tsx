@@ -15,11 +15,11 @@ const EMAIL = "hr.havilah@gmail.com";
 
 export default function CareersPage() {
   return (
-    <PageShell>
+    <PageShell navVariant="overlay">
       {/* ── Join us ── */}
-      <section className="relative isolate overflow-hidden bg-paper px-[8vw] py-[clamp(72px,13vh,150px)]">
+      <section className="relative isolate flex min-h-[62vh] items-end overflow-hidden bg-paper px-[8vw] pt-[clamp(190px,26vh,300px)] pb-[clamp(72px,12vh,140px)]">
         <ContourBackdrop className="-z-10" opacity={0.13} />
-        <div className="mx-auto max-w-[1180px]">
+        <div className="mx-auto w-full max-w-[1180px]">
           <h1 className="font-jost text-[clamp(40px,8vw,96px)] font-semibold leading-[1.02] tracking-tight">
             Join Us At <span className="text-gold-deep">Havilah</span>
           </h1>
@@ -28,11 +28,11 @@ export default function CareersPage() {
 
       {/* ── Openings ── */}
       <section
-        className="px-[8vw] py-[clamp(56px,8vh,96px)] text-white"
+        className="flex min-h-screen items-center px-[8vw] py-[clamp(72px,10vh,120px)] text-white"
         style={{ background: "var(--color-ink)" }}
         id="openings"
       >
-        <div className="mx-auto max-w-[1180px]">
+        <div className="mx-auto w-full max-w-[1180px]">
           <h2 className="font-jost text-[clamp(28px,4.4vw,50px)] font-semibold leading-tight">
             View our Job Openings
           </h2>
