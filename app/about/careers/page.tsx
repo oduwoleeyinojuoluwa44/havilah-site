@@ -1,69 +1,97 @@
 import type { Metadata } from "next";
 import PageShell from "../../page-shell";
+import ContourBackdrop from "@/components/contour-backdrop";
+import VisionMissionPurpose from "@/components/vision-mission-purpose";
+import CoreValues from "@/components/core-values";
+import { openRoles } from "@/data/roles";
 
 export const metadata: Metadata = {
   title: "Career Opportunities · Havilah Development and Management Services",
   description:
-    "Work with Havilah Development and Management Services Limited. Send your CV to be considered for current and future roles.",
+    "Join Havilah Development and Management Services Limited. See current openings and send your CV.",
 };
-
-/* No roles or careers copy have been supplied, so the page says exactly that
-   and gives a real way to apply, rather than listing invented positions.
-   Add openings here as they are provided. */
-const openRoles: { title: string; detail: string }[] = [];
 
 const EMAIL = "hr.havilah@gmail.com";
 
 export default function CareersPage() {
   return (
     <PageShell>
-      <section className="bg-paper px-[8vw] py-[clamp(64px,9vh,110px)]">
-        <div className="mx-auto max-w-[820px]">
-          <p className="mb-4 text-[12px] uppercase tracking-[5px] text-gold-deep">
-            Inside Havilah
-          </p>
-          <h1 className="font-cormorant text-[clamp(38px,6.5vw,76px)] uppercase leading-[1.04]">
-            Career Opportunities
+      {/* ── Join us ── */}
+      <section className="relative isolate overflow-hidden bg-paper px-[8vw] py-[clamp(72px,13vh,150px)]">
+        <ContourBackdrop className="-z-10" opacity={0.13} />
+        <div className="mx-auto max-w-[1180px]">
+          <h1 className="font-jost text-[clamp(40px,8vw,96px)] font-semibold leading-[1.02] tracking-tight">
+            Join Us At <span className="text-gold-deep">Havilah</span>
           </h1>
-          <p className="mt-6 max-w-[58ch] text-[16px] leading-[1.85] text-[#3f434b]">
-            Every property we hand over carries our name and our reputation. If
-            that is the standard you want to work to, we would like to hear from
-            you.
+        </div>
+      </section>
+
+      {/* ── Openings ── */}
+      <section
+        className="px-[8vw] py-[clamp(56px,8vh,96px)] text-white"
+        style={{ background: "var(--color-ink)" }}
+        id="openings"
+      >
+        <div className="mx-auto max-w-[1180px]">
+          <h2 className="font-jost text-[clamp(28px,4.4vw,50px)] font-semibold leading-tight">
+            View our Job Openings
+          </h2>
+          <p className="mt-6 max-w-[70ch] text-[15.5px] leading-[1.85] text-white/80">
+            Every property we hand over carries our name and our reputation. We
+            look for people who take that as seriously as we do, and who want to
+            work to the standard it demands.
           </p>
 
-          <div className="mt-12 border-t border-line pt-9">
-            <h2 className="font-cormorant text-[26px] uppercase tracking-[1px]">
-              Open Roles
-            </h2>
-
-            {openRoles.length === 0 ? (
-              <p className="mt-4 max-w-[58ch] text-[15.5px] leading-[1.85] text-[#3f434b]">
+          {openRoles.length === 0 ? (
+            <div className="mt-10 border-t border-white/15 pt-8">
+              <p className="max-w-[62ch] text-[15.5px] leading-[1.85] text-white/80">
                 We do not have any roles listed at the moment. We still welcome
-                speculative applications, and we keep them on file for when
+                speculative applications and keep them on file for when
                 something opens up.
               </p>
-            ) : (
-              <ul className="mt-5 flex flex-col gap-4">
-                {openRoles.map((r) => (
-                  <li key={r.title} className="border-b border-line pb-4">
-                    <p className="font-cormorant text-[21px] text-ink">{r.title}</p>
-                    <p className="mt-1 text-[14.5px] text-[#3f434b]">{r.detail}</p>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
+            </div>
+          ) : (
+            <ul className="mt-10 flex flex-col border-t border-white/15">
+              {openRoles.map((r) => (
+                <li
+                  key={r.id}
+                  className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2 border-b border-white/15 py-6"
+                >
+                  <div className="min-w-[240px] flex-1">
+                    <h3 className="font-cormorant text-[24px] text-white">
+                      {r.title}
+                    </h3>
+                    {r.summary && (
+                      <p className="mt-1.5 max-w-[60ch] text-[14.5px] leading-[1.75] text-white/70">
+                        {r.summary}
+                      </p>
+                    )}
+                  </div>
+                  <div className="flex items-center gap-5">
+                    <span className="text-[11.5px] uppercase tracking-[2.5px] text-golden">
+                      {[r.type, r.location].filter(Boolean).join(" · ")}
+                    </span>
+                    <a
+                      href={`mailto:${EMAIL}?subject=${encodeURIComponent(
+                        `Application: ${r.title}`
+                      )}`}
+                      className="rounded-full bg-gold px-6 py-2.5 text-[11.5px] uppercase tracking-[2px] text-ink transition-colors duration-300 hover:bg-golden"
+                    >
+                      Apply
+                    </a>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
 
-          <div className="mt-12 border-t border-line pt-9">
-            <h2 className="font-cormorant text-[26px] uppercase tracking-[1px]">
-              How To Apply
-            </h2>
-            <p className="mt-4 max-w-[58ch] text-[15.5px] leading-[1.85] text-[#3f434b]">
+          <div className="mt-10">
+            <p className="text-[14.5px] text-white/70">
               Send your CV and a short note about the work you are looking for
               to{" "}
               <a
                 href={`mailto:${EMAIL}`}
-                className="text-gold-deep underline-offset-4 hover:underline"
+                className="text-golden underline-offset-4 hover:underline"
               >
                 {EMAIL}
               </a>
@@ -71,13 +99,16 @@ export default function CareersPage() {
             </p>
             <a
               href={`mailto:${EMAIL}?subject=Application%20to%20Havilah`}
-              className="mt-8 inline-block rounded-full bg-ink px-10 py-4 text-[12.5px] uppercase tracking-[2.5px] text-paper transition-colors duration-300 hover:bg-gold-deep"
+              className="mt-7 inline-block rounded-full bg-gold px-10 py-4 text-[12.5px] uppercase tracking-[2.5px] text-ink transition-colors duration-300 hover:bg-golden"
             >
               Send your CV
             </a>
           </div>
         </div>
       </section>
+
+      <VisionMissionPurpose />
+      <CoreValues />
     </PageShell>
   );
 }
