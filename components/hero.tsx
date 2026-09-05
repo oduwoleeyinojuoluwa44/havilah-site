@@ -106,7 +106,7 @@ export default function Hero() {
           className="mt-8 max-[900px]:mt-6"
         >
           <Link
-            href="/#properties"
+            href="/projects"
             className="inline-block rounded-full bg-gold px-11 py-4 text-[13px] font-medium uppercase tracking-[1.5px] text-ink transition-colors duration-300 hover:bg-golden"
           >
             See Completed Projects

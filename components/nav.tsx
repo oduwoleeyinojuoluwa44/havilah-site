@@ -39,7 +39,7 @@ const items: NavItem[] = [
       ],
     },
   },
-  { label: "Projects" },
+  { label: "Projects", href: "/projects" },
   { label: "Management" },
   { label: "Contact Us" },
 ];
