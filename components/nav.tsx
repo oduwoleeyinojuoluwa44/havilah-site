@@ -39,7 +39,28 @@ const items: NavItem[] = [
       ],
     },
   },
-  { label: "Projects", href: "/projects" },
+  {
+    label: "Projects",
+    panel: {
+      heading: "Our Projects",
+      blurb: "What we have delivered, and what is taking shape.",
+      group: "Browse Projects",
+      cards: [
+        {
+          title: "Completed Projects",
+          blurb: "Delivered and handed over.",
+          href: "/projects/completed",
+          tone: "gold",
+        },
+        {
+          title: "Ongoing Projects",
+          blurb: "Currently taking shape.",
+          href: "/projects/ongoing",
+          tone: "ink",
+        },
+      ],
+    },
+  },
   { label: "Management" },
   { label: "Contact Us" },
 ];
