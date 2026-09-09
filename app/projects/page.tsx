@@ -18,7 +18,6 @@ const routes = [
     href: "/projects/completed",
     label: "Completed Projects",
     blurb: "Delivered and handed over.",
-    count: completed.length,
     /* The cover comes from a project in that group, so each card shows real
        work rather than stock imagery. */
     image: completed[0]?.image ?? "/images/hero-1.jpg",
@@ -27,7 +26,6 @@ const routes = [
     href: "/projects/ongoing",
     label: "Ongoing Projects",
     blurb: "Currently taking shape.",
-    count: ongoing.length,
     image: ongoing[0]?.image ?? "/images/hero-2.jpg",
   },
 ];
@@ -49,7 +47,7 @@ export default function ProjectsPage() {
               <Link
                 key={r.href}
                 href={r.href}
-                className="group relative isolate flex min-h-[420px] items-center justify-center overflow-hidden rounded-xl bg-ink lg:min-h-[520px]"
+                className="group relative isolate flex min-h-[340px] sm:min-h-[420px] items-center justify-center overflow-hidden rounded-xl bg-ink lg:min-h-[520px]"
               >
                 <Image
                   src={r.image}
@@ -66,14 +64,11 @@ export default function ProjectsPage() {
                       "linear-gradient(180deg,rgba(13,14,17,.35) 0%,rgba(13,14,17,.5) 60%,rgba(13,14,17,.75) 100%)",
                   }}
                 />
-                <div className="px-8 text-center">
-                  <h2 className="font-jost text-[clamp(28px,3.6vw,44px)] font-semibold text-white">
+                <div className="px-5 sm:px-8 text-center">
+                  <h2 className="font-jost text-[clamp(28px,3.6vw,44px)] font-semibold text-white transition-colors duration-300 group-hover:text-golden">
                     {r.label}
                   </h2>
                   <p className="mt-2 text-[14.5px] text-white/80">{r.blurb}</p>
-                  <span className="mt-5 inline-block rounded-full border border-golden px-6 py-2 text-[11.5px] uppercase tracking-[2.5px] text-golden transition-colors duration-300 group-hover:bg-golden group-hover:text-ink">
-                    {String(r.count).padStart(2, "0")} Projects
-                  </span>
                 </div>
               </Link>
             ))}

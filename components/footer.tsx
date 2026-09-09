@@ -28,7 +28,7 @@ export default function Footer() {
           <b className="text-white font-medium block mb-1.5">Explore</b>
           <a href="/projects">Properties</a>
           <br />
-          <a href="/management">Management</a>
+          <a href="/about/story">About Us</a>
           <br />
           <a href="/contact">Contact Us</a>
         </div>

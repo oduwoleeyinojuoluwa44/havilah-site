@@ -15,26 +15,32 @@ const EMAIL = "hr.havilah@gmail.com";
 
 export default function CareersPage() {
   return (
-    <PageShell navVariant="overlay">
+    <PageShell>
       {/* ── Join us ── */}
-      <section className="relative isolate flex min-h-[62vh] items-end overflow-hidden bg-paper px-[8vw] pt-[clamp(190px,26vh,300px)] pb-[clamp(72px,12vh,140px)]">
+      <section className="relative isolate overflow-hidden bg-paper px-[8vw] pt-[clamp(48px,7vh,84px)] pb-[clamp(36px,5vh,64px)]">
         <ContourBackdrop className="-z-10" opacity={0.13} />
         <div className="mx-auto w-full max-w-[1180px]">
-          <h1 className="font-jost text-[clamp(40px,8vw,96px)] font-semibold leading-[1.02] tracking-tight">
-            Join Us At <span className="text-gold-deep">Havilah</span>
+          <p className="mb-3 text-[12px] uppercase tracking-[5px] text-gold-deep font-medium">
+            Careers at Havilah
+          </p>
+          <h1 className="font-cormorant text-[clamp(36px,6vw,72px)] uppercase font-medium leading-[1.05] text-ink">
+            Join Us At <span className="text-gold font-great-vibes normal-case text-[0.88em]">Havilah</span>
           </h1>
+          <p className="mt-4 max-w-[64ch] text-[15.5px] leading-[1.8] text-[#3f434b]">
+            Every property we hand over carries our name and our reputation. We look for passionate, dedicated individuals who want to work to the standard it demands.
+          </p>
         </div>
       </section>
 
       {/* ── Openings ── */}
       <section
-        className="flex min-h-screen items-center px-[8vw] py-[clamp(72px,10vh,120px)] text-white"
+        className="px-[8vw] py-[clamp(56px,8vh,96px)] text-white"
         style={{ background: "var(--color-ink)" }}
         id="openings"
       >
         <div className="mx-auto w-full max-w-[1180px]">
-          <h2 className="font-jost text-[clamp(28px,4.4vw,50px)] font-semibold leading-tight">
-            View our Job Openings
+          <h2 className="font-cormorant text-[clamp(28px,4vw,46px)] uppercase font-medium leading-tight text-white">
+            Current Job Openings
           </h2>
           <p className="mt-6 max-w-[70ch] text-[15.5px] leading-[1.85] text-white/80">
             Every property we hand over carries our name and our reputation. We

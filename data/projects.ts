@@ -71,6 +71,15 @@ export const projects: Project[] = [
     image: "/images/completed-1.jpg",
   },
   {
+    id: "havilah-6",
+    name: "Havilah 6",
+    status: "ongoing",
+    location: "Beach Resort, Off Platinum Way, Lekki",
+    description:
+      "Luxury Unmatched 4-Bedroom Terraces. Outright: ₦300M | Initial Deposit: ₦150M. Amenities include swimming pool, fully equipped gym, 24-hour power, high-speed network, ample parking, and round-the-clock security.",
+    image: "/images/proj-havilah-6.jpg",
+  },
+  {
     id: "havilah-5",
     name: "Havilah Court 5",
     status: "ongoing",
@@ -88,14 +97,5 @@ export const projects: Project[] = [
     description:
       "An extension of the Havilah Court 5 development, currently progressing alongside the main project.",
     image: "/images/project-05.jpg",
-  },
-  {
-    id: "havilah-6",
-    name: "Havilah Court 6",
-    status: "pipeline",
-    location: "Upcoming Development",
-    description:
-      "The next project in the Havilah Court series, currently in the development pipeline.",
-    image: "/images/swap-01.jpg",
   },
 ];

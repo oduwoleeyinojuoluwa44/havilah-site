@@ -61,7 +61,7 @@ export default function PropertyModal({ project, onClose }: Props) {
         </button>
 
         {/* Scrollable content */}
-        <div className="overflow-y-auto max-h-[90vh] max-md:max-h-[92vh] scrollbar-thin">
+        <div className="overflow-y-auto max-h-[90vh] max-md:max-h-[92dvh] scrollbar-thin">
           <div className="relative w-full aspect-[4/3] group overflow-hidden">
             <Image
               src={project.image}
@@ -73,21 +73,21 @@ export default function PropertyModal({ project, onClose }: Props) {
             />
           </div>
 
-          <div className="p-8">
+          <div className="p-6 sm:p-8">
             <p className="text-[11.5px] tracking-[2.4px] uppercase text-golden mb-2">
               {statusText}
             </p>
-            <h3 className="font-cormorant text-[32px] font-medium text-ink m-0 mb-1.5">
+            <h3 className="font-cormorant text-[28px] sm:text-[32px] font-medium text-ink m-0 mb-1.5">
               {project.name}
             </h3>
             <p className="text-[12px] tracking-[2px] uppercase text-stone mb-5">
               {project.location}
             </p>
-            <p className="text-[15px] leading-[1.8] text-[#3f434b] mb-7">
+            <p className="text-[14.5px] sm:text-[15px] leading-[1.8] text-[#3f434b] mb-7">
               {project.description}
             </p>
 
-            <Link href="/contact" className="inline-block rounded-full border border-ink px-[26px] py-[13px] text-[12px] uppercase tracking-[2.5px] text-ink transition-colors duration-300 hover:bg-ink hover:text-paper">Contact Us</Link>
+            <Link href="/contact" className="w-full sm:w-auto inline-flex justify-center rounded-full border border-ink px-[26px] py-[13px] text-[12px] uppercase tracking-[2.5px] text-ink transition-colors duration-300 hover:bg-ink hover:text-paper text-center">Contact Us</Link>
           </div>
         </div>
       </motion.div>

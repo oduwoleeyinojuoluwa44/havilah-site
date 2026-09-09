@@ -61,8 +61,7 @@ const items: NavItem[] = [
       ],
     },
   },
-  { label: "Management" },
-  { label: "Contact Us" },
+  { label: "Contact Us", href: "/contact" },
 ];
 
 export default function Nav({
@@ -107,6 +106,18 @@ export default function Nav({
     };
   }, []);
 
+  /* Lock body scroll when mobile sheet is open */
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.removeProperty("overflow");
+    }
+    return () => {
+      document.body.style.removeProperty("overflow");
+    };
+  }, [open]);
+
   const cardTone = (tone: Card["tone"]) =>
     tone === "gold"
       ? "bg-gold text-ink hover:bg-golden"
@@ -127,11 +138,14 @@ export default function Nav({
         <div className="flex justify-between items-center px-[34px] py-4 max-md:px-[22px] max-md:py-3">
           <Link
             href="/"
-            className="font-cormorant text-[19px] tracking-[3px] leading-tight max-md:text-[17px]"
+            onClick={() => setOpen(false)}
+            className={`font-cormorant text-[19px] tracking-[3px] leading-tight max-md:text-[17px] relative z-[60] transition-colors ${
+              open ? "text-white" : ""
+            }`}
           >
             HAVILAH
             <em className="font-great-vibes font-normal text-[13.5px] block tracking-[1px] opacity-85 max-md:text-[12px]">
-              Development &amp; Management
+              Development
             </em>
           </Link>
 
@@ -177,7 +191,9 @@ export default function Nav({
 
           {/* ── Hamburger ── */}
           <button
-            className="md:hidden bg-transparent border-0 p-2 cursor-pointer flex flex-col gap-[5px] w-[34px] relative z-[60]"
+            className={`md:hidden bg-transparent border-0 p-2 cursor-pointer flex flex-col gap-[5px] w-[34px] relative z-[60] transition-colors duration-300 ${
+              open ? "text-white" : ""
+            }`}
             aria-expanded={open}
             aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen(!open)}

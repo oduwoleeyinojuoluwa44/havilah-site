@@ -1,27 +1,22 @@
 import Image from "next/image";
 
-/* PROVISIONAL WORDING.
-   No vision, mission or purpose statements have been supplied. Each line
-   below is drawn from a sentence in the client's own About copy so nothing
-   is invented, but these are not statements Havilah has formally adopted.
-   Replace the three `statement` values once the real wording arrives. */
 const pillars = [
   {
     title: "Vision",
     statement:
-      "To be a trusted name synonymous with architectural excellence, integrity, and reliability.",
+      "To deliver 1,000 quality homes by 2030, creating thriving communities and transforming lives through sustainable real estate development.",
     image: "/images/proj-havilah-1.jpg",
   },
   {
     title: "Mission",
     statement:
-      "To build unique architectural designs that combine creativity, functionality, and enduring quality.",
+      "To lead transformative real estate development, delivering 1,000 homes that embody quality, sustainability, and community value, creating living spaces that inspire comfort, connection, and lasting impact.",
     image: "/images/proj-havilah-3.jpg",
   },
   {
     title: "Purpose",
     statement:
-      "To build trust: one project, one client, and one relationship at a time.",
+      "To create and deliver quality, sustainable homes across Nigeria.",
     image: "/images/proj-havilah-5.jpg",
   },
 ];
