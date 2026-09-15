@@ -6,11 +6,17 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
 import ChatModal from "@/components/chat-modal";
 
+/* Completed projects only. These are the landscape photos from the Havilah
+   brochure, cut to 16:9 and upscaled 4x with Real-ESRGAN (x4plus), then saved
+   at 2880x1620; the portrait shots in data/projects.ts lose over half the
+   frame at this aspect. Havilah Court 1's brochure photo is only 434px wide,
+   so it carries the most AI detail; swap it for an original when one exists. */
 const heroImages = [
-  { src: "/images/hero-1.jpg", alt: "Havilah terraces, front elevation" },
-  { src: "/images/hero-2.jpg", alt: "Havilah terrace row with glazed balconies" },
-  { src: "/images/hero-3.jpg", alt: "Havilah apartments in daylight" },
-  { src: "/images/hero-4.jpg", alt: "Havilah terrace facade" },
+  { src: "/images/hero-completed-koinonia.jpg", alt: "Koinonia, Agungi" },
+  { src: "/images/hero-completed-havilah-1.jpg", alt: "Havilah Court 1, Platinum Way, Ikate" },
+  { src: "/images/hero-completed-havilah-2.jpg", alt: "Havilah Court 2, The Nest Estate" },
+  { src: "/images/hero-completed-havilah-3.jpg", alt: "Havilah Court 3, Jakande First Gate" },
+  { src: "/images/hero-completed-havilah-4.jpg", alt: "Havilah Court 4, Jakande First Gate" },
 ];
 
 const CYCLE_MS = 6500;
@@ -49,15 +55,15 @@ export default function Hero() {
           exit={{ opacity: 0 }}
           transition={{ duration: FADE_S, ease: "easeInOut" }}
         >
-          {/* Full bleed. The sources are cut to 16:9 at 2400px, so a
-              1920px screen renders them slightly downscaled rather than
-              enlarged, which is what keeps them sharp. */}
+          {/* Full bleed and centred. The sources are 16:9, so a 16:9 screen
+              shows the whole photo; other screen shapes trim only the edges
+              furthest from the centre. */}
           <Image
             src={slide.src}
             alt={slide.alt}
             fill
             sizes="100vw"
-            className="object-cover"
+            className="object-cover object-center"
             loading={current === 0 ? "eager" : "lazy"}
             fetchPriority={current === 0 ? "high" : "auto"}
           />
@@ -105,7 +111,7 @@ export default function Hero() {
         >
           <Link
             href="/projects"
-            className="inline-block rounded-full bg-gold px-8 sm:px-11 py-3.5 sm:py-4 text-[12.5px] sm:text-[13px] font-medium uppercase tracking-[1.5px] text-ink transition-colors duration-300 hover:bg-golden shadow-md"
+            className="inline-block rounded-full border-2 border-gold bg-transparent px-8 sm:px-11 py-3.5 sm:py-4 text-[12.5px] sm:text-[13px] font-medium uppercase tracking-[1.5px] text-white transition-colors duration-300 hover:border-golden hover:bg-gold hover:text-ink"
           >
             See Completed Projects
           </Link>
@@ -113,7 +119,9 @@ export default function Hero() {
       </div>
 
       {/* ---- bottom strip: socials left, copyright right ---- */}
-      <div className="absolute inset-x-0 bottom-0 z-20 flex items-center justify-between gap-4 px-6 py-4 max-md:flex-col max-md:items-start max-md:gap-2 max-md:py-3.5 max-md:pr-20">
+      {/* Right padding clears the fixed chat button (right-6 + 56px on
+          larger screens) so the copyright never slides underneath it. */}
+      <div className="absolute inset-x-0 bottom-0 z-20 flex items-center justify-between gap-4 py-4 pl-6 pr-28 max-md:flex-col max-md:items-start max-md:gap-2 max-md:py-3.5 max-md:pr-20">
         <div className="flex gap-2.5">
           {socials.map((s) => (
             <a

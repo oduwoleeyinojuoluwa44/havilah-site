@@ -10,7 +10,7 @@ export default function Home() {
     <>
       <Preloader />
       <LockScroll />
-      <Nav />
+      <Nav variant="overlay" />
       <main>
         <Hero />
       </main>

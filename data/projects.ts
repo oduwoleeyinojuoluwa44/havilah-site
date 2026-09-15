@@ -8,6 +8,8 @@ export interface Project {
   location: string;
   description: string;
   image: string;
+  /** Extra photos; when present the card becomes a gallery, starting at `image`. */
+  gallery?: string[];
 }
 
 export const projects: Project[] = [
@@ -64,7 +66,7 @@ export const projects: Project[] = [
   {
     id: "homewood",
     name: "Homewood Residences",
-    status: "completed",
+    status: "ongoing",
     location: "Lekki, Lagos",
     description:
       "A completed residential development shaped around clean contemporary lines, generous homes and practical everyday living.",
@@ -87,6 +89,11 @@ export const projects: Project[] = [
     description:
       "Four semi-detached homes, nineteen four-bedroom terraces and sixteen apartments, with a gym, swimming pool and children's play area.",
     image: "/images/proj-havilah-5.jpg",
+    gallery: [
+      "/images/proj-havilah-5-a.jpg",
+      "/images/proj-havilah-5-b.jpg",
+      "/images/proj-havilah-5-c.jpg",
+    ],
     year: undefined,
   },
   {

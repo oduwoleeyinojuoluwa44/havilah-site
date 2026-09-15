@@ -129,7 +129,7 @@ export default function Nav({
         ref={navRef}
         className={`fixed top-0 left-0 right-0 z-[50] ${
           overlay
-            ? "bg-transparent text-ink"
+            ? "bg-transparent text-white"
             : "bg-ink border-b border-gold/25 text-white"
         }`}
         onMouseLeave={closePanelSoon}
