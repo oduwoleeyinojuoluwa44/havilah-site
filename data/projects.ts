@@ -64,33 +64,14 @@ export const projects: Project[] = [
     image: "/images/proj-havilah-4.jpg",
   },
   {
-    id: "homewood",
-    name: "Homewood Residences",
-    status: "ongoing",
-    location: "Lekki, Lagos",
-    description:
-      "A completed residential development shaped around clean contemporary lines, generous homes and practical everyday living.",
-    image: "/images/completed-1.jpg",
-  },
-  {
-    id: "havilah-6",
-    name: "Havilah 6",
-    status: "ongoing",
-    location: "Beach Resort, Off Platinum Way, Lekki",
-    description:
-      "Luxury Unmatched 4-Bedroom Terraces. Outright: ₦300M | Initial Deposit: ₦150M. Amenities include swimming pool, fully equipped gym, 24-hour power, high-speed network, ample parking, and round-the-clock security.",
-    image: "/images/proj-havilah-6.jpg",
-  },
-  {
     id: "havilah-5",
     name: "Havilah Court 5",
     status: "ongoing",
     location: "Beach Resort Estate, Lekki",
     description:
       "Four semi-detached homes, nineteen four-bedroom terraces and sixteen apartments, with a gym, swimming pool and children's play area.",
-    image: "/images/proj-havilah-5.jpg",
+    image: "/images/proj-havilah-5-a.jpg",
     gallery: [
-      "/images/proj-havilah-5-a.jpg",
       "/images/proj-havilah-5-b.jpg",
       "/images/proj-havilah-5-c.jpg",
     ],
@@ -104,5 +85,14 @@ export const projects: Project[] = [
     description:
       "An extension of the Havilah Court 5 development, currently progressing alongside the main project.",
     image: "/images/project-05.jpg",
+  },
+  {
+    id: "havilah-6",
+    name: "Havilah 6",
+    status: "ongoing",
+    location: "Beach Resort, Off Platinum Way, Lekki",
+    description:
+      "Luxury Unmatched 4-Bedroom Terraces. Outright: ₦300M | Initial Deposit: ₦150M. Amenities include swimming pool, fully equipped gym, 24-hour power, high-speed network, ample parking, and round-the-clock security.",
+    image: "/images/proj-havilah-6.jpg",
   },
 ];

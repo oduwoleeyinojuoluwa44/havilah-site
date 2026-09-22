@@ -6,17 +6,17 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
 import ChatModal from "@/components/chat-modal";
 
-/* Completed projects only. These are the landscape photos from the Havilah
-   brochure, cut to 16:9 and upscaled 4x with Real-ESRGAN (x4plus), then saved
-   at 2880x1620; the portrait shots in data/projects.ts lose over half the
-   frame at this aspect. Havilah Court 1's brochure photo is only 434px wide,
-   so it carries the most AI detail; swap it for an original when one exists. */
+/* All slides are 16:9 at 2880x1620. The completed-project slides are
+   brochure photos upscaled 4x with Real-ESRGAN (x4plus). The two Havilah
+   Court 5 slides keep the whole portrait iPhone photo, uncropped, in the
+   centre at full resolution; the left and right sides are AI-generated
+   (Stable Diffusion 1.5 inpainting, then Real-ESRGAN 4x) to fill the frame. */
 const heroImages = [
   { src: "/images/hero-completed-koinonia.jpg", alt: "Koinonia, Agungi" },
-  { src: "/images/hero-completed-havilah-1.jpg", alt: "Havilah Court 1, Platinum Way, Ikate" },
+  { src: "/images/hero-havilah-5-a.jpg", alt: "Havilah Court 5, Beach Resort Estate" },
   { src: "/images/hero-completed-havilah-2.jpg", alt: "Havilah Court 2, The Nest Estate" },
   { src: "/images/hero-completed-havilah-3.jpg", alt: "Havilah Court 3, Jakande First Gate" },
-  { src: "/images/hero-completed-havilah-4.jpg", alt: "Havilah Court 4, Jakande First Gate" },
+  { src: "/images/hero-havilah-5-c.jpg", alt: "Havilah Court 5 terraces, Beach Resort Estate" },
 ];
 
 const CYCLE_MS = 6500;
