@@ -84,7 +84,9 @@ export const projects: Project[] = [
     location: "Lekki, Lagos",
     description:
       "An extension of the Havilah Court 5 development, currently progressing alongside the main project.",
-    image: "/images/project-05.jpg",
+    /* No photo of the Annex itself yet; an empty string leaves the card's
+       picture area blank rather than borrowing another project's photo. */
+    image: "",
   },
   {
     id: "havilah-6",

@@ -26,10 +26,21 @@ const SIZES = "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw";
 /* The card's photo. A project with a `gallery` gets side arrows, dots and
    swipe to step through every photo; the rest keep a single image. */
 function CardImages({ project: p }: { project: Project }) {
-  const photos = [p.image, ...(p.gallery ?? [])];
+  const photos = [p.image, ...(p.gallery ?? [])].filter(Boolean);
   const [index, setIndex] = useState(0);
   const touchX = useRef<number | null>(null);
   const many = photos.length > 1;
+
+  /* A project with no photo keeps the same slot, empty, so the cards stay
+     the same height and nothing else stands in for it. */
+  if (photos.length === 0) {
+    return (
+      <div
+        className="relative aspect-[4/5] overflow-hidden rounded-xl bg-paper-dim"
+        aria-hidden
+      />
+    );
+  }
 
   const go = (step: number) =>
     setIndex((i) => (i + step + photos.length) % photos.length);

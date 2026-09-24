@@ -61,6 +61,7 @@ const items: NavItem[] = [
       ],
     },
   },
+  { label: "Testimonials", href: "/testimonials" },
   { label: "Contact Us", href: "/contact" },
 ];
 
