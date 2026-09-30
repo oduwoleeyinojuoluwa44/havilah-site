@@ -80,6 +80,20 @@ img {
   }
 }
 
+/* ================= TESTIMONIAL MARQUEE ================= */
+/* The track holds the quotes twice, so shifting it left by half its width
+   lands exactly where it started and the loop has no visible seam. Spacing
+   between cards is a per-card margin, not a flex gap, or the halves would
+   differ by one gap and the seam would jump. */
+@keyframes testimonial-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
 /* ================= REDUCED MOTION ================= */
 @media (prefers-reduced-motion: reduce) {
   *,

@@ -1,34 +1,19 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import { testimonials } from "@/data/testimonials";
 
-const CYCLE_MS = 7000;
+/* Seconds for one full pass. Slow enough to read a quote as it crosses. */
+const DURATION_S = 42;
 
 export default function HomeownerStories() {
-  const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const touchX = useRef<number | null>(null);
-  const reduceMotion = useReducedMotion();
-  const count = testimonials.length;
-
-  const go = (step: number) => setIndex((i) => (i + step + count) % count);
-
-  /* Advances on its own, and stops while someone is reading with the
-     pointer over the card or after they step through by hand. */
-  useEffect(() => {
-    if (paused || count < 2) return;
-    const id = setInterval(() => setIndex((i) => (i + 1) % count), CYCLE_MS);
-    return () => clearInterval(id);
-  }, [paused, count]);
-
-  const current = testimonials[index];
+  /* The list runs twice so the track can loop without a seam. */
+  const track = [...testimonials, ...testimonials];
 
   return (
-    <section className="relative bg-paper py-[clamp(80px,10vh,130px)] px-7">
+    <section className="relative overflow-hidden bg-paper py-[clamp(80px,10vh,130px)]">
       <motion.div
-        className="text-center max-w-[640px] mx-auto mb-[clamp(40px,5vh,64px)]"
+        className="text-center max-w-[640px] mx-auto mb-[clamp(40px,5vh,64px)] px-7"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
@@ -45,94 +30,40 @@ export default function HomeownerStories() {
         </h2>
       </motion.div>
 
-      <div
-        className="relative mx-auto max-w-[860px]"
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-        onTouchStart={(e) => (touchX.current = e.touches[0].clientX)}
-        onTouchEnd={(e) => {
-          if (touchX.current === null) return;
-          const dx = e.changedTouches[0].clientX - touchX.current;
-          if (Math.abs(dx) > 40) {
-            go(dx < 0 ? 1 : -1);
-            setPaused(true);
-          }
-          touchX.current = null;
-        }}
-      >
-        {/* One quote at a time, cross-faded. The box keeps a minimum height so
-            quotes of different lengths do not make the section jump. */}
-        <div className="relative min-h-[300px] sm:min-h-[260px]">
-          <AnimatePresence mode="wait">
-            <motion.figure
-              key={current.id}
-              className="m-0 flex flex-col bg-white border border-line px-[clamp(28px,5vw,56px)] py-[clamp(38px,5vw,52px)] relative"
-              initial={{ opacity: 0, y: reduceMotion ? 0 : 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: reduceMotion ? 0 : -14 }}
-              transition={{ duration: 0.45, ease: "easeOut" }}
+      {/* The quotes drift left on their own and pause while the pointer is
+          over them, so a quote can be read in full. */}
+      <div className="group relative">
+        <div
+          className="flex w-max animate-[testimonial-marquee_var(--marquee-duration)_linear_infinite] group-hover:[animation-play-state:paused]"
+          style={{ "--marquee-duration": `${DURATION_S}s` } as React.CSSProperties}
+        >
+          {track.map((t, i) => (
+            <figure
+              key={`${t.id}-${i}`}
+              aria-hidden={i >= testimonials.length}
+              className="relative m-0 mr-6 flex w-[min(84vw,420px)] shrink-0 flex-col border border-line bg-white p-[38px_32px_30px]"
             >
-              <span className="absolute top-1.5 left-6 font-cormorant text-[76px] leading-none text-gold opacity-32 pointer-events-none select-none">
+              <span className="pointer-events-none absolute top-1.5 left-6 select-none font-cormorant text-[76px] leading-none text-gold opacity-32">
                 &ldquo;
               </span>
-              <blockquote className="m-0 mb-[22px] relative text-[clamp(16px,2vw,20px)] leading-[1.8] text-[#3f434b]">
-                {current.quote}
+              <blockquote className="relative m-0 mb-[22px] text-[15px] leading-[1.85] text-[#3f434b]">
+                {t.quote}
               </blockquote>
-              <figcaption className="mt-auto pt-[18px] border-t border-line">
+              <figcaption className="mt-auto border-t border-line pt-[18px]">
                 <div className="font-cormorant text-[19px] text-ink">
-                  &mdash; {current.author}
+                  &mdash; {t.author}
                 </div>
-                <div className="text-[11.5px] tracking-[2px] uppercase text-stone mt-1.5">
-                  {current.date}
+                <div className="mt-1.5 text-[11.5px] uppercase tracking-[2px] text-stone">
+                  {t.date}
                 </div>
               </figcaption>
-            </motion.figure>
-          </AnimatePresence>
+            </figure>
+          ))}
         </div>
 
-        {count > 1 && (
-          <div className="mt-7 flex items-center justify-center gap-5">
-            {[
-              { step: -1, label: "Previous testimonial", d: "M15 18l-6-6 6-6" },
-              { step: 1, label: "Next testimonial", d: "M9 6l6 6-6 6" },
-            ].map((b) => (
-              <button
-                key={b.label}
-                type="button"
-                aria-label={b.label}
-                onClick={() => {
-                  go(b.step);
-                  setPaused(true);
-                }}
-                className={`flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-gold text-gold-deep transition-colors duration-300 hover:bg-gold hover:text-ink ${
-                  b.step < 0 ? "order-1" : "order-3"
-                }`}
-              >
-                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round">
-                  <path d={b.d} />
-                </svg>
-              </button>
-            ))}
-
-            <div className="order-2 flex items-center gap-2">
-              {testimonials.map((t, i) => (
-                <button
-                  key={t.id}
-                  type="button"
-                  aria-label={`Show testimonial ${i + 1}`}
-                  aria-current={i === index}
-                  onClick={() => {
-                    setIndex(i);
-                    setPaused(true);
-                  }}
-                  className={`h-2 cursor-pointer rounded-full transition-all duration-300 ${
-                    i === index ? "w-6 bg-gold" : "w-2 bg-ink/20 hover:bg-ink/40"
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
-        )}
+        {/* Soft edges so cards enter and leave rather than being cut off. */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-[clamp(24px,6vw,90px)] bg-gradient-to-r from-paper to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-[clamp(24px,6vw,90px)] bg-gradient-to-l from-paper to-transparent" />
       </div>
     </section>
   );
