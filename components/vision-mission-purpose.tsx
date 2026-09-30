@@ -24,12 +24,17 @@ const pillars = [
 export default function VisionMissionPurpose() {
   return (
     <section className="bg-paper px-[8vw] py-[clamp(56px,8vh,96px)]">
-      <div className="mx-auto grid max-w-[1180px] gap-6 md:grid-cols-3">
+      {/* On md+ the three cards share one row track set (subgrid), so the
+          heading, the gold rule under it and the statement all start at the
+          same height in every card however long the statement is. The first
+          row is the flexible spacer that keeps the block bottom-anchored. */}
+      <div className="mx-auto grid max-w-[1180px] gap-6 md:grid-cols-3 md:grid-rows-[1fr_auto_auto_auto]">
         {pillars.map((p) => (
           <article
             key={p.title}
-            className="relative isolate flex min-h-[380px] flex-col justify-end overflow-hidden rounded-lg bg-ink p-8 lg:min-h-[440px]"
+            className="relative isolate flex min-h-[380px] flex-col justify-end overflow-hidden rounded-lg bg-ink p-8 lg:min-h-[440px] md:row-span-4 md:grid md:grid-rows-subgrid md:justify-normal"
           >
+            <div className="hidden md:block" aria-hidden />
             {/* The photograph is texture rather than subject here, so it sits
                 well back: dimmed, then covered by a wash that deepens toward
                 the text. */}
