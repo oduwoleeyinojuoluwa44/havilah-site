@@ -157,7 +157,7 @@ export default function ProjectList({ status }: { status: ProjectStatus }) {
                         .join(" ")}
                     </p>
                     <h2 className="mt-1 font-cormorant text-[28px] leading-tight text-ink group-hover:text-gold transition-colors duration-300">
-                      {p.name}
+                      <Link href={`/projects/${p.id}`}>{p.name}</Link>
                     </h2>
                     <p className="mt-1 text-[12px] uppercase tracking-[2px] text-stone">
                       {p.location}
@@ -195,10 +195,10 @@ export default function ProjectList({ status }: { status: ProjectStatus }) {
                       Havilah Developments
                     </span>
                     <Link
-                      href="/contact"
+                      href={`/projects/${p.id}`}
                       className="text-[12px] uppercase tracking-[1.5px] font-medium text-gold hover:text-golden transition-colors"
                     >
-                      Inquire &rarr;
+                      View development &rarr;
                     </Link>
                   </div>
                 )}

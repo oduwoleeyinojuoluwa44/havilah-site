@@ -107,8 +107,16 @@ export default function Hero() {
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75, delay: 0.55 }}
-          className="mt-8 max-[900px]:mt-5"
+          className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4 max-[900px]:mt-5"
         >
+          {/* Booking leads, browsing follows: the filled button is the one that
+              turns a visitor into an enquiry. */}
+          <Link
+            href="/contact"
+            className="inline-block rounded-full border-2 border-gold bg-gold px-8 sm:px-11 py-3.5 sm:py-4 text-[12.5px] sm:text-[13px] font-medium uppercase tracking-[1.5px] text-ink transition-colors duration-300 hover:border-golden hover:bg-golden"
+          >
+            Book a Private Viewing
+          </Link>
           <Link
             href="/projects"
             className="inline-block rounded-full border-2 border-gold bg-transparent px-8 sm:px-11 py-3.5 sm:py-4 text-[12.5px] sm:text-[13px] font-medium uppercase tracking-[1.5px] text-white transition-colors duration-300 hover:border-golden hover:bg-gold hover:text-ink"
@@ -122,7 +130,7 @@ export default function Hero() {
       {/* Right padding clears the fixed chat button (right-6 + 56px on
           larger screens) so the copyright never slides underneath it. */}
       <div className="absolute inset-x-0 bottom-0 z-20 flex items-center justify-between gap-4 py-4 pl-6 pr-28 max-md:flex-col max-md:items-start max-md:gap-2 max-md:py-3.5 max-md:pr-20">
-        <div className="flex gap-2.5">
+        <div className="flex gap-2 sm:gap-2.5">
           {socials.map((s) => (
             <a
               key={s.name}
@@ -130,7 +138,7 @@ export default function Hero() {
               aria-label={s.name}
               target={s.href.startsWith("http") ? "_blank" : undefined}
               rel={s.href.startsWith("http") ? "noopener noreferrer" : undefined}
-              className="flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-gold text-ink transition-colors duration-300 hover:bg-golden"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-gold text-ink transition-colors duration-300 hover:bg-golden"
             >
               <svg viewBox="0 0 24 24" className="h-[15px] w-[15px] sm:h-[17px] sm:w-[17px] fill-current">
                 <path d={s.d} />

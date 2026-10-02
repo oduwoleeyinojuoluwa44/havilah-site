@@ -25,6 +25,20 @@ const HEAR_OPTIONS = [
   "Other",
 ];
 
+/* Mirrors data/projects.ts, plus the two answers that are not a project. */
+const DEVELOPMENTS = [
+  "Havilah 6",
+  "Havilah Court 5",
+  "Havilah Court 5 Annex",
+  "Havilah Court 4",
+  "Havilah Court 3",
+  "Havilah Court 2",
+  "Havilah Court 1",
+  "Koinonia",
+  "A future development",
+  "Not sure yet",
+];
+
 const MESSAGE_TYPES = [
   "Property Inquiry (Buying a Home)",
   "Property Management Services",
@@ -40,6 +54,7 @@ export default function ContactPage() {
   const [phone, setPhone] = useState("");
   const [country, setCountry] = useState("");
   const [hearAbout, setHearAbout] = useState("");
+  const [development, setDevelopment] = useState("");
   const [messageType, setMessageType] = useState("");
   const [message, setMessage] = useState("");
   const [agreed, setAgreed] = useState(false);
@@ -60,6 +75,7 @@ export default function ContactPage() {
     setPhone("");
     setCountry("");
     setHearAbout("");
+    setDevelopment("");
     setMessageType("");
     setMessage("");
     setAgreed(false);
@@ -236,7 +252,34 @@ export default function ContactPage() {
                     </div>
                   </div>
 
-                  {/* Row 4: Message Type */}
+                  {/* Row 4: Development of Interest — the first thing sales
+                      needs to know, so it sits above the message fields. */}
+                  <div>
+                    <label className="mb-1.5 block text-[13px] font-medium text-ink">
+                      Development of Interest
+                    </label>
+                    <div className="relative">
+                      <select
+                        value={development}
+                        onChange={(e) => setDevelopment(e.target.value)}
+                        className="w-full appearance-none rounded-xl border border-ink/15 bg-white px-4 py-3 text-[16px] sm:text-[14px] text-ink focus:border-gold focus:outline-none transition-colors cursor-pointer"
+                      >
+                        <option value="">Please select an option</option>
+                        {DEVELOPMENTS.map((d) => (
+                          <option key={d} value={d}>
+                            {d}
+                          </option>
+                        ))}
+                      </select>
+                      <div className="pointer-events-none absolute inset-y-0 right-3.5 flex items-center text-stone">
+                        <svg viewBox="0 0 20 20" className="h-4 w-4 fill-current">
+                          <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Row 5: Message Type */}
                   <div>
                     <label className="mb-1.5 block text-[13px] font-medium text-ink">
                       Message Type <span className="text-gold">*</span>
@@ -385,11 +428,6 @@ export default function ContactPage() {
                   <p>
                     <a href="mailto:hr.havilah@gmail.com" className="hover:text-gold transition-colors underline underline-offset-4 decoration-white/30 hover:decoration-gold">
                       hr.havilah@gmail.com
-                    </a>
-                  </p>
-                  <p>
-                    <a href="mailto:info@havilahdevelopments.com" className="hover:text-gold transition-colors underline underline-offset-4 decoration-white/30 hover:decoration-gold">
-                      info@havilahdevelopments.com
                     </a>
                   </p>
                 </div>

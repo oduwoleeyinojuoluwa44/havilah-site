@@ -26,4 +26,11 @@ export const testimonials: Testimonial[] = [
     author: "Havilah Homeowner",
     date: "June 2025",
   },
+  {
+    id: 4,
+    quote:
+      "The transparency and constant update during the construction phase, plus the fact that it was delivered on time.",
+    author: "Havilah Homeowner",
+    date: "July 2025",
+  },
 ];

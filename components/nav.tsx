@@ -192,7 +192,7 @@ export default function Nav({
 
           {/* ── Hamburger ── */}
           <button
-            className={`md:hidden bg-transparent border-0 p-2 cursor-pointer flex flex-col gap-[5px] w-[34px] relative z-[60] transition-colors duration-300 ${
+            className={`md:hidden bg-transparent border-0 cursor-pointer flex flex-col justify-center gap-[5px] h-11 w-11 -mr-2 px-[5px] relative z-[60] transition-colors duration-300 ${
               open ? "text-white" : ""
             }`}
             aria-expanded={open}
