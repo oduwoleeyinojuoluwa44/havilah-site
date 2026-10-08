@@ -83,10 +83,8 @@ export const projects: Project[] = [
     status: "ongoing",
     location: "Lekki, Lagos",
     description:
-      "An extension of the Havilah Court 5 development, currently progressing alongside the main project.",
-    /* No photo of the Annex itself yet; an empty string leaves the card's
-       picture area blank rather than borrowing another project's photo. */
-    image: "",
+      "Twelve terraces extending the Havilah Court 5 community. White facades framed in dark stone, a private balcony to every home, and palms along the parking drive.",
+    image: "/images/proj-havilah-5-annex.jpg",
   },
   {
     id: "havilah-6",
