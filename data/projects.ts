@@ -90,7 +90,9 @@ export const projects: Project[] = [
     status: "ongoing",
     location: "Beach Resort, Off Platinum Way, Lekki",
     description:
-      "Luxury Unmatched 4-Bedroom Terraces. Outright: ₦300M | Initial Deposit: ₦150M. Amenities include swimming pool, fully equipped gym, 24-hour power, high-speed network, ample parking, and round-the-clock security.",
-    image: "/images/proj-havilah-6.jpg",
+      "Twenty-four four-bedroom terraces behind a gated entrance, with a swimming pool, fully equipped gym, 24-hour power, high-speed network, ample parking and round-the-clock security. Outright ₦300M, or from a ₦150M initial deposit.",
+    /* The render leads; the price flyer sits behind it in the gallery. */
+    image: "/images/proj-havilah-6-render.jpg",
+    gallery: ["/images/proj-havilah-6.jpg"],
   },
 ];
