@@ -426,8 +426,8 @@ export default function ContactPage() {
                 </div>
                 <div className="space-y-2.5 text-[15px] text-white/90">
                   <p>
-                    <a href="mailto:hr.havilah@gmail.com" className="hover:text-gold transition-colors underline underline-offset-4 decoration-white/30 hover:decoration-gold">
-                      hr.havilah@gmail.com
+                    <a href="mailto:sales@havilahdevelopment.com" className="hover:text-gold transition-colors underline underline-offset-4 decoration-white/30 hover:decoration-gold">
+                      sales@havilahdevelopment.com
                     </a>
                   </p>
                 </div>

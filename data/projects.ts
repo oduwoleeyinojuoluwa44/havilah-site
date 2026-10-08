@@ -10,6 +10,13 @@ export interface Project {
   image: string;
   /** Extra photos; when present the card becomes a gallery, starting at `image`. */
   gallery?: string[];
+  /** Named amenities, listed on the development page. */
+  features?: string[];
+  /** Expected handover, shown beside status and location. */
+  delivery?: string;
+  /** Construction progress photographs. These stay off the cards, which show
+      the architecture, and appear only on the development page. */
+  progress?: string[];
 }
 
 export const projects: Project[] = [
@@ -70,9 +77,22 @@ export const projects: Project[] = [
     location: "Beach Resort Estate, Lekki",
     description:
       "Four semi-detached homes, each a four-bedroom duplex over two suspended floors with a family lounge, a BQ and a laundry, alongside nineteen four-bedroom terraces and sixteen apartments, a gym, swimming pool and children's play area.",
-    /* The construction photographs are kept in public/images but out of the
-       card: the development shows as the finished architecture instead. */
+    /* The card shows the architecture; the construction photographs appear
+       further down the development page as progress. */
     image: "/images/proj-havilah-5-semi.jpg",
+    features: [
+      "Co-working station",
+      "Kids development centre",
+      "Electric vehicle charging station",
+      "Rooftop sit-out",
+      "Swimming pool",
+      "Fully equipped gym",
+    ],
+    progress: [
+      "/images/proj-havilah-5-a.jpg",
+      "/images/proj-havilah-5-b.jpg",
+      "/images/proj-havilah-5-c.jpg",
+    ],
     year: undefined,
   },
   {

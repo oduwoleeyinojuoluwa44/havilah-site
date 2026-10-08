@@ -1,0 +1,24 @@
+/* The Havilah house-and-H mark, traced from the company logo. It inherits the
+   surrounding text colour, so it sits on the dark bar and the footer without
+   a second file. The wordmark stays as live text beside it. */
+export default function LogoMark({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="40 70 432 360"
+      role="img"
+      aria-label="Havilah"
+      className={className}
+      fill="currentColor"
+    >
+      <polygon points="104.6,244.2 254.7,94.1 407.4,245.5 407.4,283.0 254.7,131.6 104.6,281.7" />
+      <rect x="150.7" y="123.7" width="26.3" height="246.9" />
+      <rect x="335.0" y="212.6" width="26.3" height="161.3" />
+      <rect x="173.7" y="275.1" width="164.6" height="26.3" />
+      <rect x="229.7" y="202.7" width="16.5" height="17.1" />
+      <rect x="264.6" y="202.7" width="17.1" height="17.1" />
+      <rect x="229.7" y="231.6" width="16.5" height="17.1" />
+      <rect x="264.6" y="231.6" width="17.1" height="17.1" />
+      <path d="M71.7,417.9 Q256.0,324.5 440.3,413.3 Q256.0,348.2 71.7,417.9Z" />
+    </svg>
+  );
+}

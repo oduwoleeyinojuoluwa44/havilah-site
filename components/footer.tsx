@@ -1,8 +1,11 @@
+import LogoMark from "./logo-mark";
+
 export default function Footer() {
   return (
     <footer className="bg-ink text-white pt-[70px] pb-9 px-[8vw]">
       <div className="flex justify-between flex-wrap gap-10 max-w-[1200px] mx-auto">
         <div>
+          <LogoMark className="mb-3 h-[46px] w-[46px] text-white" />
           <div className="font-cormorant text-[24px] tracking-[3px]">
             HAVILAH
             <em className="font-great-vibes font-normal text-gold block text-[19px] tracking-[1px] mt-1">
@@ -22,7 +25,7 @@ export default function Footer() {
           <b className="text-white font-medium block mb-1.5">Talk</b>
           0816 264 9021
           <br />
-          <a href="mailto:hr.havilah@gmail.com">hr.havilah@gmail.com</a>
+          <a href="mailto:sales@havilahdevelopment.com">sales@havilahdevelopment.com</a>
         </div>
         <div className="text-[12.5px] tracking-[1.5px] leading-[2.3] text-white/70 uppercase">
           <b className="text-white font-medium block mb-1.5">Explore</b>

@@ -43,6 +43,9 @@ export default async function DevelopmentPage({
   const facts = [
     { label: "Status", value: completed ? "Completed" : "Ongoing" },
     ...(project.year ? [{ label: "Year", value: project.year }] : []),
+    ...(project.delivery
+      ? [{ label: "Expected delivery", value: project.delivery }]
+      : []),
     { label: "Location", value: project.location },
   ];
 
@@ -106,6 +109,28 @@ export default async function DevelopmentPage({
             {project.description}
           </p>
 
+          {project.features && project.features.length > 0 && (
+            <div className="mt-12 border-t border-ink/10 pt-10">
+              <h2 className="font-cormorant text-[clamp(26px,3.4vw,38px)] uppercase leading-tight text-ink">
+                Features
+              </h2>
+              <ul className="mt-6 grid gap-x-8 gap-y-3 sm:grid-cols-2 lg:grid-cols-3">
+                {project.features.map((f) => (
+                  <li
+                    key={f}
+                    className="flex items-start gap-2.5 text-[15.5px] leading-[1.7] text-[#3f434b]"
+                  >
+                    <span
+                      aria-hidden
+                      className="mt-[9px] block h-[6px] w-[6px] shrink-0 rounded-full bg-gold"
+                    />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
           {rest.length > 0 && (
             <div className="mt-12 grid gap-5 sm:grid-cols-2">
               {rest.map((src, i) => (
@@ -122,6 +147,32 @@ export default async function DevelopmentPage({
                   />
                 </div>
               ))}
+            </div>
+          )}
+          {project.progress && project.progress.length > 0 && (
+            <div className="mt-14 border-t border-ink/10 pt-10">
+              <h2 className="font-cormorant text-[clamp(26px,3.4vw,38px)] uppercase leading-tight text-ink">
+                Construction progress
+              </h2>
+              <p className="mt-3 text-[15px] text-[#3f434b]">
+                On site at {project.name}.
+              </p>
+              <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                {project.progress.map((src, i) => (
+                  <div
+                    key={src}
+                    className="relative aspect-[4/3] overflow-hidden rounded-xl bg-ink-soft"
+                  >
+                    <Image
+                      src={src}
+                      alt={`${project.name} under construction, photo ${i + 1}`}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover"
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           )}
         </div>

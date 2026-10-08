@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "motion/react";
+import LogoMark from "./logo-mark";
 
 /* Only the two About pages exist so far. The remaining labels stand as the
    intended structure and do not navigate yet; give each an href as its page
@@ -140,14 +141,17 @@ export default function Nav({
           <Link
             href="/"
             onClick={() => setOpen(false)}
-            className={`font-cormorant text-[19px] tracking-[3px] leading-tight max-md:text-[17px] relative z-[60] transition-colors ${
+            className={`flex items-center gap-2.5 font-cormorant text-[19px] tracking-[3px] leading-tight max-md:gap-2 max-md:text-[17px] relative z-[60] transition-colors ${
               open ? "text-white" : ""
             }`}
           >
-            HAVILAH
-            <em className="font-great-vibes font-normal text-[13.5px] block tracking-[1px] opacity-85 max-md:text-[12px]">
-              Development
-            </em>
+            <LogoMark className="h-[38px] w-[38px] shrink-0 max-md:h-[32px] max-md:w-[32px]" />
+            <span>
+              HAVILAH
+              <em className="font-great-vibes font-normal text-[13.5px] block tracking-[1px] opacity-85 max-md:text-[12px]">
+                Development
+              </em>
+            </span>
           </Link>
 
           {/* ── Desktop ── */}
