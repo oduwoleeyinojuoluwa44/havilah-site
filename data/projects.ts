@@ -70,12 +70,9 @@ export const projects: Project[] = [
     location: "Beach Resort Estate, Lekki",
     description:
       "Four semi-detached homes, each a four-bedroom duplex over two suspended floors with a family lounge, a BQ and a laundry, alongside nineteen four-bedroom terraces and sixteen apartments, a gym, swimming pool and children's play area.",
-    image: "/images/proj-havilah-5-a.jpg",
-    gallery: [
-      "/images/proj-havilah-5-semi.jpg",
-      "/images/proj-havilah-5-b.jpg",
-      "/images/proj-havilah-5-c.jpg",
-    ],
+    /* The construction photographs are kept in public/images but out of the
+       card: the development shows as the finished architecture instead. */
+    image: "/images/proj-havilah-5-semi.jpg",
     year: undefined,
   },
   {
