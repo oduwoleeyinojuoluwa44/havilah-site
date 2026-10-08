@@ -69,9 +69,10 @@ export const projects: Project[] = [
     status: "ongoing",
     location: "Beach Resort Estate, Lekki",
     description:
-      "Four semi-detached homes, nineteen four-bedroom terraces and sixteen apartments, with a gym, swimming pool and children's play area.",
+      "Four semi-detached homes, each a four-bedroom duplex over two suspended floors with a family lounge, a BQ and a laundry, alongside nineteen four-bedroom terraces and sixteen apartments, a gym, swimming pool and children's play area.",
     image: "/images/proj-havilah-5-a.jpg",
     gallery: [
+      "/images/proj-havilah-5-semi.jpg",
       "/images/proj-havilah-5-b.jpg",
       "/images/proj-havilah-5-c.jpg",
     ],
