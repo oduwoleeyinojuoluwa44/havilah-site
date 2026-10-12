@@ -109,6 +109,34 @@ export default async function DevelopmentPage({
             {project.description}
           </p>
 
+          {project.units && project.units.length > 0 && (
+            <div className="mt-12 border-t border-ink/10 pt-10">
+              <h2 className="font-cormorant text-[clamp(26px,3.4vw,38px)] uppercase leading-tight text-ink">
+                The residences
+              </h2>
+              <dl className="mt-7 divide-y divide-ink/10 border-y border-ink/10">
+                {project.units.map((u) => (
+                  <div
+                    key={u.type}
+                    className="grid gap-1.5 py-6 sm:grid-cols-[180px_1fr] sm:gap-8"
+                  >
+                    <dt>
+                      <span className="block text-[11.5px] uppercase tracking-[2.4px] text-gold-deep">
+                        {u.count}
+                      </span>
+                      <span className="mt-1 block font-cormorant text-[23px] leading-tight text-ink">
+                        {u.type}
+                      </span>
+                    </dt>
+                    <dd className="m-0 text-[15.5px] leading-[1.8] text-[#3f434b]">
+                      {u.detail}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          )}
+
           {project.features && project.features.length > 0 && (
             <div className="mt-12 border-t border-ink/10 pt-10">
               <h2 className="font-cormorant text-[clamp(26px,3.4vw,38px)] uppercase leading-tight text-ink">

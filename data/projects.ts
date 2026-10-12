@@ -12,6 +12,8 @@ export interface Project {
   gallery?: string[];
   /** Named amenities, listed on the development page. */
   features?: string[];
+  /** The residences, one entry per unit type, as the architect describes them. */
+  units?: { count: string; type: string; detail: string }[];
   /** Expected handover, shown beside status and location. */
   delivery?: string;
   /** Construction progress photographs. These stay off the cards, which show
@@ -76,7 +78,27 @@ export const projects: Project[] = [
     status: "ongoing",
     location: "Beach Resort Estate, Lekki",
     description:
-      "Four semi-detached homes, each a four-bedroom duplex over two suspended floors with a family lounge, a BQ and a laundry, alongside nineteen four-bedroom terraces and sixteen apartments, a gym, swimming pool and children's play area.",
+      "Four units of semi-detached homes, nineteen terraces and sixteen flats, with a gym, swimming pool and children's play area.",
+    /* One line per unit type. The terrace floor count is left out until the
+       architect confirms whether it is two or three suspended floors. */
+    units: [
+      {
+        count: "4 units",
+        type: "Semi-detached homes",
+        detail:
+          "A four-bedroom duplex over two suspended floors, with a family lounge, a BQ and a laundry.",
+      },
+      {
+        count: "19 units",
+        type: "Terraces",
+        detail: "A four-bedroom terrace with a family lounge and a BQ.",
+      },
+      {
+        count: "16 units",
+        type: "Block of flats",
+        detail: "A two-bedroom flat with an open-plan kitchen.",
+      },
+    ],
     /* The card shows the architecture; the construction photographs appear
        further down the development page as progress. */
     image: "/images/proj-havilah-5-semi.jpg",
