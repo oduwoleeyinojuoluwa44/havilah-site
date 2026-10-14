@@ -10,10 +10,15 @@ export interface Project {
   image: string;
   /** Extra photos; when present the card becomes a gallery, starting at `image`. */
   gallery?: string[];
+  /** `false` keeps the development page's cover dark and shows `image` with
+      the other photos instead, for a picture that does not crop to a banner. */
+  cover?: false;
   /** Named amenities, listed on the development page. */
   features?: string[];
-  /** The residences, one entry per unit type, as the architect describes them. */
-  units?: { count: string; type: string; detail: string }[];
+  /** The residences, one entry per unit type, as the architect describes them.
+      A unit with an `image` also becomes a slide on the card, captioned with
+      its own detail. */
+  units?: { count: string; type: string; detail: string; image?: string }[];
   /** Expected handover, shown beside status and location. */
   delivery?: string;
   /** Construction progress photographs. These stay off the cards, which show
@@ -78,30 +83,34 @@ export const projects: Project[] = [
     status: "ongoing",
     location: "Beach Resort Estate, Lekki",
     description:
-      "Four units of semi-detached homes, nineteen terraces and sixteen flats, with a gym, swimming pool and children's play area.",
-    /* One line per unit type. The terrace floor count is left out until the
-       architect confirms whether it is two or three suspended floors. */
+      "Havilah Court 5 comprises four semi-detached homes, nineteen terraces and a block of sixteen flats, with a swimming pool, gym, social area and children's play area.",
+    /* One line and one render per unit type; the card steps from the estate
+       view through each of them. The terrace floor count is left out until
+       the architect confirms whether it is two or three suspended floors. */
     units: [
       {
         count: "4 units",
         type: "Semi-detached homes",
         detail:
           "A four-bedroom duplex over two suspended floors, with a family lounge, a BQ and a laundry.",
+        image: "/images/proj-havilah-5-semi.jpg",
       },
       {
         count: "19 units",
         type: "Terraces",
-        detail: "A four-bedroom terrace with a family lounge and a BQ.",
+        detail: "A luxurious four-bedroom terrace with a family lounge and a BQ.",
+        image: "/images/proj-havilah-5-terraces.jpg",
       },
       {
         count: "16 units",
         type: "Block of flats",
-        detail: "A two-bedroom flat with an open-plan kitchen.",
+        detail: "A luxurious two-bedroom flat with an open-plan kitchen.",
+        image: "/images/proj-havilah-5-flats.jpg",
       },
     ],
-    /* The card shows the architecture; the construction photographs appear
-       further down the development page as progress. */
-    image: "/images/proj-havilah-5-semi.jpg",
+    /* The estate view leads; the construction photographs appear further
+       down the development page as progress. */
+    image: "/images/proj-havilah-5-estate.jpg",
     features: [
       "Co-working station",
       "Kids development centre",
@@ -133,8 +142,10 @@ export const projects: Project[] = [
     location: "Beach Resort, Off Platinum Way, Lekki",
     description:
       "Twenty-four four-bedroom terraces behind a gated entrance, with a swimming pool, fully equipped gym, 24-hour power, high-speed network, ample parking and round-the-clock security. Outright ₦300M, or from a ₦150M initial deposit.",
-    /* The render leads; the price flyer sits behind it in the gallery. */
-    image: "/images/proj-havilah-6-render.jpg",
-    gallery: ["/images/proj-havilah-6.jpg"],
+    /* The render that led here is the Court 5 estate view, so the price
+       flyer leads until Havilah 6 has a render of its own. Its lettering
+       would sit behind the page title, so the page cover stays dark. */
+    image: "/images/proj-havilah-6.jpg",
+    cover: false,
   },
 ];

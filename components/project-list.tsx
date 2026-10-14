@@ -23,11 +23,35 @@ const headings: Record<ProjectStatus, { title: string; blurb: string }> = {
 
 const SIZES = "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw";
 
-/* The card's photo. A project with a `gallery` gets side arrows, dots and
-   swipe to step through every photo; the rest keep a single image. */
-function CardImages({ project: p }: { project: Project }) {
-  const photos = [p.image, ...(p.gallery ?? [])].filter(Boolean);
-  const [index, setIndex] = useState(0);
+/* One step of a card: a photo, and for a unit type its own caption, which
+   replaces the development's description while that slide is showing. */
+type Slide = { src: string; type?: string; label?: string; text?: string };
+
+function slidesFor(p: Project): Slide[] {
+  return [
+    ...[p.image, ...(p.gallery ?? [])].filter(Boolean).map((src) => ({ src })),
+    ...(p.units ?? []).flatMap((u) =>
+      u.image
+        ? [{ src: u.image, type: u.type, label: `${u.count} · ${u.type}`, text: u.detail }]
+        : [],
+    ),
+  ];
+}
+
+/* The card's photo. A project with more than one slide gets side arrows,
+   dots and swipe to step through them; the rest keep a single image. */
+function CardImages({
+  project: p,
+  slides,
+  index,
+  setIndex,
+}: {
+  project: Project;
+  slides: Slide[];
+  index: number;
+  setIndex: (update: (i: number) => number) => void;
+}) {
+  const photos = slides.map((s) => s.src);
   const touchX = useRef<number | null>(null);
   const many = photos.length > 1;
 
@@ -62,7 +86,13 @@ function CardImages({ project: p }: { project: Project }) {
         <Image
           key={src}
           src={src}
-          alt={many ? `${p.name}, photo ${i + 1} of ${photos.length}` : p.name}
+          alt={
+            slides[i].type
+              ? `${p.name}, ${slides[i].type}`
+              : many
+                ? `${p.name}, photo ${i + 1} of ${photos.length}`
+                : p.name
+          }
           fill
           sizes={SIZES}
           aria-hidden={i !== index}
@@ -74,6 +104,13 @@ function CardImages({ project: p }: { project: Project }) {
 
       {/* Dark gradient wash appearing on hover */}
       <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+      {/* Names the unit type on its own slide */}
+      {slides[index]?.type && (
+        <span className="pointer-events-none absolute left-3 top-3 z-10 rounded-full bg-ink/60 px-3 py-1 text-[11px] uppercase tracking-[1.5px] text-white backdrop-blur-sm">
+          {slides[index].type}
+        </span>
+      )}
 
       {many && (
         <>
@@ -103,7 +140,7 @@ function CardImages({ project: p }: { project: Project }) {
                 type="button"
                 aria-label={`Show photo ${i + 1}`}
                 aria-current={i === index}
-                onClick={() => setIndex(i)}
+                onClick={() => setIndex(() => i)}
                 className={`h-2 cursor-pointer rounded-full transition-all duration-300 ${
                   i === index ? "w-5 bg-golden" : "w-2 bg-white/70 hover:bg-white"
                 }`}
@@ -112,6 +149,46 @@ function CardImages({ project: p }: { project: Project }) {
           </div>
         </>
       )}
+    </div>
+  );
+}
+
+/* The photo and the words under it share one index, so a unit type's slide
+   shows that unit's caption and the estate view shows the description. */
+function CardBody({ project: p }: { project: Project }) {
+  const slides = slidesFor(p);
+  const [index, setIndex] = useState(0);
+  const slide = slides[index];
+
+  return (
+    <div>
+      <CardImages project={p} slides={slides} index={index} setIndex={setIndex} />
+
+      {/* Content details */}
+      <div className="mt-5">
+        <p className="text-[11.5px] uppercase tracking-[2.4px] text-gold-deep">
+          {[p.status === "completed" ? "Completed" : "Ongoing", p.year]
+            .filter(Boolean)
+            .join(" ")}
+        </p>
+        <h2 className="mt-1 font-cormorant text-[28px] leading-tight text-ink group-hover:text-gold transition-colors duration-300">
+          <Link href={`/projects/${p.id}`}>{p.name}</Link>
+        </h2>
+        <p className="mt-1 text-[12px] uppercase tracking-[2px] text-stone">
+          {p.location}
+        </p>
+        {slide?.label && (
+          <p className="mt-3 text-[11.5px] uppercase tracking-[2px] text-gold-deep">
+            {slide.label}
+          </p>
+        )}
+        <p
+          aria-live="polite"
+          className={`${slide?.label ? "mt-1" : "mt-3"} text-[14px] leading-[1.8] text-[#3f434b]`}
+        >
+          {slide?.text ?? p.description}
+        </p>
+      </div>
     </div>
   );
 }
@@ -146,27 +223,7 @@ export default function ProjectList({ status }: { status: ProjectStatus }) {
                 key={p.id}
                 className="group relative flex flex-col justify-between rounded-2xl bg-white p-5 border border-ink/10 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden"
               >
-                <div>
-                  <CardImages project={p} />
-
-                  {/* Content details */}
-                  <div className="mt-5">
-                    <p className="text-[11.5px] uppercase tracking-[2.4px] text-gold-deep">
-                      {[p.status === "completed" ? "Completed" : "Ongoing", p.year]
-                        .filter(Boolean)
-                        .join(" ")}
-                    </p>
-                    <h2 className="mt-1 font-cormorant text-[28px] leading-tight text-ink group-hover:text-gold transition-colors duration-300">
-                      <Link href={`/projects/${p.id}`}>{p.name}</Link>
-                    </h2>
-                    <p className="mt-1 text-[12px] uppercase tracking-[2px] text-stone">
-                      {p.location}
-                    </p>
-                    <p className="mt-3 text-[14px] leading-[1.8] text-[#3f434b]">
-                      {p.description}
-                    </p>
-                  </div>
-                </div>
+                <CardBody project={p} />
 
                 {/* Dedicated Buy Option for Havilah 6 (Court 6) */}
                 {isHavilah6 ? (

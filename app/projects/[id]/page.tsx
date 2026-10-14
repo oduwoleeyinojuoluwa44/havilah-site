@@ -37,8 +37,8 @@ export default async function DevelopmentPage({
   if (!project) notFound();
 
   const photos = [project.image, ...(project.gallery ?? [])].filter(Boolean);
-  const cover = photos[0];
-  const rest = photos.slice(1);
+  const cover = project.cover === false ? undefined : photos[0];
+  const rest = project.cover === false ? photos : photos.slice(1);
   const completed = project.status === "completed";
   const facts = [
     { label: "Status", value: completed ? "Completed" : "Ongoing" },
@@ -114,26 +114,48 @@ export default async function DevelopmentPage({
               <h2 className="font-cormorant text-[clamp(26px,3.4vw,38px)] uppercase leading-tight text-ink">
                 The residences
               </h2>
-              <dl className="mt-7 divide-y divide-ink/10 border-y border-ink/10">
+              {/* A unit type with a render shows it beside its description. */}
+              <ul className="mt-7 divide-y divide-ink/10 border-y border-ink/10">
                 {project.units.map((u) => (
-                  <div
+                  <li
                     key={u.type}
-                    className="grid gap-1.5 py-6 sm:grid-cols-[180px_1fr] sm:gap-8"
+                    className={`grid gap-4 py-6 sm:gap-8 ${
+                      u.image ? "sm:grid-cols-[minmax(0,300px)_1fr] sm:items-center" : ""
+                    }`}
                   >
-                    <dt>
-                      <span className="block text-[11.5px] uppercase tracking-[2.4px] text-gold-deep">
-                        {u.count}
-                      </span>
-                      <span className="mt-1 block font-cormorant text-[23px] leading-tight text-ink">
-                        {u.type}
-                      </span>
-                    </dt>
-                    <dd className="m-0 text-[15.5px] leading-[1.8] text-[#3f434b]">
-                      {u.detail}
-                    </dd>
-                  </div>
+                    {u.image && (
+                      <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-ink-soft">
+                        <Image
+                          src={u.image}
+                          alt={`${project.name}, ${u.type}`}
+                          fill
+                          sizes="(max-width: 640px) 100vw, 300px"
+                          className="object-cover"
+                        />
+                      </div>
+                    )}
+                    <div
+                      className={`grid gap-1.5 ${
+                        u.image
+                          ? "lg:grid-cols-[180px_1fr] lg:gap-8"
+                          : "sm:grid-cols-[180px_1fr] sm:gap-8"
+                      }`}
+                    >
+                      <div>
+                        <span className="block text-[11.5px] uppercase tracking-[2.4px] text-gold-deep">
+                          {u.count}
+                        </span>
+                        <span className="mt-1 block font-cormorant text-[23px] leading-tight text-ink">
+                          {u.type}
+                        </span>
+                      </div>
+                      <p className="m-0 text-[15.5px] leading-[1.8] text-[#3f434b]">
+                        {u.detail}
+                      </p>
+                    </div>
+                  </li>
                 ))}
-              </dl>
+              </ul>
             </div>
           )}
 
@@ -168,7 +190,7 @@ export default async function DevelopmentPage({
                 >
                   <Image
                     src={src}
-                    alt={`${project.name}, photo ${i + 2} of ${photos.length}`}
+                    alt={`${project.name}, photo ${photos.length - rest.length + i + 1} of ${photos.length}`}
                     fill
                     sizes="(max-width: 640px) 100vw, 50vw"
                     className="object-cover"
