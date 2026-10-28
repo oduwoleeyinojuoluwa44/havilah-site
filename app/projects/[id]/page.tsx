@@ -37,8 +37,8 @@ export default async function DevelopmentPage({
   if (!project) notFound();
 
   const photos = [project.image, ...(project.gallery ?? [])].filter(Boolean);
-  const cover = project.cover === false ? undefined : photos[0];
-  const rest = project.cover === false ? photos : photos.slice(1);
+  const cover = photos[0];
+  const rest = photos.slice(1);
   const completed = project.status === "completed";
   const facts = [
     { label: "Status", value: completed ? "Completed" : "Ongoing" },
@@ -190,7 +190,7 @@ export default async function DevelopmentPage({
                 >
                   <Image
                     src={src}
-                    alt={`${project.name}, photo ${photos.length - rest.length + i + 1} of ${photos.length}`}
+                    alt={`${project.name}, photo ${i + 2} of ${photos.length}`}
                     fill
                     sizes="(max-width: 640px) 100vw, 50vw"
                     className="object-cover"

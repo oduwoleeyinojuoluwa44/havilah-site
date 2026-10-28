@@ -10,9 +10,6 @@ export interface Project {
   image: string;
   /** Extra photos; when present the card becomes a gallery, starting at `image`. */
   gallery?: string[];
-  /** `false` keeps the development page's cover dark and shows `image` with
-      the other photos instead, for a picture that does not crop to a banner. */
-  cover?: false;
   /** Named amenities, listed on the development page. */
   features?: string[];
   /** The residences, one entry per unit type, as the architect describes them.
@@ -93,19 +90,19 @@ export const projects: Project[] = [
         type: "Semi-detached homes",
         detail:
           "A four-bedroom duplex over two suspended floors, with a family lounge, a BQ and a laundry.",
-        image: "/images/proj-havilah-5-semi.jpg",
+        image: "/images/proj-havilah-5-semidetached.jpg",
       },
       {
         count: "19 units",
         type: "Terraces",
         detail: "A luxurious four-bedroom terrace with a family lounge and a BQ.",
-        image: "/images/proj-havilah-5-terraces.jpg",
+        image: "/images/proj-havilah-5-terrace-row.jpg",
       },
       {
         count: "16 units",
         type: "Block of flats",
         detail: "A luxurious two-bedroom flat with an open-plan kitchen.",
-        image: "/images/proj-havilah-5-flats.jpg",
+        image: "/images/proj-havilah-5-apartments.jpg",
       },
     ],
     /* The estate view leads; the construction photographs appear further
@@ -142,10 +139,6 @@ export const projects: Project[] = [
     location: "Beach Resort, Off Platinum Way, Lekki",
     description:
       "Twenty-four four-bedroom terraces behind a gated entrance, with a swimming pool, fully equipped gym, 24-hour power, high-speed network, ample parking and round-the-clock security. Outright ₦300M, or from a ₦150M initial deposit.",
-    /* The render that led here is the Court 5 estate view, so the price
-       flyer leads until Havilah 6 has a render of its own. Its lettering
-       would sit behind the page title, so the page cover stays dark. */
-    image: "/images/proj-havilah-6.jpg",
-    cover: false,
+    image: "/images/proj-havilah-6-terraces.jpg",
   },
 ];
